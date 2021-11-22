@@ -8,6 +8,6 @@
       <router-link to="/edit">Edit</router-link>
       <router-link to="/question">Question</router-link>
     </div>
-    <router-view/>
+    <router-view />
   </div>
 </template>
