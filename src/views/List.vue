@@ -1,5 +1,4 @@
 <template>
-  <div>
-    <h1>Ivan</h1>
+<h1>123</h1>
   </div>
 </template>
