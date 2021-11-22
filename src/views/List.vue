@@ -1,5 +1,4 @@
 <template>
-  <div class="about">
-    <h1>khrystyna</h1>
+<h1>123</h1>
   </div>
 </template>
