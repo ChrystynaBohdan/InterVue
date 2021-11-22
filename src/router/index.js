@@ -43,10 +43,9 @@ const routes = [
     component: NotFound,
   },
   {
-    path: '*',
-    redirect: '/404'
-  }
-
+    path: "*",
+    redirect: "/404",
+  },
 ];
 
 const router = new VueRouter({

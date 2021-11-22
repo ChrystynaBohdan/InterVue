@@ -1,4 +1,5 @@
 <template>
-  <div class="about">
+  <div>
+    <h1>Ivan</h1>
   </div>
 </template>
