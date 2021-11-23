@@ -6,8 +6,8 @@
       px-20
       w-full
       justify-between
-      sticky
-      z-1
+      fixed
+      z-10
       hover:bg-green-100
       cursor-pointer
       top-0
