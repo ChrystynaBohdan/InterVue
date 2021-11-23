@@ -9,3 +9,8 @@
   font-family: "Hind Vadorada", Arial, sans-serif;
 }
 </style>
+<script>
+export default {
+  components: {},
+};
+</script>
