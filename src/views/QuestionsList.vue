@@ -1,6 +1,6 @@
 <template>
-  <div class="relative">
-    <div class="flex flex-col items-center justify-center mt-40 bg-gray-100">
+  <div class="relative question-container">
+    <div class="flex flex-col items-center justify-center bg-gray-100 pt-10">
       <div class="flex flex-row w-auto content-center justify-between">
         <div>
           <router-link
@@ -109,3 +109,8 @@ export default {
   computed: { ...mapGetters(["allQuestions"]) },
 };
 </script>
+<style>
+.question-container {
+  margin-top: 115px;
+}
+</style>
