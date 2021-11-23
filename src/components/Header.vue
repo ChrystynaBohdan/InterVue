@@ -10,6 +10,8 @@
       z-1
       hover:bg-green-100
       cursor-pointer
+      top-0
+      bg-white
     "
   >
     <img src="../assets/soft-blues-logo-white.png" alt="logo" />
