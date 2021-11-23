@@ -1,10 +1,19 @@
 <template>
-  <div>question</div>
+  <div>{{ question.title }}</div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "Question",
+  computed: {
+    ...mapGetters(["allQuestions"]),
+
+    question() {
+      return this.allQuestions.find((q) => q.id == this.$route.params.id);
+    },
+  },
 };
 </script>
 
