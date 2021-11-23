@@ -1,7 +1,7 @@
 <template>
   <div class="relative">
-    <div class="flex flex-col items-center justify-center">
-      <div class="flex flex-row justify-between w-3/4 content-center">
+    <div class="flex flex-col items-center justify-center mt-40 bg-gray-100">
+      <div class="flex flex-row w-auto content-center justify-between">
         <div>
           <router-link
             to="/addnew"
@@ -12,7 +12,6 @@
               rounded-md
               ring-4 ring-indigo-300
               cursor-pointer
-              mt-10
             "
             >Add New
           </router-link>
@@ -35,31 +34,66 @@
           </select>
         </div>
       </div>
-      <div class="p-4">
+      <div class="pt-12">
         <ul>
           <router-link
             :to="{ path: '/question/' + question.id }"
-            class="p-6"
+            class="p-4"
             tag="li"
             v-for="question in allQuestions"
             :key="question.id"
             ><span
               class="
-                bg-green-100
+                bg-gray-300
+                inline-block
                 font-extrabold
                 rounded-full
+                text-gray-100
                 h-8
                 w-8
-                flex
-                items-center
-                justify-center
+                text-center
+                leading-8
               "
-              >{{ question.id }}.</span
+              >{{ question.id }}</span
             >
-            <span class="px-5 font-bold">{{ question.title }}</span>
-            <button>Like</button>
-            <button class="px-2 bg-red-600">Dislike</button>
-            <button class="px-2 bg-blue-200">Open</button>
+            <span
+              class="
+                ml-2
+                p-4
+                font-bold
+                inline-block
+                cursor-pointer
+                bg-white
+                hover:bg-gray-300
+                rounded-md
+                transition
+                duration-500
+                ease-in-out
+                shadow-md
+              "
+              >{{ question.title }}</span
+            >
+            <button class="px-4 cursor-pointer">
+              <i class="far fa-thumbs-up"></i>
+            </button>
+            <button class="px-2 cursor-pointer">
+              <i class="far fa-thumbs-down"></i>
+            </button>
+            <button
+              class="
+                p-2
+                cursor-pointer
+                bg-gradient-to-r
+                from-green-400
+                to-blue-500
+                hover:from-pink-500 hover:to-yellow-500
+                rounded-md
+                text-white
+                font-semibold
+              "
+            >
+              Open
+            </button>
           </router-link>
         </ul>
       </div>
@@ -69,7 +103,6 @@
 
 <script>
 import { mapGetters } from "vuex";
-
 
 export default {
   name: "QuestionsList",

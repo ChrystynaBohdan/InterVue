@@ -19,5 +19,6 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Hind+Vadodara:wght@400;500;600;700&display=swap");
 .app {
   font-family: "Hind Vadorada", Arial, sans-serif;
+  box-sizing: border-box;
 }
 </style>
