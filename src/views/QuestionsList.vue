@@ -1,62 +1,63 @@
 <template>
   <div class="relative question-container">
-    <div class="flex flex-col items-center justify-center bg-gray-100 pt-10">
-      <div class="flex flex-row w-auto content-center justify-between">
+    <div class="flex flex-col items-center justify-center bg-gray-100 pt-10 max-w-screen-2xl">
+      <div class="flex justify-between content-center items-center max-w-screen-2xl space-x-96">
         <div>
           <router-link
             to="/addnew"
             tag="button"
             class="
               border-solid
-              p-2
+              p-4
               rounded-md
-              ring-4 ring-indigo-300
+              bg-blue-400
               cursor-pointer
+              text-white
+              font-semibold
+              hover:text-black hover:bg-green-400
+              transition
+              duration-500
+              ease-in-out
+              shadow-md
             "
             >Add New
           </router-link>
         </div>
-        <div>
-          <label for="position">Position:</label>
-          <select id="position">
-            <option>Junior</option>
-            <option>Middle</option>
-            <option>Senior</option>
-          </select>
-          <label for="technologies">Technologies:</label>
-          <select name="Technologies" id="technologies">
-            <option>HTML</option>
-            <option>CSS</option>
-            <option>JS Core</option>
-            <option>React</option>
-            <option>Redux</option>
-            <option>Vue</option>
-          </select>
+        <div class="flex space-x-16">
+          <div>
+            <label for="position" class="font-semibold text-xl">Position:</label>
+            <select id="position" class="px-2 py-2 ml-2 focus:ring-2 focus:ring-blue-600 rounded-md shadow-md">
+              <option>Junior</option>
+              <option>Middle</option>
+              <option>Senior</option>
+            </select>
+          </div>
+          <div>
+            <label for="technologies" class="font-semibold text-xl">Technologies:</label>
+            <select
+              name="Technologies"
+              id="technologies"
+              class="px-2 py-2 ml-2 focus:ring-2 focus:ring-blue-600 rounded-md shadow-md"
+            >
+              <option>HTML</option>
+              <option>CSS</option>
+              <option>JS Core</option>
+              <option>React</option>
+              <option>Redux</option>
+              <option>Vue</option>
+            </select>
+          </div>
         </div>
       </div>
       <div class="pt-12">
         <ul>
-          <router-link
-            :to="{ path: '/question/' + question.id }"
-            class="p-4"
-            tag="li"
-            v-for="question in allQuestions"
-            :key="question.id"
-            ><span
-              class="
-                bg-gray-300
-                inline-block
-                font-extrabold
-                rounded-full
-                text-gray-100
-                h-8
-                w-8
-                text-center
-                leading-8
-              "
+          <li class="p-4" v-for="question in allQuestions" :key="question.id">
+            <span
+              class="bg-gray-300 inline-block font-extrabold rounded-full text-gray-100 h-8 w-8 text-center leading-8"
               >{{ question.id }}</span
             >
             <span
+              @click="goToQuestion(question.id)"
               class="
                 ml-2
                 p-4
@@ -80,6 +81,7 @@
               <i class="far fa-thumbs-down"></i>
             </button>
             <button
+              @click="goToQuestion(question.id)"
               class="
                 p-2
                 cursor-pointer
@@ -94,7 +96,7 @@
             >
               Open
             </button>
-          </router-link>
+          </li>
         </ul>
       </div>
     </div>
@@ -103,10 +105,16 @@
 
 <script>
 import { mapGetters } from "vuex";
+import router from "../router";
 
 export default {
   name: "QuestionsList",
   computed: { ...mapGetters(["allQuestions"]) },
+  methods: {
+    goToQuestion(id) {
+      router.push({ path: "/question/" + id });
+    },
+  },
 };
 </script>
 <style>
