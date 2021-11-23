@@ -1,11 +1,10 @@
 <template>
   <div class="relative">
-    <Header />
     <div class="flex flex-col items-center justify-center">
       <div class="flex flex-row justify-between w-3/4 content-center">
         <div>
           <router-link
-            to="/question"
+            to="/addnew"
             tag="button"
             class="
               border-solid
@@ -70,11 +69,10 @@
 
 <script>
 import { mapGetters } from "vuex";
-import Header from "../components/Header";
+
 
 export default {
   name: "QuestionsList",
-  components: { Header },
   computed: { ...mapGetters(["allQuestions"]) },
 };
 </script>

@@ -29,8 +29,8 @@ const routes = [
   },
   {
     path: "/addnew",
-    name: "Question",
-    component: Question,
+    name: "QuestionForm",
+    component: QuestionForm,
   },
   {
     path: "/edit",
