@@ -8,15 +8,28 @@
       justify-between
       fixed
       z-10
-      hover:bg-green-100
-      cursor-pointer
       top-0
       left-0
-      bg-white
+      bg-gradient-to-r
+      from-green-400
+      to-blue-500
     "
   >
     <img src="../assets/soft-blues-logo-white.png" alt="logo" />
-    <div class="hover:text-blue-700 leading-normal">Current User</div>
+    <div
+      class="
+        hover:text-black
+        leading-normal
+        cursor-pointer
+        text-white
+        font-bold
+        transition
+        duration-500
+        ease-in-out
+      "
+    >
+      Current User
+    </div>
   </div>
 </template>
 

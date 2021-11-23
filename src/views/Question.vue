@@ -1,5 +1,5 @@
 <template>
-  <div>{{ question.title }}</div>
+  <div class="mt-40 text-center">{{ question.title }}</div>
 </template>
 
 <script>
