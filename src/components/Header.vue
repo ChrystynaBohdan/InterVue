@@ -11,6 +11,7 @@
       hover:bg-green-100
       cursor-pointer
       top-0
+      left-0
       bg-white
     "
   >

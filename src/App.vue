@@ -9,15 +9,10 @@
 </template>
 
 <script>
-import Header from "./components/Header.vue";
-import Footer from "./components/Footer.vue";
+import Header from "./components/Header";
 export default {
-  name: "App",
-  components: {
-    Header,
-    Footer,
-  },
-}
+  components: { Header },
+};
 </script>
 
 <style scoped>
@@ -26,8 +21,3 @@ export default {
   font-family: "Hind Vadorada", Arial, sans-serif;
 }
 </style>
-<script>
-export default {
-  components: {},
-};
-</script>
