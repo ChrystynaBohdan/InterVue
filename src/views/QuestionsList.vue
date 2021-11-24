@@ -1,6 +1,6 @@
 <template>
-  <div class="relative question-container">
-    <div class="flex flex-col items-center justify-center bg-gray-100 pt-10 max-w-screen-2xl">
+  <div class="relative py-24 bg-gray-100">
+    <div class="flex flex-col items-center justify-center pt-10 max-w-screen-2xl">
       <div class="flex justify-between content-center items-center max-w-screen-2xl space-x-96">
         <div>
           <router-link
@@ -14,7 +14,7 @@
               cursor-pointer
               text-white
               font-semibold
-              hover:text-black hover:bg-green-100
+              hover:bg-blue-600
               transition
               duration-500
               ease-in-out
@@ -49,9 +49,9 @@
           </div>
         </div>
       </div>
-      <div class="pt-12">
+      <div class="pt-8">
         <ul>
-          <li class="p-4" v-for="question in allQuestions" :key="question.id">
+          <li class="p-2" v-for="question in allQuestions" :key="question.id">
             <span
               class="bg-gray-300 inline-block font-extrabold rounded-full text-gray-100 h-8 w-8 text-center leading-8"
               >{{ question.id }}</span
@@ -60,7 +60,7 @@
               @click="goToQuestion(question.id)"
               class="
                 ml-2
-                p-4
+                p-3
                 font-bold
                 inline-block
                 cursor-pointer
@@ -117,8 +117,3 @@ export default {
   },
 };
 </script>
-<style>
-.question-container {
-  margin-top: 115px;
-}
-</style>
