@@ -1,7 +1,9 @@
 <template>
   <div class="py-28 bg-gray-100">
     <h2 class="text-center font-bold text-3xl mb-8">Add New Question</h2>
-    <form class="
+    <form 
+      v-on:submit.prevent
+      class="
       flex
       flex-col
       max-w-xl
@@ -13,6 +15,7 @@
       shadow-lg
     ">
     <textarea
+        required
         rows="4"
         class="
           rounded-lg
@@ -24,7 +27,7 @@
         placeholder="Question's body goes here"
       ></textarea>
 
-      <select class="py-3 px-2 rounded-lg">
+      <select class="py-3 px-2 rounded-lg" required>
         <option value="">Choose a category for the question</option>
         <option value="Trainee">JS</option>
         <option value="Junioe">HTML/CSS</option>
@@ -32,7 +35,7 @@
         <option value="Senior">Vue JS</option>
       </select>
 
-      <select class="py-3 px-2 rounded-lg">
+      <select class="py-3 px-2 rounded-lg" required>
         <option value="">Choose a level</option>
         <option value="Trainee">Trainee</option>
         <option value="Junioe">Junior</option>
