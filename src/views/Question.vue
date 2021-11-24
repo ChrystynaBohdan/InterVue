@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="mt-40 text-center">{{ question.title }}</div>
+  <div class="flex h-screen flex-col">
+    <div class="text-center flex-grow flex justify-center items-center">{{ question.title }}</div>
     <button
       @click="back"
       class="
