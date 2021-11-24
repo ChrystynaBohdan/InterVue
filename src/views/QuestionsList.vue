@@ -2,56 +2,18 @@
   <div class="relative py-24 bg-gray-100">
     <div class="flex flex-col items-center justify-center pt-10 max-w-screen-2xl">
       <div class="flex justify-between content-center items-center max-w-screen-2xl space-x-96">
-        <div>
-          <router-link
-            to="/addnew"
-            tag="button"
-            class="
-              border-solid
-              p-4
-              rounded-md
-              bg-blue-400
-              cursor-pointer
-              text-white
-              font-semibold
-              hover:bg-blue-600
-              transition
-              duration-500
-              ease-in-out
-              shadow-md
-            "
-            >Add New
-          </router-link>
-        </div>
-        <div class="flex space-x-16">
+        <div class="flex gap-x-16 gap-y-4 flex-wrap justify-center">
           <div>
-            <label for="position" class="font-semibold text-xl">Position:</label>
-            <select id="position" class="px-2 py-2 ml-2 focus:ring-2 focus:ring-blue-600 rounded-md shadow-md">
-              <option>Junior</option>
-              <option>Middle</option>
-              <option>Senior</option>
-            </select>
+            <Multiselect />
           </div>
           <div>
-            <label for="technologies" class="font-semibold text-xl">Technologies:</label>
-            <select
-              name="Technologies"
-              id="technologies"
-              class="px-2 py-2 ml-2 focus:ring-2 focus:ring-blue-600 rounded-md shadow-md"
-            >
-              <option>HTML</option>
-              <option>CSS</option>
-              <option>JS Core</option>
-              <option>React</option>
-              <option>Redux</option>
-              <option>Vue</option>
-            </select>
+            <Multiselect />
           </div>
         </div>
       </div>
       <div class="pt-8">
         <ul>
-          <li class="p-2" v-for="question in allQuestions" :key="question.id">
+          <li class="p-2 grid gap-4 items-center question" v-for="question in allQuestions" :key="question.id">
             <span
               class="bg-gray-300 inline-block font-extrabold rounded-full text-gray-100 h-8 w-8 text-center leading-8"
               >{{ question.id }}</span
@@ -74,7 +36,7 @@
               "
               >{{ question.title }}</span
             >
-            <button class="px-4 cursor-pointer">
+            <button class="px-2 cursor-pointer">
               <i class="far fa-thumbs-up"></i>
             </button>
             <button class="px-2 cursor-pointer">
@@ -106,9 +68,11 @@
 <script>
 import { mapGetters } from "vuex";
 import router from "../router";
+import Multiselect from "../components/Multiselect";
 
 export default {
   name: "QuestionsList",
+  components: { Multiselect },
   computed: { ...mapGetters(["allQuestions"]) },
   methods: {
     goToQuestion(id) {
@@ -117,3 +81,8 @@ export default {
   },
 };
 </script>
+<style>
+.question {
+  grid-template-columns: 32px 1fr 32px 32px minmax(50px, 100px);
+}
+</style>
