@@ -1,27 +1,28 @@
 <template>
-  <div class="my-36">
+  <div class="py-28 bg-gray-100">
     <h2 class="text-center font-bold text-3xl mb-8">Add New Question</h2>
     <form class="
       flex
       flex-col
-      max-w-md
+      max-w-xl
       mx-auto
       gap-4
       p-6
-      bg-gradient-to-r from-blue-50 to-blue-200
+      bg-gradient-to-r from-blue-100 to-blue-200
       rounded-lg
+      shadow-lg
     ">
-      <input
-        type="text"
-        placeholder="Question's body"
+    <textarea
+        rows="4"
         class="
+          rounded-lg
           py-3
           px-2
           focus:ring-2 focus:ring-blue-600
           outline-none
-          rounded-lg
         "
-      >
+        placeholder="Question's body goes here"
+      ></textarea>
 
       <select class="py-3 px-2 rounded-lg">
         <option value="">Choose a category for the question</option>
@@ -48,7 +49,7 @@
           focus:ring-2 focus:ring-blue-600
           outline-none
         "
-        placeholder="Insert a code example if you need"
+        placeholder="Right a code example if you need"
       ></textarea>
       
 
@@ -60,8 +61,14 @@
           py-3
           px-2
           text-white
+          w-40
+          mx-auto
+          font-semibold
           hover:bg-blue-800
-          transition-colors
+          transition
+          duration-500
+          ease-in-out
+          shadow-md
          "
       >Submit</button>
     </form>
