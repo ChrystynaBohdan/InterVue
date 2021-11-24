@@ -18,8 +18,7 @@ export default new Vuex.Store({
       },
       {
         id: 3,
-        title:
-          "Explain how you can use JavaScript functions such as forEach, Map, or Reduce",
+        title: "Explain how you can use JavaScript functions such as forEach, Map, or Reduce",
         comments: [{ user: "", avatar: "image", comment: "" }],
       },
       {
@@ -29,206 +28,32 @@ export default new Vuex.Store({
       },
       {
         id: 5,
-        title:
-          "What are higher-order components (HOC) and how you can use them in practice.",
+        title: "What are higher-order components (HOC) and how you can use them in practice.",
         comments: [{ user: "", avatar: "image", comment: "" }],
       },
       {
         id: 6,
-        title:
-          "What do you think about the latest updates of React – go over the benefits and uses of React Hooks.",
+        title: "What do you think about the latest updates of React – go over the benefits and uses of React Hooks.",
         comments: [{ user: "", avatar: "image", comment: "" }],
       },
       {
         id: 7,
-        title:
-          "What is and why to use the Block Element Modifier (BEM) convention?",
+        title: "What is and why to use the Block Element Modifier (BEM) convention?",
         comments: [{ user: "", avatar: "image", comment: "" }],
       },
       {
         id: 8,
-        title:
-          "What is the difference between classical inheritance and prototypal inheritance?",
+        title: "What is the difference between classical inheritance and prototypal inheritance?",
         comments: [{ user: "", avatar: "image", comment: "" }],
       },
       {
         id: 9,
-        title:
-          "What are two-way data binding and one-way data flow, and how are they different?",
+        title: "What are two-way data binding and one-way data flow, and how are they different?",
         comments: [{ user: "", avatar: "image", comment: "" }],
       },
       {
         id: 10,
-        title:
-          "What is asynchronous programming, and why is it important in JavaScript?",
-        comments: [{ user: "", avatar: "image", comment: "" }],
-      },
-      {
-        id: 10,
-        title:
-          "What is asynchronous programming, and why is it important in JavaScript?",
-        comments: [{ user: "", avatar: "image", comment: "" }],
-      },
-      {
-        id: 10,
-        title:
-          "What is asynchronous programming, and why is it important in JavaScript?",
-        comments: [{ user: "", avatar: "image", comment: "" }],
-      },
-      {
-        id: 10,
-        title:
-          "What is asynchronous programming, and why is it important in JavaScript?",
-        comments: [{ user: "", avatar: "image", comment: "" }],
-      },
-      {
-        id: 10,
-        title:
-          "What is asynchronous programming, and why is it important in JavaScript?",
-        comments: [{ user: "", avatar: "image", comment: "" }],
-      },
-      {
-        id: 10,
-        title:
-          "What is asynchronous programming, and why is it important in JavaScript?",
-        comments: [{ user: "", avatar: "image", comment: "" }],
-      },
-      {
-        id: 10,
-        title:
-          "What is asynchronous programming, and why is it important in JavaScript?",
-        comments: [{ user: "", avatar: "image", comment: "" }],
-      },
-      {
-        id: 10,
-        title:
-          "What is asynchronous programming, and why is it important in JavaScript?",
-        comments: [{ user: "", avatar: "image", comment: "" }],
-      },
-      {
-        id: 10,
-        title:
-          "What is asynchronous programming, and why is it important in JavaScript?",
-        comments: [{ user: "", avatar: "image", comment: "" }],
-      },
-      {
-        id: 10,
-        title:
-          "What is asynchronous programming, and why is it important in JavaScript?",
-        comments: [{ user: "", avatar: "image", comment: "" }],
-      },
-      {
-        id: 10,
-        title:
-          "What is asynchronous programming, and why is it important in JavaScript?",
-        comments: [{ user: "", avatar: "image", comment: "" }],
-      },
-      {
-        id: 10,
-        title:
-          "What is asynchronous programming, and why is it important in JavaScript?",
-        comments: [{ user: "", avatar: "image", comment: "" }],
-      },
-      {
-        id: 10,
-        title:
-          "What is asynchronous programming, and why is it important in JavaScript?",
-        comments: [{ user: "", avatar: "image", comment: "" }],
-      },
-      {
-        id: 10,
-        title:
-          "What is asynchronous programming, and why is it important in JavaScript?",
-        comments: [{ user: "", avatar: "image", comment: "" }],
-      },
-      {
-        id: 10,
-        title:
-          "What is asynchronous programming, and why is it important in JavaScript?",
-        comments: [{ user: "", avatar: "image", comment: "" }],
-      },
-      {
-        id: 10,
-        title:
-          "What is asynchronous programming, and why is it important in JavaScript?",
-        comments: [{ user: "", avatar: "image", comment: "" }],
-      },
-      {
-        id: 10,
-        title:
-          "What is asynchronous programming, and why is it important in JavaScript?",
-        comments: [{ user: "", avatar: "image", comment: "" }],
-      },
-      {
-        id: 10,
-        title:
-          "What is asynchronous programming, and why is it important in JavaScript?",
-        comments: [{ user: "", avatar: "image", comment: "" }],
-      },
-      {
-        id: 10,
-        title:
-          "What is asynchronous programming, and why is it important in JavaScript?",
-        comments: [{ user: "", avatar: "image", comment: "" }],
-      },
-      {
-        id: 10,
-        title:
-          "What is asynchronous programming, and why is it important in JavaScript?",
-        comments: [{ user: "", avatar: "image", comment: "" }],
-      },
-      {
-        id: 10,
-        title:
-          "What is asynchronous programming, and why is it important in JavaScript?",
-        comments: [{ user: "", avatar: "image", comment: "" }],
-      },
-      {
-        id: 10,
-        title:
-          "What is asynchronous programming, and why is it important in JavaScript?",
-        comments: [{ user: "", avatar: "image", comment: "" }],
-      },
-      {
-        id: 10,
-        title:
-          "What is asynchronous programming, and why is it important in JavaScript?",
-        comments: [{ user: "", avatar: "image", comment: "" }],
-      },
-      {
-        id: 10,
-        title:
-          "What is asynchronous programming, and why is it important in JavaScript?",
-        comments: [{ user: "", avatar: "image", comment: "" }],
-      },
-      {
-        id: 10,
-        title:
-          "What is asynchronous programming, and why is it important in JavaScript?",
-        comments: [{ user: "", avatar: "image", comment: "" }],
-      },
-      {
-        id: 10,
-        title:
-          "What is asynchronous programming, and why is it important in JavaScript?",
-        comments: [{ user: "", avatar: "image", comment: "" }],
-      },
-      {
-        id: 10,
-        title:
-          "What is asynchronous programming, and why is it important in JavaScript?",
-        comments: [{ user: "", avatar: "image", comment: "" }],
-      },
-      {
-        id: 10,
-        title:
-          "What is asynchronous programming, and why is it important in JavaScript?",
-        comments: [{ user: "", avatar: "image", comment: "" }],
-      },
-      {
-        id: 10,
-        title:
-          "What is asynchronous programming, and why is it important in JavaScript?",
+        title: "What is asynchronous programming, and why is it important in JavaScript?",
         comments: [{ user: "", avatar: "image", comment: "" }],
       },
     ],

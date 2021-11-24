@@ -14,7 +14,7 @@
               cursor-pointer
               text-white
               font-semibold
-              hover:text-black hover:bg-green-400
+              hover:text-black hover:bg-green-100
               transition
               duration-500
               ease-in-out
