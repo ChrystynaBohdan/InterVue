@@ -17,7 +17,9 @@
     "
   >
     <div class="flex gap-x-4 items-center">
-      <img src="../assets/soft-blues-logo-white.png" alt="logo" class="h-6" />
+      <router-link to="/">
+        <img src="../assets/soft-blues-logo-white.png" alt="logo" class="h-6" />
+      </router-link>
       <div>
         <router-link
           to="/addnew"
