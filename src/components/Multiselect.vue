@@ -1,23 +1,19 @@
 <template>
   <div>
-    <div class="flex content-center items-center">
-      <label class="px-2 font-semibold text-xl">{{ label }}</label>
-      <div class="shadow-md">
-        <div>
-          <multiselect
-            v-model="value"
-            tag-placeholder="Add this as new tag"
-            placeholder="Search or add a tag"
-            label="name"
-            track-by="code"
-            :options="options"
-            :multiple="true"
-            :taggable="true"
-            @tag="addTag"
-            class="w-60"
-          ></multiselect>
-        </div>
-      </div>
+    <div class="flex">
+      <label class="px-2 font-semibold text-xl mt-2">{{ label }}</label>
+      <multiselect
+        v-model="value"
+        tag-placeholder="Add this as new tag"
+        placeholder="Search or add a tag"
+        label="name"
+        track-by="code"
+        :options="options"
+        :multiple="true"
+        :taggable="true"
+        @tag="addTag"
+        class="w-72 h-16"
+      ></multiselect>
     </div>
   </div>
 </template>
