@@ -1,6 +1,14 @@
 <template>
   <div class="flex h-screen flex-col">
-    <div class="text-center flex-grow flex justify-center items-center">{{ question.title }}</div>
+    <div class="text-center flex-grow flex justify-center items-center">
+      {{ question.title }}
+      <button class="px-2 cursor-pointer">
+        <i class="far fa-thumbs-up"></i>
+      </button>
+      <button class="px-2 cursor-pointer">
+        <i class="far fa-thumbs-down"></i>
+      </button>
+    </div>
     <button
       @click="back"
       class="
@@ -51,6 +59,9 @@ import { mapGetters } from "vuex";
 
 export default {
   name: "Question",
+  data() {
+    return {};
+  },
   computed: {
     ...mapGetters(["allQuestions"]),
 

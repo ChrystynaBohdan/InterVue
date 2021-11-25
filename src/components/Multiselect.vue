@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="flex content-center items-center">
-      <label class="px-2 font-semibold text-xl">Technologies:</label>
+      <label class="px-2 font-semibold text-xl">{{ label }}</label>
       <div class="shadow-md">
         <div>
           <multiselect
@@ -29,14 +29,10 @@ export default {
   components: {
     Multiselect,
   },
+  props: ["label", "options"],
   data() {
     return {
       value: null,
-      options: [
-        { name: "Vue.js", code: "vu" },
-        { name: "Javascript", code: "js" },
-        { name: "Open Source", code: "os" },
-      ],
     };
   },
   methods: {

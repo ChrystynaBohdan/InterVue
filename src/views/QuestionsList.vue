@@ -4,10 +4,10 @@
       <div class="flex justify-between content-center items-center max-w-screen-2xl space-x-96">
         <div class="flex gap-x-16 gap-y-4 flex-wrap justify-center">
           <div>
-            <Multiselect />
+            <Multiselect label="Categories:" :options="languageOptions" />
           </div>
           <div>
-            <Multiselect />
+            <Multiselect label="Grade:" :options="gradeOptions" />
           </div>
         </div>
       </div>
@@ -36,11 +36,13 @@
               "
               >{{ question.title }}</span
             >
-            <button class="px-2 cursor-pointer">
+            <button class="px-2 cursor-pointer" @click="increment(question)">
               <i class="far fa-thumbs-up"></i>
+              {{ question.likes }}
             </button>
-            <button class="px-2 cursor-pointer">
+            <button class="px-2 cursor-pointer" @click="decrement(question)">
               <i class="far fa-thumbs-down"></i>
+              {{ question.dislikes }}
             </button>
             <button
               @click="goToQuestion(question.id)"
@@ -78,6 +80,26 @@ export default {
     goToQuestion(id) {
       router.push({ path: "/question/" + id });
     },
+    increment(question) {
+      question.likes++;
+    },
+    decrement(question) {
+      question.dislikes++;
+    },
+  },
+  data() {
+    return {
+      languageOptions: [
+        { name: "Vue.js", code: "vu" },
+        { name: "Javascript", code: "js" },
+        { name: "Open Source", code: "os" },
+      ],
+      gradeOptions: [
+        { name: "Junior", code: "jun" },
+        { name: "Middle", code: "mid" },
+        { name: "Senior", code: "sen" },
+      ],
+    };
   },
 };
 </script>
