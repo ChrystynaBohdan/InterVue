@@ -1,9 +1,13 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import multiselect from "./modules/multiselect";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
+  modules: {
+    multiselect,
+  },
   state: {
     questions: [
       {
@@ -93,5 +97,4 @@ export default new Vuex.Store({
   },
   mutations: {},
   actions: {},
-  modules: {},
 });
