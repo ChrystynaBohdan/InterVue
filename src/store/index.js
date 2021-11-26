@@ -1,9 +1,11 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import allquestions from "./modules/allquestions";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
+  modules: { allquestions },
   state: {
     questions: [
       {
@@ -93,5 +95,4 @@ export default new Vuex.Store({
   },
   mutations: {},
   actions: {},
-  modules: {},
 });
