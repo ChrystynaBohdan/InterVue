@@ -59,7 +59,7 @@
           inline-block
         "
       >
-        <i class="fas fa-user-circle fa-2x"></i>
+        <i class="fas fa-user-circle fa-lg"></i>
       </div>
       <i v-if="isLogged" v-on:click="handleLogOut" class="fas fa-sign-out-alt text-white mx-10 cursor-pointer"></i>
     </div>
