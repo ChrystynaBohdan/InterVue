@@ -1,6 +1,6 @@
 <template>
   <div class="relative py-24 bg-gray-100">
-    <div class="flex flex-col items-center justify-center pt-10 max-w-screen-2xl mx-auto">
+    <div class="flex flex-col items-center justify-center pt-10 max-w-screen-2xl mx-auto min-h-screen">
       <div class="flex justify-between content-center items-center max-w-screen-2xl space-x-96">
         <div class="flex gap-x-16 gap-y-4 flex-wrap justify-center">
           <div>
@@ -33,9 +33,24 @@
                 duration-500
                 ease-in-out
                 shadow-md
+                flex
+                justify-between
+                gap-x-3
               "
-              >{{ question.title }}</span
-            >
+              >{{ question.title }}
+              <div
+                v-bind:class="{
+                  'bg-green-400': question.category === 'CSS',
+                  'bg-red-400': question.category === 'JS Core',
+                  'bg-blue-400': question.category === 'React',
+                  'bg-indigo-400': question.category === 'SCSS',
+                  'bg-yellow-400': question.category === 'VueJs',
+                }"
+                class="text-white w-10 rounded-full h-6 w-20 flex items-center justify-center text-xs"
+              >
+                {{ question.category }}
+              </div>
+            </span>
             <button class="px-2 cursor-pointer" @click="increment(question)">
               <i class="far fa-thumbs-up"></i>
               {{ question.likes }}
