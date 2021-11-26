@@ -1,6 +1,6 @@
 <template>
   <div class="relative py-24 bg-gray-100">
-    <div class="flex flex-col items-center justify-center pt-10 max-w-screen-2xl mx-auto min-h-screen">
+    <div class="flex flex-col items-center pt-10 max-w-screen-2xl mx-auto min-h-screen">
       <div class="flex justify-between content-center items-center max-w-screen-2xl space-x-96">
         <div class="flex gap-x-16 gap-y-4 flex-wrap justify-center">
           <div>
