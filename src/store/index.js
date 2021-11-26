@@ -108,8 +108,4 @@ export default new Vuex.Store({
   mutations: {
     handleLogin: (state, isLogged) => (state.isLogged = isLogged),
   },
-
-
-  modules: {},
-
 });
