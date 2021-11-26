@@ -102,10 +102,17 @@ export default new Vuex.Store({
     checkLogin({ commit }) {
       console.log('bravo, you are logged in');
       commit('handleLogin', true);
+    },
+
+    logOut({ commit }) {
+      console.log('you have logged out');
+      commit('loggingOut', false)
     }
+
   },
 
   mutations: {
     handleLogin: (state, isLogged) => (state.isLogged = isLogged),
+    loggingOut: (state, logOut) => (state.isLogged = logOut),
   },
 });

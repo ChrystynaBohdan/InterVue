@@ -14,6 +14,7 @@
       bg-gradient-to-r
       from-green-400
       to-blue-500
+      h-16
     "
   >
     <div class="flex gap-x-4 items-center">
@@ -22,6 +23,7 @@
       </router-link>
       <div>
         <router-link
+          v-if="isLogged"
           to="/addnew"
           tag="button"
           class="
@@ -42,17 +44,47 @@
         </router-link>
       </div>
     </div>
-    <div
-      class="hover:text-black leading-normal cursor-pointer text-white font-bold transition duration-500 ease-in-out"
-    >
-      Current User
+    <div>
+      <div
+        v-if="isLogged"
+        class="
+          hover:text-black
+          leading-normal
+          cursor-pointer
+          text-white
+          font-bold
+          transition
+          duration-500
+          ease-in-out
+          inline-block
+        "
+      >
+        Current User
+      </div>
+       <i v-if="isLogged" v-on:click="handleLogOut" class="fas fa-sign-out-alt text-white mx-10 cursor-pointer"></i>
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
+import router from "../router";
+
 export default {
   name: "Header",
+
+  computed: { ...mapGetters(["isLogged"]) },
+
+  methods: {
+    ...mapActions(["logOut"]),
+
+    handleLogOut() {
+      console.log('logging out')
+      this.logOut();
+      router.replace("/login");
+    }
+  }
+
 };
 </script>
 
