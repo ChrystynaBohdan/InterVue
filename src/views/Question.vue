@@ -2,11 +2,13 @@
   <div class="flex h-screen flex-col">
     <div class="text-center flex-grow flex justify-center items-center">
       {{ question.title }}
-      <button class="px-2 cursor-pointer">
+      <button class="px-2 cursor-pointer" @click="increment(question)">
         <i class="far fa-thumbs-up"></i>
+        {{ question.likes }}
       </button>
-      <button class="px-2 cursor-pointer">
+      <button class="px-2 cursor-pointer" @click="decrement(question)">
         <i class="far fa-thumbs-down"></i>
+        {{ question.dislikes }}
       </button>
     </div>
     <button
@@ -75,6 +77,12 @@ export default {
     },
     next() {
       this.$router.push({ path: `/question/${+this.$route.params.id + 1}` });
+    },
+    increment(question) {
+      question.likes++;
+    },
+    decrement(question) {
+      question.dislikes++;
     },
   },
 };

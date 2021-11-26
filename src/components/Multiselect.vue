@@ -4,6 +4,7 @@
       <label class="px-2 font-semibold text-xl mt-2">{{ label }}</label>
       <multiselect
         v-model="value"
+        v-on:input="onInput"
         tag-placeholder="Add this as new tag"
         placeholder="Search or add a tag"
         label="name"
@@ -25,12 +26,7 @@ export default {
   components: {
     Multiselect,
   },
-  props: ["label", "options"],
-  data() {
-    return {
-      value: null,
-    };
-  },
+  props: ["label", "options", "value"],
   methods: {
     addTag(newTag) {
       const tag = {
@@ -39,6 +35,9 @@ export default {
       };
       this.options.push(tag);
       this.value.push(tag);
+    },
+    onInput(value) {
+      this.$emit("input", value);
     },
   },
 };

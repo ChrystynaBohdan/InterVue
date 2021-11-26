@@ -4,16 +4,16 @@
       <div class="flex justify-between content-center items-center max-w-screen-2xl space-x-96">
         <div class="flex gap-x-16 gap-y-4 flex-wrap justify-center">
           <div>
-            <Multiselect label="Categories:" :options="languageOptions" />
+            <Multiselect label="Categories:" :options="languageOptions" v-model="selectedCategory" />
           </div>
           <div>
-            <Multiselect label="Grade:" :options="gradeOptions" />
+            <Multiselect label="Grades:" :options="gradeOptions" v-model="selectedGrade" />
           </div>
         </div>
       </div>
       <div class="pt-8">
         <ul>
-          <li class="p-2 grid gap-4 items-center question" v-for="question in allQuestions" :key="question.id">
+          <li class="p-2 grid gap-4 items-center question" v-for="question in filteredQuestions" :key="question.id">
             <span
               class="bg-gray-300 inline-block font-extrabold rounded-full text-gray-100 h-8 w-8 text-center leading-8"
               >{{ question.id }}</span
@@ -75,7 +75,25 @@ import Multiselect from "../components/Multiselect";
 export default {
   name: "QuestionsList",
   components: { Multiselect },
-  computed: { ...mapGetters(["allQuestions"]) },
+  computed: {
+    ...mapGetters(["allQuestions"]),
+    filteredQuestions() {
+      const selectedCategories = this.selectedCategory.map((category) => category.code);
+      const selectedLevels = this.selectedGrade.map((level) => level.code);
+
+      if (selectedCategories.length === 0 && selectedLevels.length === 0) {
+        return this.allQuestions;
+      } else if (selectedCategories.length > 0 && selectedLevels.length === 0) {
+        return this.allQuestions.filter((question) => selectedCategories.includes(question.category));
+      } else if (selectedCategories.length === 0 && selectedLevels.length > 0) {
+        return this.allQuestions.filter((question) => selectedLevels.includes(question.level));
+      } else {
+        return this.allQuestions.filter(
+          (question) => selectedLevels.includes(question.level) && selectedCategories.includes(question.category)
+        );
+      }
+    },
+  },
   methods: {
     goToQuestion(id) {
       router.push({ path: "/question/" + id });
@@ -87,18 +105,27 @@ export default {
       question.dislikes++;
     },
   },
+  updated() {
+    console.log(this.selectedCategory);
+  },
   data() {
     return {
       languageOptions: [
-        { name: "Vue.js", code: "vu" },
-        { name: "Javascript", code: "js" },
-        { name: "Open Source", code: "os" },
+        { name: "HTML", code: "HTML" },
+        { name: "CSS", code: "CSS" },
+        { name: "SCSS", code: "SCSS" },
+        { name: "React", code: "React" },
+        { name: "Redux", code: "Redux" },
+        { name: "Vue", code: "VueJs" },
+        { name: "JS", code: "JS Core" },
       ],
       gradeOptions: [
-        { name: "Junior", code: "jun" },
-        { name: "Middle", code: "mid" },
-        { name: "Senior", code: "sen" },
+        { name: "Junior", code: "Junior" },
+        { name: "Middle", code: "Middle" },
+        { name: "Senior", code: "Senior" },
       ],
+      selectedCategory: [],
+      selectedGrade: [],
     };
   },
 };
