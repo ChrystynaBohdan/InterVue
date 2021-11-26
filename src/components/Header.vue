@@ -59,9 +59,9 @@
           inline-block
         "
       >
-        Current User
+        <i class="fas fa-user-circle fa-2x"></i>
       </div>
-       <i v-if="isLogged" v-on:click="handleLogOut" class="fas fa-sign-out-alt text-white mx-10 cursor-pointer"></i>
+      <i v-if="isLogged" v-on:click="handleLogOut" class="fas fa-sign-out-alt text-white mx-10 cursor-pointer"></i>
     </div>
   </div>
 </template>
@@ -79,12 +79,11 @@ export default {
     ...mapActions(["logOut"]),
 
     handleLogOut() {
-      console.log('logging out')
+      console.log("logging out");
       this.logOut();
       router.replace("/login");
-    }
-  }
-
+    },
+  },
 };
 </script>
 
