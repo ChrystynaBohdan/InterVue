@@ -1,7 +1,7 @@
 <template>
   <div class="py-28 bg-gray-100 h-screen flex">
     <form
-      v-on:submit.prevent
+      v-on:submit.prevent="handleLogin"
       class="
         flex
         flex-col
@@ -20,9 +20,10 @@
         <i class="fas fa-user self-center text-blue-700"></i>
         <h2 class="text-blue-900 font-bold text-center text-lg mt-2">Sign In To Continue</h2>
       </div>
-      
 
       <input
+        required
+        v-model="login"
         type="text"
         placeholder="Login"
         class="
@@ -34,6 +35,8 @@
         "
       >
       <input
+        required
+        v-model="password"
         type="password"
         placeholder="Password"
         class="
@@ -67,12 +70,37 @@
 </template>
 
 <script>
+import router from "../router";
+import { mapGetters, mapActions } from "vuex";
+
 export default {
   name: 'Login',
+
+  data() {
+    return {
+      login: '',
+      password: '',
+    }
+  },
+
+  computed: { ...mapGetters(["isLogged"]) },
+
   methods: {
+    ...mapActions(['checkLogin']),
+
     handleLogin() {
-      console.log('loged in')
+      this.checkLogin();
+
+      this.login = "";
+      this.password = "";
+
+      if (!this.isLogged) {
+        router.replace("/login");
+      } else {
+        router.replace("/");
+      }
     },
   }
+
 }
 </script>
