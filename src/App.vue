@@ -11,9 +11,25 @@
 <script>
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+
+import router from "./router";
+import { mapGetters } from "vuex";
+
 export default {
+  name: "App",
+
   components: { Header, Footer },
-};
+
+  computed: { ...mapGetters(["isLogged"]) },
+
+  beforeMount() {
+    if (!this.isLoged) {
+      router.replace("/login");
+    } else {
+      router.replace("/");
+    }
+  }
+}
 </script>
 
 <style scoped>

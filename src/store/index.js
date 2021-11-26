@@ -5,6 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    isLogged: false,
     questions: [
       {
         id: 1,
@@ -88,10 +89,24 @@ export default new Vuex.Store({
       },
     ],
   },
+
   getters: {
     allQuestions: (state) => state.questions,
+    isLogged: (state) => state.isLogged,
   },
-  mutations: {},
-  actions: {},
+
+ 
+  actions: {
+    checkLogin({ commit }) {
+      console.log('bravo, you are logged in');
+      commit('handleLogin', true);
+    }
+  },
+
+  mutations: {
+    handleLogin: (state, isLogged) => (state.isLogged = isLogged),
+  },
+
+
   modules: {},
 });
