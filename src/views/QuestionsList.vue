@@ -78,6 +78,7 @@
           </li>
         </ul>
       </div>
+      <Pagination />
     </div>
   </div>
 </template>
@@ -86,10 +87,11 @@
 import { mapGetters } from "vuex";
 import router from "../router";
 import Multiselect from "../components/Multiselect";
+import Pagination from "../components/Pagination";
 
 export default {
   name: "QuestionsList",
-  components: { Multiselect },
+  components: { Pagination, Multiselect },
   computed: {
     ...mapGetters(["allQuestions"]),
     filteredQuestions() {
