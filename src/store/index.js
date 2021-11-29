@@ -1,13 +1,12 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import allquestions from "./modules/allquestions";
-
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   modules: { allquestions },
   state: {
-    isLogged: false,
+    isLogged: true,
     questions: [
       {
         id: 1,
@@ -16,6 +15,7 @@ export default new Vuex.Store({
         level: "Junior",
         likes: 0,
         dislikes: 0,
+        comments: [],
       },
       {
         id: 2,
@@ -24,6 +24,7 @@ export default new Vuex.Store({
         level: "Junior",
         likes: 0,
         dislikes: 0,
+        comments: [],
       },
       {
         id: 3,
@@ -32,6 +33,7 @@ export default new Vuex.Store({
         level: "Junior",
         likes: 0,
         dislikes: 0,
+        comments: [],
       },
       {
         id: 4,
@@ -40,6 +42,7 @@ export default new Vuex.Store({
         level: "Junior",
         likes: 0,
         dislikes: 0,
+        comments: [],
       },
       {
         id: 5,
@@ -48,6 +51,7 @@ export default new Vuex.Store({
         level: "Junior",
         likes: 0,
         dislikes: 0,
+        comments: [],
       },
       {
         id: 6,
@@ -56,6 +60,7 @@ export default new Vuex.Store({
         level: "Middle",
         likes: 0,
         dislikes: 0,
+        comments: [],
       },
       {
         id: 7,
@@ -64,6 +69,7 @@ export default new Vuex.Store({
         level: "Junior",
         likes: 0,
         dislikes: 0,
+        comments: [],
       },
       {
         id: 8,
@@ -72,6 +78,7 @@ export default new Vuex.Store({
         level: "Middle",
         likes: 0,
         dislikes: 0,
+        comments: [],
       },
       {
         id: 9,
@@ -80,6 +87,7 @@ export default new Vuex.Store({
         level: "Junior",
         likes: 0,
         dislikes: 0,
+        comments: [],
       },
       {
         id: 10,
@@ -88,6 +96,7 @@ export default new Vuex.Store({
         level: "Junior",
         likes: 0,
         dislikes: 0,
+        comments: [],
       },
     ],
   },
@@ -97,22 +106,26 @@ export default new Vuex.Store({
     isLogged: (state) => state.isLogged,
   },
 
- 
   actions: {
     checkLogin({ commit }) {
-      console.log('bravo, you are logged in');
-      commit('handleLogin', true);
+      console.log("bravo, you are logged in");
+      commit("handleLogin", true);
     },
 
     logOut({ commit }) {
-      console.log('you have logged out');
-      commit('loggingOut', false)
-    }
-
+      console.log("you have logged out");
+      commit("loggingOut", false);
+    },
+    commentNew({ commit }, comment) {
+      commit("addComment", comment);
+    },
   },
 
   mutations: {
     handleLogin: (state, isLogged) => (state.isLogged = isLogged),
     loggingOut: (state, logOut) => (state.isLogged = logOut),
+    addComment: (state, data) => {
+      return state.questions.find((question) => question.id === data.id).comments.push(data.comment);
+    },
   },
 });

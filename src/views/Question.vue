@@ -1,7 +1,7 @@
 <template>
-  <div class="flex h-screen flex-col bg-gray-100">
-    <div class="text-center flex-grow flex justify-center items-center flex-col gap-y-4">
-      <div class="flex">
+  <div class="flex h-screen flex-col bg-gray-100 justify-center items-center max-w-full">
+    <div class="text-center flex-grow flex justify-center items-center flex-col gap-y-4 w-1/2">
+      <div class="flex w-full">
         <span
           class="
             ml-2
@@ -78,15 +78,18 @@
           <i class="fas fa-arrow-right"></i>
         </button>
       </div>
+      <Comments :comments="question.comments" :guestionId="question.id" />
     </div>
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
+import Comments from "../components/Comments";
 
 export default {
   name: "Question",
+  components: { Comments },
   data() {
     return {};
   },
