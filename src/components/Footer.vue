@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-indigo-900 text-gray-400 text-center py-3 px-10 w-full">
+  <div class="text-gray-500 text-center py-3 px-10 w-full border-t-2 bg-white z-10">
     Copyright @ 2021 SoftBlues Agency | All rights reserved
   </div>
 </template>
