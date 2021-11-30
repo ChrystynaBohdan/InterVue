@@ -31,13 +31,15 @@
         </div>
       </div>
     </div>
-    <div v-for="(comment, index) in comments" :key="index" class="w-full flex items-center gap-2">
+    <div v-for="(comment, index) in comments" :key="index" class="w-full flex items-center gap-2 pl-16">
       <div class="flex pt-2">
-        <div class="w-20 flex flex-col items-center">
-          <img src="../assets/square-user.png" alt="user" />
-          <div>{{ curUser }}</div>
+        <div class="flex gap-x-2">
+          <img src="../assets/square-user.png" alt="user" class="maximum" />
+          <div class="flex flex-col">
+            <div>{{ curUser }}</div>
+            <div class="w-full">{{ comment.text }}</div>
+          </div>
         </div>
-        <div class="pl-3.5 w-full">{{ comment.text }}</div>
       </div>
     </div>
   </div>
@@ -70,5 +72,8 @@ export default {
 <style scoped>
 .comment-input {
   width: 90%;
+}
+.maximum {
+  width: 10%;
 }
 </style>

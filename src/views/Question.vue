@@ -1,5 +1,5 @@
 <template>
-  <div class="flex h-screen max-w-full">
+  <div class="flex min-h-screen max-w-full">
     <div class="flex flex-col gap-y-6 w-9/12 mt-20">
       <div class="flex justify-between">
         <button

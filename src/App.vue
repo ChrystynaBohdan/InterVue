@@ -38,6 +38,7 @@ export default {
   font-family: "Hind Vadorada", Arial, sans-serif;
   box-sizing: border-box;
 }
+
 .router-size {
   margin: 0 11%;
 }
