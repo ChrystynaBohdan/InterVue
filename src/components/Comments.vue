@@ -3,7 +3,7 @@
     <div class="w-full flex items-start gap-2">
       <div class="w-16 flex flex-col items-center">
         <img src="../assets/square-user.png" alt="user" />
-        <div>{{ curUser }}</div>
+        <div class="font-semibold">{{ curUser }}</div>
       </div>
       <div
         class="
@@ -31,13 +31,18 @@
         </div>
       </div>
     </div>
-    <div v-for="(comment, index) in comments" :key="index" class="w-full flex items-center gap-2">
-      <div class="flex pt-2">
-        <div class="w-20 flex flex-col items-center">
-          <img src="../assets/square-user.png" alt="user" />
-          <div>{{ curUser }}</div>
+    <div v-for="(comment, index) in comments" :key="index" class="w-full flex items-center gap-2 pl-16">
+      <div class="flex pt-2 pb-2">
+        <div class="flex gap-x-2">
+          <img src="../assets/square-user.png" alt="user" class="w-1/12" />
+          <div class="flex flex-col w-11/12">
+            <div class="flex gap-x-1 items-center">
+              <div class="font-semibold">{{ curUser }}</div>
+              <div class="text-xs font-semibold text-gray-400">| 1 day ago</div>
+            </div>
+            <div class="w-full">{{ comment.text }}</div>
+          </div>
         </div>
-        <div class="pl-3.5 w-full">{{ comment.text }}</div>
       </div>
     </div>
   </div>

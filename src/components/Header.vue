@@ -18,10 +18,10 @@
       <div
         v-if="isLogged"
         class="
-          hover:text-black
+          hover:text-gray-500
           leading-normal
           cursor-pointer
-          text-white
+          text-gray-300
           font-bold
           transition
           duration-500
@@ -29,9 +29,13 @@
           inline-block
         "
       >
-        <i class="far fa-user-circle"></i>
+        <i class="far fa-user-circle fa-lg"></i>
       </div>
-      <i v-if="isLogged" v-on:click="handleLogOut" class="fas fa-sign-out-alt text-white mx-10 cursor-pointer"></i>
+      <i
+        v-if="isLogged"
+        v-on:click="handleLogOut"
+        class="fas fa-sign-out-alt fa-lg hover:text-gray-500 text-gray-300 mx-10 cursor-pointer"
+      ></i>
     </div>
   </div>
 </template>
