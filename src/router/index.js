@@ -4,7 +4,7 @@ import QuestionForm from "../views/QuestionForm";
 import QuestionsList from "../views/QuestionsList";
 import Question from "../views/Question";
 import NotFound from "../views/NotFound";
-// import Login from "../views/Login";
+import Login from "../views/Login";
 
 Vue.use(VueRouter);
 
@@ -22,12 +22,12 @@ const routes = [
   //     // which is lazy-loaded when the route is visited.
   //     component: () =>
   //         import(/* webpackChunkName: "about" */ "../views/QuestionForm.vue"),
-  // // },
-  // {
-  //   path: "/login",
-  //   name: "Login",
-  //   component: Login,
   // },
+  {
+    path: "/login",
+    name: "Login",
+    component: Login,
+  },
   {
     path: "/question/:id",
     name: "Question",

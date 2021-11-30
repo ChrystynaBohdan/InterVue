@@ -1,15 +1,16 @@
 <template>
-  <div class="py-28 bg-gray-100 h-screen flex">
+  <div class="py-28 h-screen flex">
     <form
       v-on:submit.prevent="handleLogin"
       class="
-        flex
-        flex-col
+        flex flex-col
         max-w-xl
         mx-auto
         gap-6
         p-6
-        bg-gradient-to-r from-blue-100 to-blue-200
+        bg-gradient-to-r
+        from-blue-100
+        to-blue-200
         rounded-lg
         shadow-lg
         w-96
@@ -26,28 +27,16 @@
         v-model="login"
         type="text"
         placeholder="Login"
-        class="
-          rounded-lg
-          py-3
-          px-2
-          focus:ring-2 focus:ring-blue-600
-          outline-none
-        "
-      >
+        class="rounded-lg py-3 px-2 focus:ring-2 focus:ring-blue-600 outline-none"
+      />
       <input
         required
         v-model="password"
         type="password"
         placeholder="Password"
-        class="
-          rounded-lg
-          py-3
-          px-2
-          focus:ring-2 focus:ring-blue-600
-          outline-none
-        "
-      >
-      <button 
+        class="rounded-lg py-3 px-2 focus:ring-2 focus:ring-blue-600 outline-none"
+      />
+      <button
         type="submit"
         class="
           bg-blue-600
@@ -64,7 +53,9 @@
           ease-in-out
           shadow-md
         "
-      >Submit</button>
+      >
+        Submit
+      </button>
     </form>
   </div>
 </template>
@@ -74,19 +65,19 @@ import router from "../router";
 import { mapGetters, mapActions } from "vuex";
 
 export default {
-  name: 'Login',
+  name: "Login",
 
   data() {
     return {
-      login: '',
-      password: '',
-    }
+      login: "",
+      password: "",
+    };
   },
 
   computed: { ...mapGetters(["isLogged"]) },
 
   methods: {
-    ...mapActions(['checkLogin']),
+    ...mapActions(["checkLogin"]),
 
     handleLogin() {
       this.checkLogin();
@@ -100,7 +91,6 @@ export default {
         router.replace("/");
       }
     },
-  }
-
-}
+  },
+};
 </script>

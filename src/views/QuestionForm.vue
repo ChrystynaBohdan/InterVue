@@ -1,29 +1,14 @@
 <template>
-  <div class="py-28 bg-gray-100">
+  <div class="py-28">
     <h2 class="text-center font-bold text-3xl mb-8">Add New Question</h2>
-    <form 
+    <form
       v-on:submit.prevent
-      class="
-      flex
-      flex-col
-      max-w-xl
-      mx-auto
-      gap-4
-      p-6
-      bg-gradient-to-r from-blue-100 to-blue-200
-      rounded-lg
-      shadow-lg
-    ">
-    <textarea
+      class="flex flex-col max-w-xl mx-auto gap-4 p-6 bg-gradient-to-r from-blue-100 to-blue-200 rounded-lg shadow-lg"
+    >
+      <textarea
         required
         rows="4"
-        class="
-          rounded-lg
-          py-3
-          px-2
-          focus:ring-2 focus:ring-blue-600
-          outline-none
-        "
+        class="rounded-lg py-3 px-2 focus:ring-2 focus:ring-blue-600 outline-none"
         placeholder="Question's body goes here"
       ></textarea>
 
@@ -45,20 +30,13 @@
 
       <textarea
         rows="6"
-        class="
-          rounded-lg
-          py-3
-          px-2
-          focus:ring-2 focus:ring-blue-600
-          outline-none
-        "
+        class="rounded-lg py-3 px-2 focus:ring-2 focus:ring-blue-600 outline-none"
         placeholder="Right a code example if you need"
       ></textarea>
-      
 
       <button
-         type="submit"
-         class="
+        type="submit"
+        class="
           bg-blue-600
           rounded-lg
           py-3
@@ -72,8 +50,10 @@
           duration-500
           ease-in-out
           shadow-md
-         "
-      >Submit</button>
+        "
+      >
+        Submit
+      </button>
     </form>
   </div>
 </template>
