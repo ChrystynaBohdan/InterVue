@@ -6,7 +6,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   modules: { allquestions },
   state: {
-    isLogged: true,
+    isLogged: false,
     currentUser: { name: "User" },
     questions: [
       {
