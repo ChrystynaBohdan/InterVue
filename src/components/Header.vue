@@ -5,12 +5,8 @@
         <img src="../assets/soft-blues-logo-white.png" alt="logo" class="h-6 ml-8" />
       </router-link>
       <div>
-        <router-link
-          v-if="isLogged"
-          to="/addnew"
-          tag="button"
-          class="border border-grey-200 px-2 py-1 rounded-md text-black cursor-pointer text-xs hover:text-gray-400"
-          >Add New
+        <router-link v-if="isLogged" tag="button" to="/addnew"
+          ><i class="far fa-plus-square fa-lg hover:text-gray-500 text-gray-300 mt-3 cursor-pointer"></i>
         </router-link>
       </div>
     </div>

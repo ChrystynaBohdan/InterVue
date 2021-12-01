@@ -41,5 +41,11 @@ export default {
   },
 };
 </script>
+
+<style>
+.multiselect.invalid .multiselect__tags span {
+  background-color: aliceblue;
+}
+</style>
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 

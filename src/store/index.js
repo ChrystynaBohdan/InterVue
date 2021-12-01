@@ -142,6 +142,7 @@ export default new Vuex.Store({
         .comments.push({
           text: data.commentText,
           user: state.currentUser.name,
+          date: new Date(),
         });
     },
   },
