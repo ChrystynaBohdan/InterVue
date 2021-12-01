@@ -1,21 +1,21 @@
 <template>
-  <div>
-    <div class="flex">
-      <label class="px-2 font-semibold text-xl mt-2">{{ label }}</label>
-      <multiselect
-        v-model="value"
-        v-on:input="onInput"
-        tag-placeholder="Add this as new tag"
-        placeholder="Search or add a tag"
-        label="name"
-        track-by="code"
-        :options="options"
-        :multiple="true"
-        :taggable="true"
-        @tag="addTag"
-        class="w-72 h-16"
-      ></multiselect>
-    </div>
+  <div class="flex gap-2">
+    <label class="font-medium mt-2">{{ label }}</label>
+    <multiselect
+      v-model="value"
+      v-on:input="onInput"
+      tag-placeholder="Add this as new tag"
+      placeholder="Search or add a tag"
+      label="name"
+      track-by="code"
+      :options="options"
+      :option-height="104"
+      :multiple="true"
+      :taggable="true"
+      @tag="addTag"
+      class="flex-grow h-16 border-red-500"
+      :class="{ invalid: isInvalid }"
+    ></multiselect>
   </div>
 </template>
 
@@ -42,5 +42,10 @@ export default {
   },
 };
 </script>
+
+<style>
+.multiselect.invalid .multiselect__tags span {
+  background-color: aliceblue;
+}
+</style>
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
-<style></style>

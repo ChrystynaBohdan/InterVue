@@ -25,7 +25,7 @@ export default {
 .pagination {
   display: flex;
   gap: 20px;
-  margin-top: 40px;
+  margin: 50px 0;
 }
 .page-item {
   color: red;

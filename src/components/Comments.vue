@@ -34,7 +34,7 @@
     <div v-for="(comment, index) in comments" :key="index" class="w-full flex items-center gap-2 pl-16">
       <div class="flex py-3">
         <div class="flex gap-x-2">
-          <img src="../assets/square-user.png" alt="user" class="w-12" />
+          <img src="../assets/square-user.png" alt="user" class="w-11" />
           <div class="flex flex-col w-11/12">
             <div class="flex gap-x-1 items-center">
               <div class="font-semibold pr-1">{{ curUser }}</div>

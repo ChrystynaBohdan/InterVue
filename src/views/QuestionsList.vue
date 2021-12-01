@@ -1,34 +1,15 @@
 <template>
-  <div class="relative py-24">
-    <div class="flex flex-col items-center pt-10 max-w-screen-2xl mx-auto min-h-screen">
-      <div class="flex justify-between content-center items-center max-w-screen-2xl space-x-96">
-        <div class="flex gap-x-16 gap-y-4 flex-wrap justify-center">
-          <div>
-            <Multiselect label="Categories:" :options="languageOptions" v-model="selectedCategory" />
-          </div>
-          <div>
-            <Multiselect label="Grades:" :options="gradeOptions" v-model="selectedGrade" />
-          </div>
+  <div class="relative pt-20">
+    <div class="flex flex-col items-center max-w-screen-md w-9/12 min-h-screen">
+      <div class="flex justify-between max-w-screen-2xl">
+        <div class="flex gap-x-12 gap-y-4">
+          <Multiselect label="Categories:" :options="languageOptions" v-model="selectedCategory" />
+          <Multiselect label="Grades:" :options="gradeOptions" v-model="selectedGrade" />
         </div>
       </div>
-      <div class="pt-8">
+      <div>
         <ul>
           <li class="p-2 grid gap-4 items-center question" v-for="question in filteredQuestions" :key="question.id">
-            <span
-              class="
-                bg-white
-                inline-block
-                font-semibold
-                rounded-full
-                border-2 border-grey-500
-                text-pink-800
-                h-8
-                w-8
-                text-center
-                leading-8
-              "
-              >{{ question.id }}</span
-            >
             <span
               @click="goToQuestion(question.id)"
               class="
@@ -38,7 +19,7 @@
                 inline-block
                 cursor-pointer
                 bg-white
-                hover:bg-gray-100
+                hover:bg-gray-50
                 rounded-md
                 transition
                 duration-500
@@ -60,6 +41,7 @@
                     justify-center
                     text-xs
                     border border-gray-200
+                    bg-gray-50
                   "
                 >
                   {{ question.category }}
@@ -76,6 +58,7 @@
                     justify-center
                     text-xs
                     border border-gray-200
+                    bg-gray-50
                   "
                 >
                   {{ question.level }}
@@ -89,12 +72,6 @@
             <button class="px-2 cursor-pointer" @click="decrement(question)">
               <i class="far fa-thumbs-down"></i>
               {{ question.dislikes }}
-            </button>
-            <button
-              @click="goToQuestion(question.id)"
-              class="p-2 cursor-pointer bg-white hover:text-gray-500 rounded-md text-pink-800 border-2 border-gray-200"
-            >
-              Open
             </button>
           </li>
         </ul>
@@ -170,6 +147,6 @@ export default {
 </script>
 <style>
 .question {
-  grid-template-columns: 32px 1fr 32px 32px minmax(50px, 100px);
+  grid-template-columns: 1fr 32px 32px;
 }
 </style>
