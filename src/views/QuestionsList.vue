@@ -1,18 +1,20 @@
 <template>
-  <div class="relative py-24 max-w-screen-md w-9/12">
-    <div class="flex flex-col pt-10 max-w-screen-2xl mx-auto min-h-screen">
+  <div class="relative max-w-screen-md w-9/12 pt-20">
+    <div class="flex flex-col max-w-screen-md mx-auto min-h-screen">
       <div class="flex gap-x-4">
-        <Multiselect :options="languageOptions" v-model="selectedCategory" :placeholder="'Filter based on technology'"/>
-        <Multiselect :options="gradeOptions" v-model="selectedGrade"  :placeholder="'Filter based on grade'"/>
+        <Multiselect
+          :options="languageOptions"
+          v-model="selectedCategory"
+          :placeholder="'Filter based on technology'"
+        />
+        <Multiselect :options="gradeOptions" v-model="selectedGrade" :placeholder="'Filter based on grade'" />
       </div>
       <div>
         <ul>
-          <li class="p-2 grid gap-4 items-center question" v-for="question in filteredQuestions" :key="question.id">
+          <li class="grid gap-4 py-2 items-center question" v-for="question in filteredQuestions" :key="question.id">
             <span
               @click="goToQuestion(question.id)"
               class="
-                ml-2
-                p-3
                 font-bold
                 inline-block
                 cursor-pointer
