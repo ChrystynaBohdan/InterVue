@@ -2,7 +2,7 @@
   <div id="app" class="app">
     <div>
       <Header />
-      <router-view />
+      <router-view class="router-size" />
       <Footer />
     </div>
   </div>
@@ -28,8 +28,8 @@ export default {
     } else {
       router.replace("/");
     }
-  }
-}
+  },
+};
 </script>
 
 <style scoped>
@@ -37,5 +37,9 @@ export default {
 .app {
   font-family: "Hind Vadorada", Arial, sans-serif;
   box-sizing: border-box;
+}
+
+.router-size {
+  margin: 0 11%;
 }
 </style>

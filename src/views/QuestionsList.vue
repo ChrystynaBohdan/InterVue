@@ -1,5 +1,5 @@
 <template>
-  <div class="relative py-24 bg-gray-100">
+  <div class="relative py-24">
     <div class="flex flex-col items-center pt-10 max-w-screen-2xl mx-auto min-h-screen">
       <div class="flex justify-between content-center items-center max-w-screen-2xl space-x-96">
         <div class="flex gap-x-16 gap-y-4 flex-wrap justify-center">
@@ -15,7 +15,18 @@
         <ul>
           <li class="p-2 grid gap-4 items-center question" v-for="question in filteredQuestions" :key="question.id">
             <span
-              class="bg-gray-300 inline-block font-extrabold rounded-full text-gray-100 h-8 w-8 text-center leading-8"
+              class="
+                bg-white
+                inline-block
+                font-semibold
+                rounded-full
+                border-2 border-grey-500
+                text-pink-800
+                h-8
+                w-8
+                text-center
+                leading-8
+              "
               >{{ question.id }}</span
             >
             <span
@@ -27,28 +38,48 @@
                 inline-block
                 cursor-pointer
                 bg-white
-                hover:bg-gray-300
+                hover:bg-gray-100
                 rounded-md
                 transition
                 duration-500
                 ease-in-out
-                shadow-md
-                flex
-                justify-between
-                gap-x-3
+                flex flex-col
+                gap-x-3 gap-y-1
               "
               >{{ question.title }}
-              <div
-                v-bind:class="{
-                  'bg-green-400': question.category === 'CSS',
-                  'bg-red-400': question.category === 'JS Core',
-                  'bg-blue-400': question.category === 'React',
-                  'bg-indigo-400': question.category === 'SCSS',
-                  'bg-yellow-400': question.category === 'VueJs',
-                }"
-                class="text-white w-10 rounded-full h-6 w-20 flex items-center justify-center text-xs"
-              >
-                {{ question.category }}
+              <div class="flex gap-x-1">
+                <div
+                  class="
+                    text-black
+                    w-5
+                    rounded-full
+                    h-7
+                    w-20
+                    flex
+                    items-center
+                    justify-center
+                    text-xs
+                    border border-gray-200
+                  "
+                >
+                  {{ question.category }}
+                </div>
+                <div
+                  class="
+                    text-black
+                    w-7
+                    rounded-full
+                    h-7
+                    w-20
+                    flex
+                    items-center
+                    justify-center
+                    text-xs
+                    border border-gray-200
+                  "
+                >
+                  {{ question.level }}
+                </div>
               </div>
             </span>
             <button class="px-2 cursor-pointer" @click="increment(question)">
@@ -61,23 +92,14 @@
             </button>
             <button
               @click="goToQuestion(question.id)"
-              class="
-                p-2
-                cursor-pointer
-                bg-gradient-to-r
-                from-green-400
-                to-blue-500
-                hover:from-pink-500 hover:to-yellow-500
-                rounded-md
-                text-white
-                font-semibold
-              "
+              class="p-2 cursor-pointer bg-white hover:text-gray-500 rounded-md text-pink-800 border-2 border-gray-200"
             >
               Open
             </button>
           </li>
         </ul>
       </div>
+      <Pagination />
     </div>
   </div>
 </template>
@@ -86,10 +108,11 @@
 import { mapGetters } from "vuex";
 import router from "../router";
 import Multiselect from "../components/Multiselect";
+import Pagination from "../components/Pagination";
 
 export default {
   name: "QuestionsList",
-  components: { Multiselect },
+  components: { Pagination, Multiselect },
   computed: {
     ...mapGetters(["allQuestions"]),
     filteredQuestions() {

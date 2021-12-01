@@ -1,92 +1,74 @@
 <template>
-  <div class="flex h-screen flex-col bg-gray-100">
-    <div class="text-center flex-grow flex justify-center items-center flex-col gap-y-4">
-      <div class="flex">
-        <span
-          class="
-            ml-2
-            p-3
-            font-bold
-            inline-block
-            cursor-pointer
-            bg-white
-            hover:bg-gray-300
-            rounded-md
-            transition
-            duration-500
-            ease-in-out
-            shadow-md
-            flex
-            gap-x-3
-          "
+  <div class="flex min-h-screen max-w-full">
+    <div class="flex flex-col gap-y-6 w-9/12 mt-20">
+      <div class="flex justify-between">
+        <button
+          @click="back"
+          class="p-2 text-xs cursor-pointer bg-white hover:text-gray-400 rounded-md text-black border border-grey-100"
         >
+          Previous
+        </button>
+        <button
+          @click="next"
+          class="p-2 text-xs cursor-pointer bg-white hover:text-gray-400 rounded-md text-black border border-grey-100"
+        >
+          Next
+        </button>
+      </div>
+      <div class="flex w-full grid gap-4 onequestion">
+        <h1 class="py-1.5 font-bold inline-block bg-white flex flex-col gap-x-3 gap-y-2 text-4xl">
           {{ question.title }}
-          <div
-            v-bind:class="{
-              'bg-green-400': question.category === 'CSS',
-              'bg-red-400': question.category === 'JS Core',
-              'bg-blue-400': question.category === 'React',
-              'bg-indigo-400': question.category === 'SCSS',
-              'bg-yellow-400': question.category === 'VueJs',
-            }"
-            class="text-white w-10 rounded-full h-6 w-20 flex items-center justify-center text-xs"
-          >
-            {{ question.category }}
+          <h1 class="text-xs font-extralight text-gray-400">by Volodymyr Sen</h1>
+          <div class="flex gap-x-1">
+            <div
+              v-bind:class="{
+                'bg-green-400': question.category === 'CSS',
+                'bg-red-400': question.category === 'JS Core',
+                'bg-blue-400': question.category === 'React',
+                'bg-indigo-400': question.category === 'SCSS',
+                'bg-yellow-400': question.category === 'VueJs',
+              }"
+              class="text-white w-5 rounded-full h-7 w-20 flex items-center justify-center text-xs"
+            >
+              {{ question.category }}
+            </div>
+            <div
+              v-bind:class="{
+                'bg-blue-400': question.level === 'Junior',
+                'bg-indigo-400': question.level === 'Middle',
+                'bg-yellow-400': question.level === 'Senior',
+              }"
+              class="text-white w-7 rounded-full h-7 w-20 flex items-center justify-center text-xs"
+            >
+              {{ question.level }}
+            </div>
           </div>
-        </span>
-        <button class="px-2 cursor-pointer" @click="increment(question)">
+        </h1>
+        <button class="px-2 cursor-pointer flex flex-col pt-4" @click="increment(question)">
           <i class="far fa-thumbs-up"></i>
           {{ question.likes }}
         </button>
-        <button class="px-2 cursor-pointer" @click="decrement(question)">
+        <button class="px-2 cursor-pointer flex flex-col pt-4" @click="decrement(question)">
           <i class="far fa-thumbs-down"></i>
           {{ question.dislikes }}
         </button>
       </div>
-
-      <div class="flex gap-x-5">
-        <button
-          @click="back"
-          class="
-            p-2
-            cursor-pointer
-            bg-gradient-to-r
-            from-green-400
-            to-blue-500
-            hover:from-pink-500 hover:to-yellow-500
-            rounded-md
-            text-white
-            font-semibold
-          "
-        >
-          <i class="fas fa-arrow-left"></i>
-        </button>
-        <button
-          @click="next"
-          class="
-            p-2
-            cursor-pointer
-            bg-gradient-to-r
-            from-green-400
-            to-blue-500
-            hover:from-pink-500 hover:to-yellow-500
-            rounded-md
-            text-white
-            font-semibold
-          "
-        >
-          <i class="fas fa-arrow-right"></i>
-        </button>
-      </div>
+      <div>{{ question.body }}</div>
+      <div class="pt-5 text-xl">Discuss the question</div>
+      <div class="border-b-2 font-semibold">10 comments</div>
+      <Comments :comments="question.comments" :guestionId="question.id" />
     </div>
+    <div class="w-3/12 flex">ASIDE</div>
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
+import Comments from "../components/Comments";
 
 export default {
   name: "Question",
+  components: { Comments },
   data() {
     return {};
   },
@@ -114,4 +96,8 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.onequestion {
+  grid-template-columns: 1fr 32px 32px;
+}
+</style>
