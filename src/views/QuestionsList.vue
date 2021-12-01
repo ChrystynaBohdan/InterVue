@@ -1,15 +1,9 @@
 <template>
-  <div class="relative py-24">
-    <div class="flex flex-col items-center pt-10 max-w-screen-2xl mx-auto min-h-screen">
-      <div class="flex justify-between content-center items-center max-w-screen-2xl space-x-96">
-        <div class="flex gap-x-16 gap-y-4 flex-wrap justify-center">
-          <div>
-            <Multiselect label="Categories:" :options="languageOptions" v-model="selectedCategory" />
-          </div>
-          <div>
-            <Multiselect label="Grades:" :options="gradeOptions" v-model="selectedGrade" />
-          </div>
-        </div>
+  <div class="relative py-24 max-w-screen-md w-9/12">
+    <div class="flex flex-col pt-10 max-w-screen-2xl mx-auto min-h-screen">
+      <div class="flex gap-x-4">
+        <Multiselect :options="languageOptions" v-model="selectedCategory" :placeholder="'Filter based on technology'"/>
+        <Multiselect :options="gradeOptions" v-model="selectedGrade"  :placeholder="'Filter based on grade'"/>
       </div>
       <div class="pt-8">
         <ul>

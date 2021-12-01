@@ -11,8 +11,8 @@
         class="rounded-lg py-3 px-2 outline-none border border-solid border-gray-300"
         placeholder="Question's body"
       ></textarea>
-      <Multiselect :options="gradeOptions" v-model="selectedGrade" />
-      <Multiselect :options="categories" v-model="selectedCategory" />
+      <Multiselect :options="gradeOptions" v-model="selectedGrade" :placeholder="'Select technology'"/>
+      <Multiselect :options="categories" v-model="selectedCategory" :placeholder="'Select grade'" />
 
       <textarea
         rows="6"
