@@ -32,15 +32,18 @@
       </div>
     </div>
     <div v-for="(comment, index) in comments" :key="index" class="w-full flex items-center gap-2 pl-16">
-      <div class="flex pt-2 pb-2">
+      <div class="flex py-3">
         <div class="flex gap-x-2">
           <img src="../assets/square-user.png" alt="user" class="w-12" />
           <div class="flex flex-col w-11/12">
             <div class="flex gap-x-1 items-center">
-              <div class="font-semibold">{{ curUser }}</div>
-              <div class="text-xs font-semibold text-gray-400">| {{ relativeDate() }}</div>
+              <div class="font-semibold pr-1">{{ curUser }}</div>
+              <div class="text-xs font-semibold text-gray-400">|</div>
+              <div class="text-xs font-semibold text-gray-400 pl-1">
+                {{ fromNow(comment.date) }}
+              </div>
             </div>
-            <div class="w-full">{{ comment.text }}</div>
+            <div class="w-full text-sm">{{ comment.text }}</div>
           </div>
         </div>
       </div>
@@ -64,8 +67,8 @@ export default {
       this.commentNew({ id: this.guestionId, commentText: this.comment });
       this.comment = "";
     },
-    relativeDate() {
-      return moment().startOf("hour").fromNow();
+    fromNow(date) {
+      return moment(date).fromNow();
     },
   },
   data() {
