@@ -1,21 +1,19 @@
 <template>
-  <div>
-    <div class="flex">
-      <label class="px-2 font-semibold text-xl mt-2">{{ label }}</label>
-      <multiselect
-        v-model="value"
-        v-on:input="onInput"
-        tag-placeholder="Add this as new tag"
-        placeholder="Search or add a tag"
-        label="name"
-        track-by="code"
-        :options="options"
-        :multiple="true"
-        :taggable="true"
-        @tag="addTag"
-        class="w-72 h-16"
-      ></multiselect>
-    </div>
+  <div class="w-full">
+    <label class="font-semibold text-xl mt-2">{{ label }}</label>
+    <multiselect
+      v-model="value"
+      v-on:input="onInput"
+      tag-placeholder="Add this as new tag"
+      :placeholder="placeholder"
+      label="name"
+      track-by="code"
+      :options="options"
+      :multiple="true"
+      :taggable="true"
+      @tag="addTag"
+      class="h-16"
+    ></multiselect>
   </div>
 </template>
 
@@ -26,7 +24,8 @@ export default {
   components: {
     Multiselect,
   },
-  props: ["label", "options", "value"],
+
+  props: ["label", "options", "value", "placeholder"],
   methods: {
     addTag(newTag) {
       const tag = {
@@ -43,4 +42,4 @@ export default {
 };
 </script>
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
-<style></style>
+
