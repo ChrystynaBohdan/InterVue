@@ -19,7 +19,6 @@
                 inline-block
                 cursor-pointer
                 bg-white
-                hover:bg-gray-50
                 rounded-md
                 transition
                 duration-500
