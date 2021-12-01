@@ -1,55 +1,41 @@
 <template>
-  <div class="py-28">
-    <h2 class="text-center font-bold text-3xl mb-8">Add New Question</h2>
+  <div class="flex flex-col mt-32 max-w-xl min-h-screen pt-32">
+      <h2 class="font-bold text-3xl mb-8">Add New Question Here</h2>
     <form
       v-on:submit.prevent
-      class="flex flex-col max-w-xl mx-auto gap-4 p-6 bg-gradient-to-r from-blue-100 to-blue-200 rounded-lg shadow-lg"
+      class="flex flex-col gap-4"
     >
       <textarea
         required
         rows="4"
-        class="rounded-lg py-3 px-2 focus:ring-2 focus:ring-blue-600 outline-none"
-        placeholder="Question's body goes here"
+        class="rounded-lg py-3 px-2 outline-none border border-solid border-gray-300"
+        placeholder="Question's body"
       ></textarea>
-
-      <select class="py-3 px-2 rounded-lg" required>
-        <option value="">Choose a category for the question</option>
-        <option value="Trainee">JS</option>
-        <option value="Junioe">HTML/CSS</option>
-        <option value="Middle">React JS</option>
-        <option value="Senior">Vue JS</option>
-      </select>
-
-      <select class="py-3 px-2 rounded-lg" required>
-        <option value="">Choose a level</option>
-        <option value="Trainee">Trainee</option>
-        <option value="Junioe">Junior</option>
-        <option value="Middle">Middle</option>
-        <option value="Senior">Senior</option>
-      </select>
+      <Multiselect :options="gradeOptions" v-model="selectedGrade" :placeholder="'Select technology'"/>
+      <Multiselect :options="categories" v-model="selectedCategory" :placeholder="'Select grade'" />
 
       <textarea
         rows="6"
-        class="rounded-lg py-3 px-2 focus:ring-2 focus:ring-blue-600 outline-none"
+        class="rounded-lg py-3 px-2 outline-none border border-solid border-gray-300"
         placeholder="Right a code example if you need"
       ></textarea>
 
       <button
         type="submit"
         class="
-          bg-blue-600
-          rounded-lg
-          py-3
+          border
+          border-grey-200
           px-2
-          text-white
-          w-40
-          mx-auto
-          font-semibold
-          hover:bg-blue-800
+          py-1
+          rounded-md
+          text-black
+          cursor-pointer
+          font-bold
           transition
           duration-500
           ease-in-out
-          shadow-md
+          hover:bg-gray-600
+          hover:text-white
         "
       >
         Submit
@@ -59,7 +45,33 @@
 </template>
 
 <script>
+import Multiselect from '../components/Multiselect.vue'
+
 export default {
   name: "QuestionForm",
+  components: { Multiselect },
+
+  data() {
+    return {
+      categories: [
+        { name: "HTML", code: "HTML" },
+        { name: "CSS", code: "CSS" },
+        { name: "SCSS", code: "SCSS" },
+        { name: "React", code: "React" },
+        { name: "Redux", code: "Redux" },
+        { name: "Vue", code: "VueJs" },
+        { name: "JS", code: "JS Core" },
+      ],
+
+      gradeOptions: [
+        { name: "Junior", code: "Junior" },
+        { name: "Middle", code: "Middle" },
+        { name: "Senior", code: "Senior" },
+      ],
+
+      selectedCategory: [],
+      selectedGrage: []
+    }
+  }
 };
 </script>
