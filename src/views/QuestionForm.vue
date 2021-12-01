@@ -27,21 +27,13 @@
         placeholder="Question's body goes here"
       ></textarea>
 
-      <select class="py-3 px-2 rounded-lg" required>
-        <option value="">Choose a category for the question</option>
-        <option value="Trainee">JS</option>
-        <option value="Junioe">HTML/CSS</option>
-        <option value="Middle">React JS</option>
-        <option value="Senior">Vue JS</option>
-      </select>
-
-      <select class="py-3 px-2 rounded-lg" required>
-        <option value="">Choose a level</option>
-        <option value="Trainee">Trainee</option>
-        <option value="Junioe">Junior</option>
-        <option value="Middle">Middle</option>
-        <option value="Senior">Senior</option>
-      </select>
+      <div class="mx-auto">
+        <Multiselect label="Grades:" :options="gradeOptions" v-model="selectedGrade" />
+      </div>
+      
+      <div class="mx-auto">
+        <Multiselect label="Categories:" :options="categories" v-model="selectedCategory" />
+      </div>
 
       <textarea
         rows="6"
@@ -79,7 +71,33 @@
 </template>
 
 <script>
+import Multiselect from '../components/Multiselect.vue'
+
 export default {
   name: "QuestionForm",
+  components: { Multiselect },
+
+  data() {
+    return {
+      categories: [
+        { name: "HTML", code: "HTML" },
+        { name: "CSS", code: "CSS" },
+        { name: "SCSS", code: "SCSS" },
+        { name: "React", code: "React" },
+        { name: "Redux", code: "Redux" },
+        { name: "Vue", code: "VueJs" },
+        { name: "JS", code: "JS Core" },
+      ],
+
+      gradeOptions: [
+        { name: "Junior", code: "Junior" },
+        { name: "Middle", code: "Middle" },
+        { name: "Senior", code: "Senior" },
+      ],
+
+      selectedCategory: [],
+      selectedGrage: []
+    }
+  }
 };
 </script>
