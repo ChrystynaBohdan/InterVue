@@ -12,7 +12,6 @@
       :multiple="true"
       :taggable="true"
       @tag="addTag"
-      class="h-16"
     ></multiselect>
   </div>
 </template>
@@ -26,6 +25,7 @@ export default {
   },
 
   props: ["label", "options", "value", "placeholder"],
+
   methods: {
     addTag(newTag) {
       const tag = {
@@ -35,6 +35,7 @@ export default {
       this.options.push(tag);
       this.value.push(tag);
     },
+
     onInput(value) {
       this.$emit("input", value);
     },
@@ -44,31 +45,36 @@ export default {
 
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 
-
 <style>
-.multiselect__tags {
-    border: none !important;
-    background: transparent;
-    font-family: WorkSans-light !important;
-    font-size: 14px !important;
-    padding: 5px !important;
+   .multiselect__tags {
+  border: 1px solid #d1d5db;
+  background: transparent;
+  font-family: "Hind Vadorada", Arial, sans-serif;
+  font-size: 16px;
+  padding: .5rem .75rem;
 }
 
 .multiselect__tag {
-    border: 1px solid rgba(60, 60, 60, 0.26) !important;
-    margin-bottom: 0px !important;
-    margin-right: 5px !important;
-    background-color: rgb(174, 163, 163) !important;
-    /* min-height: 20px !important;
-    min-width: 25px !important; */
-}
-.multiselect__placeholder {
-    display: inline-block !important;
-    margin-bottom: 0px !important;
-    padding-top: 0px !important;
+  background: #6B7280;  
 }
 
 .multiselect__option--highlight {
-  background-color: grey;
+  background-color: #6B7280;
+  /* font-size: 12px; */
+}
+
+.multiselect__option--highlight:after {
+  background-color: #6B7280;
+}
+
+.multiselect__tag-icon:focus,
+.multiselect__tag-icon:hover {
+  background: #969696;
+}
+
+.multiselect__tag-icon:after {
+  content: "×";
+  color: #fff;
+  font-size: 14px;
 }
 </style>
