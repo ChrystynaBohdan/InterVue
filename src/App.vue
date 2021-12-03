@@ -23,7 +23,7 @@ export default {
   computed: { ...mapGetters(["isLogged"]) },
 
   beforeMount() {
-    if (!this.isLoged) {
+    if (!this.isLogged) {
       router.replace("/login");
     } else {
       router.replace("/");

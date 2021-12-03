@@ -37,6 +37,7 @@
         class="rounded-lg py-3 px-2 focus:ring-2 focus:ring-blue-600 outline-none"
       />
       <button
+        @click="axiosLogin"
         type="submit"
         class="
           bg-blue-600
@@ -63,6 +64,7 @@
 <script>
 import router from "../router";
 import { mapGetters, mapActions } from "vuex";
+import axios from "axios";
 
 export default {
   name: "Login",
@@ -74,10 +76,26 @@ export default {
     };
   },
 
-  computed: { ...mapGetters(["isLogged"]) },
+  computed: { ...mapGetters(["isLogged", "isEmail", "isPassword"]) },
 
   methods: {
-    ...mapActions(["checkLogin"]),
+    ...mapActions(["refreshAccessToken"]),
+    async axiosLogin() {
+      // const response = await axios.post("http://localhost:8000/auth/login", {
+      const response = await axios.post("http://localhost:5001/api/login", {
+        email: this.login,
+        password: this.password,
+      });
+      console.log(response);
+      // const token = response.data.access_token;
+      // localStorage.setItem("accessToken", token);
+
+      localStorage.setItem("accessToken", response.data.accessToken);
+      localStorage.setItem("refreshToken", response.data.refreshToken);
+
+      this.refreshAccessToken();
+    },
+    ...mapActions(["checkLogin", "fetchTodos"]),
 
     handleLogin() {
       this.checkLogin();

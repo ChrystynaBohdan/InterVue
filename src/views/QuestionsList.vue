@@ -11,7 +11,7 @@
       </div>
       <div>
         <ul>
-          <li class="grid gap-4 py-2 items-center question" v-for="question in filteredQuestions" :key="question.id">
+          <li class="grid gap-4 py-4 items-center question" v-for="question in filteredQuestions" :key="question.id">
             <span
               @click="goToQuestion(question.id)"
               class="
@@ -76,21 +76,25 @@
         </ul>
       </div>
       <Pagination />
+      <Test />
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import router from "../router";
 import Multiselect from "../components/Multiselect";
 import Pagination from "../components/Pagination";
+import Test from "../components/Test";
 
 export default {
   name: "QuestionsList",
-  components: { Pagination, Multiselect },
+  components: { Pagination, Multiselect, Test },
   computed: {
     ...mapGetters(["allQuestions"]),
+    ...mapActions(["fetchQuestions"]),
+
     filteredQuestions() {
       const selectedCategories = this.selectedCategory.map((category) => category.code);
       const selectedLevels = this.selectedGrade.map((level) => level.code);
@@ -121,6 +125,9 @@ export default {
   },
   updated() {
     console.log(this.selectedCategory);
+  },
+  created() {
+    this.fetchQuestions();
   },
   data() {
     return {

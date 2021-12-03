@@ -44,31 +44,30 @@ export default {
 
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 
-
 <style>
 .multiselect__tags {
-    border: none !important;
-    background: transparent;
-    font-family: WorkSans-light !important;
-    font-size: 14px !important;
-    padding: 5px !important;
+  border: none !important;
+  background: transparent;
+  font-family: WorkSans-light !important;
+  font-size: 14px !important;
+  padding: 5px !important;
 }
 
 .multiselect__tag {
-    border: 1px solid rgba(60, 60, 60, 0.26) !important;
-    margin-bottom: 0px !important;
-    margin-right: 5px !important;
-    background-color: rgb(174, 163, 163) !important;
-    /* min-height: 20px !important;
+  border: 1px solid rgba(60, 60, 60, 0.26) !important;
+  margin-bottom: 0px !important;
+  margin-right: 5px !important;
+  background-color: rgb(174, 163, 163) !important;
+  /* min-height: 20px !important;
     min-width: 25px !important; */
 }
 .multiselect__placeholder {
-    display: inline-block !important;
-    margin-bottom: 0px !important;
-    padding-top: 0px !important;
+  display: inline-block !important;
+  margin-bottom: 0px !important;
+  padding-top: 0px !important;
 }
 
 .multiselect__option--highlight {
-  background-color: grey;
+  background-color: #bb3131;
 }
 </style>
