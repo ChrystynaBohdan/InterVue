@@ -12,7 +12,6 @@
       :multiple="true"
       :taggable="true"
       @tag="addTag"
-      class="h-16"
     ></multiselect>
   </div>
 </template>
@@ -26,6 +25,7 @@ export default {
   },
 
   props: ["label", "options", "value", "placeholder"],
+
   methods: {
     addTag(newTag) {
       const tag = {
@@ -35,11 +35,46 @@ export default {
       this.options.push(tag);
       this.value.push(tag);
     },
+
     onInput(value) {
       this.$emit("input", value);
     },
   },
 };
 </script>
+
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 
+<style>
+   .multiselect__tags {
+  border: 1px solid #d1d5db;
+  background: transparent;
+  font-family: "Hind Vadorada", Arial, sans-serif;
+  font-size: 16px;
+  padding: .5rem .75rem;
+}
+
+.multiselect__tag {
+  background: #6B7280;  
+}
+
+.multiselect__option--highlight {
+  background-color: #6B7280;
+  /* font-size: 12px; */
+}
+
+.multiselect__option--highlight:after {
+  background-color: #6B7280;
+}
+
+.multiselect__tag-icon:focus,
+.multiselect__tag-icon:hover {
+  background: #969696;
+}
+
+.multiselect__tag-icon:after {
+  content: "×";
+  color: #fff;
+  font-size: 14px;
+}
+</style>
