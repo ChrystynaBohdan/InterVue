@@ -4,10 +4,31 @@
       <router-link to="/">
         <img src="../assets/soft-blues-logo-white.png" alt="logo" class="h-6 ml-8" />
       </router-link>
-      <div>
+      <div class="flex gap-x-4">
         <router-link v-if="isLogged" tag="button" to="/addnew"
           ><i class="far fa-plus-square fa-lg hover:text-gray-500 text-gray-300 mt-3 cursor-pointer"></i>
         </router-link>
+        <router-link v-if="isLogged" tag="button" to="/addnew"
+          ><div
+            class="hover:text-gray-500 text-gray-300 mt-3 cursor-pointer border-2 border-gray-300 px-1 rounded text-xs"
+          >
+            Grades
+          </div></router-link
+        >
+        <router-link v-if="isLogged" tag="button" to="/addnew"
+          ><div
+            class="hover:text-gray-500 text-gray-300 mt-3 cursor-pointer border-2 border-gray-300 px-1 rounded text-xs"
+          >
+            For Recruiters
+          </div></router-link
+        >
+        <router-link v-if="isLogged" tag="button" to="/addnew"
+          ><div
+            class="hover:text-gray-500 text-gray-300 mt-3 cursor-pointer border-2 border-gray-300 px-1 rounded text-xs"
+          >
+            FAQ
+          </div></router-link
+        >
       </div>
     </div>
     <div>

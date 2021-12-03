@@ -11,7 +11,7 @@
       </div>
       <div>
         <ul>
-          <li class="grid gap-4 py-2 items-center question" v-for="question in filteredQuestions" :key="question.id">
+          <li class="grid gap-4 py-4 items-center question" v-for="question in filteredQuestions" :key="question.id">
             <span
               @click="goToQuestion(question.id)"
               class="
