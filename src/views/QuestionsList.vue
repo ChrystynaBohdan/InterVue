@@ -1,38 +1,24 @@
 <template>
-  <div class="relative py-24 max-w-screen-md w-9/12">
-    <div class="flex flex-col pt-10 max-w-screen-2xl mx-auto min-h-screen">
+  <div class="relative max-w-screen-md w-9/12 pt-20">
+    <div class="flex flex-col max-w-screen-md mx-auto min-h-screen">
       <div class="flex gap-x-4">
-        <Multiselect :options="languageOptions" v-model="selectedCategory" :placeholder="'Filter based on technology'"/>
-        <Multiselect :options="gradeOptions" v-model="selectedGrade"  :placeholder="'Filter based on grade'"/>
+        <Multiselect
+          :options="languageOptions"
+          v-model="selectedCategory"
+          :placeholder="'Filter based on technology'"
+        />
+        <Multiselect :options="gradeOptions" v-model="selectedGrade" :placeholder="'Filter based on grade'" />
       </div>
-      <div class="pt-8">
+      <div>
         <ul>
-          <li class="p-2 grid gap-4 items-center question" v-for="question in filteredQuestions" :key="question.id">
-            <span
-              class="
-                bg-white
-                inline-block
-                font-semibold
-                rounded-full
-                border-2 border-grey-500
-                text-pink-800
-                h-8
-                w-8
-                text-center
-                leading-8
-              "
-              >{{ question.id }}</span
-            >
+          <li class="grid gap-4 py-2 items-center question" v-for="question in filteredQuestions" :key="question.id">
             <span
               @click="goToQuestion(question.id)"
               class="
-                ml-2
-                p-3
                 font-bold
                 inline-block
                 cursor-pointer
                 bg-white
-                hover:bg-gray-100
                 rounded-md
                 transition
                 duration-500
@@ -54,6 +40,7 @@
                     justify-center
                     text-xs
                     border border-gray-200
+                    bg-gray-50
                   "
                 >
                   {{ question.category }}
@@ -70,6 +57,7 @@
                     justify-center
                     text-xs
                     border border-gray-200
+                    bg-gray-50
                   "
                 >
                   {{ question.level }}
@@ -83,12 +71,6 @@
             <button class="px-2 cursor-pointer" @click="decrement(question)">
               <i class="far fa-thumbs-down"></i>
               {{ question.dislikes }}
-            </button>
-            <button
-              @click="goToQuestion(question.id)"
-              class="p-2 cursor-pointer bg-white hover:text-gray-500 rounded-md text-pink-800 border-2 border-gray-200"
-            >
-              Open
             </button>
           </li>
         </ul>
@@ -164,6 +146,6 @@ export default {
 </script>
 <style>
 .question {
-  grid-template-columns: 32px 1fr 32px 32px minmax(50px, 100px);
+  grid-template-columns: 1fr 32px 32px;
 }
 </style>
