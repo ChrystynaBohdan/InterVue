@@ -48,9 +48,9 @@ export default {
 <style>
    .multiselect__tags {
   border: 1px solid #d1d5db;
-  background: transparent;
+  background: #fff;
   font-family: "Hind Vadorada", Arial, sans-serif;
-  font-size: 16px;
+  font-size: .875rem;
   padding: .5rem .75rem;
 }
 
@@ -75,6 +75,21 @@ export default {
 .multiselect__tag-icon:after {
   content: "×";
   color: #fff;
-  font-size: 14px;
+  font-size: .875rem;
 }
+
+.multiselect,
+.multiselect__input,
+.multiselect__single {
+  font-size: .875rem;
+}
+
+.multiselect__placeholder {
+  color: #969ea7; 
+  display: inline-block;
+  margin-bottom: 8px;
+  padding-top: 2px;
+  font-size: .875rem;
+}
+
 </style>
