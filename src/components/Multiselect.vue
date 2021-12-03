@@ -46,7 +46,7 @@ export default {
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 
 <style>
-   .multiselect__tags {
+.multiselect__tags {
   border: 1px solid #d1d5db;
   background: #fff;
   font-family: "Hind Vadorada", Arial, sans-serif;
@@ -60,7 +60,6 @@ export default {
 
 .multiselect__option--highlight {
   background-color: #6B7280;
-  /* font-size: 12px; */
 }
 
 .multiselect__option--highlight:after {
@@ -91,5 +90,4 @@ export default {
   padding-top: 2px;
   font-size: .875rem;
 }
-
 </style>
