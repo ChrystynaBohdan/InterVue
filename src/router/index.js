@@ -61,12 +61,12 @@ const routes = [
     component: Grades,
     children: [
       {
-        path: "/level",
+        path: "/level/:level?",
         name: "Level",
         component: Level,
       },
-      { path: "/categories", name: "Categories", component: Categories },
-      { path: "/features", name: "Features", component: Features },
+      { path: "/categories/:category?", name: "Categories", component: Categories },
+      { path: "/features/:feature?", name: "Features", component: Features },
     ],
   },
   {
