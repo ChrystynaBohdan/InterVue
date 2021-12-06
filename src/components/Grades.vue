@@ -1,5 +1,10 @@
 <template>
-  <div class="pt-20 text-red">Grades</div>
+  <div class="router-size">
+    <router-link to="level" class="ml-6">Level</router-link>
+    <router-link to="categories" class="ml-6">Categories</router-link>
+    <router-link to="features" class="ml-6">Features</router-link>
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>

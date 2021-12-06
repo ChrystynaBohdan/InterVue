@@ -51,7 +51,7 @@ export default {
   background: #fff;
   font-family: "Hind Vadorada", Arial, sans-serif;
   font-size: 0.875rem;
-  padding: 0.5rem 0.75rem;
+  padding: 0.25rem 0.5rem;
 }
 
 .multiselect__tag {

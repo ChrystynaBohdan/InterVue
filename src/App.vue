@@ -40,6 +40,6 @@ export default {
 }
 
 .router-size {
-  margin: 0 11%;
+  margin: 6% 11%;
 }
 </style>

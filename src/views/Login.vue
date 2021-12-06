@@ -1,5 +1,5 @@
 <template>
-  <div class="py-28 h-screen flex">
+  <div class="h-screen flex">
     <form
       v-on:submit.prevent="handleLogin"
       class="

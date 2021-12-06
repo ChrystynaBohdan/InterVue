@@ -1,6 +1,6 @@
 <template>
   <div class="flex min-h-screen max-w-full">
-    <div class="flex flex-col gap-y-6 w-9/12 mt-20">
+    <div class="flex flex-col gap-y-6 w-9/12">
       <div class="flex justify-between">
         <button
           @click="back"
@@ -58,7 +58,7 @@
       <div class="border-b-2 font-semibold">10 comments</div>
       <Comments :comments="question.comments" :guestionId="question.id" />
     </div>
-    <div class="w-3/12 flex">ASIDE</div>
+    <div class="w-3/12 flex"></div>
   </div>
 </template>
 

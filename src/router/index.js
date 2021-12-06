@@ -8,6 +8,10 @@ import Login from "../views/Login";
 import Grades from "../components/Grades";
 import Recruiters from "../components/Recruiters";
 import FAQ from "../components/FAQ";
+import Level from "../components/Level";
+import Categories from "../components/Categories";
+import Features from "../components/Features";
+import LevelDetails from "../components/LevelDetails";
 
 Vue.use(VueRouter);
 
@@ -55,6 +59,20 @@ const routes = [
     path: "/grades",
     name: "Grades",
     component: Grades,
+    children: [
+      {
+        path: "/level",
+        name: "Level",
+        component: Level,
+      },
+      { path: "/categories", name: "Categories", component: Categories },
+      { path: "/features", name: "Features", component: Features },
+    ],
+  },
+  {
+    path: "/level/:slug",
+    name: "LevelDetails",
+    component: LevelDetails,
   },
   {
     path: "/recruiters",
