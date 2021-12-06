@@ -16,6 +16,7 @@ export default new Vuex.Store({
   //       body: "CSS preprocessors are scripting languages that extend the default capabilities of CSS. They enable us to use logic in our CSS code, such as variables, nesting, inheritance, mixins, functions, and mathematical operations.CSS preprocessors all do similar things but in a different way and with their own syntaxes.",
   //       category: "CSS",
   //       level: "Junior",
+  //       codesnippet: '',
   //       likes: 0,
   //       dislikes: 0,
   //       comments: [],
@@ -135,9 +136,12 @@ export default new Vuex.Store({
       commit("handleLogin", true);
     },
 
-    logOut({ commit }) {
-      console.log("you have logged out");
+    async logOut({ commit }) {
+      const access = localStorage.getItem("accessToken");
 
+      await axios.post("http://localhost:5001/api/logout", {
+        headers: { Authorization: `Bearer ${access}` },
+      });
       localStorage.removeItem("accessToken");
 
       commit("loggingOut", false);

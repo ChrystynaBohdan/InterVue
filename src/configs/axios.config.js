@@ -19,13 +19,13 @@ export function setInterceptors() {
       // Do something with response error
       alert("there is an error. please try again");
 
-      // if (error.response.status === 401) {
-      //   const token = localStorage.getItem("refreshToken");
-      //
-      //   const newToken = await axios.post("/refresh-token", { refreshToken: token });
-      //
-      //   localStorage.setItem("accessToken", newToken);
-      // }
+      if (error.response.status === 401) {
+        const token = localStorage.getItem("refreshToken");
+
+        const newToken = await axios.post("/refresh", { refreshToken: token });
+
+        localStorage.setItem("accessToken", newToken);
+      }
 
       return Promise.reject(error);
     }
