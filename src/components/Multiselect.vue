@@ -86,8 +86,11 @@ export default {
 .multiselect__placeholder {
   color: #969ea7;
   display: inline-block;
-  margin-bottom: 4px;
+  margin-bottom: 8px;
   padding-top: 2px;
   font-size: 0.875rem;
+}
+.multiselect__tags {
+  .padding: 0.25rem 0.5rem;
 }
 </style>
