@@ -5,6 +5,9 @@ import QuestionsList from "../views/QuestionsList";
 import Question from "../views/Question";
 import NotFound from "../views/NotFound";
 import Login from "../views/Login";
+import Grades from "../components/Grades";
+import Recruiters from "../components/Recruiters";
+import FAQ from "../components/FAQ";
 
 Vue.use(VueRouter);
 
@@ -47,6 +50,21 @@ const routes = [
     path: "/question",
     name: "Question",
     component: Question,
+  },
+  {
+    path: "/grades",
+    name: "Grades",
+    component: Grades,
+  },
+  {
+    path: "/recruiters",
+    name: "Recruiters",
+    component: Recruiters,
+  },
+  {
+    path: "/faq",
+    name: "FAQ",
+    component: FAQ,
   },
   {
     path: "/404",

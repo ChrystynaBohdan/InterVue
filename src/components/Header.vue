@@ -8,23 +8,23 @@
         <router-link v-if="isLogged" tag="button" to="/addnew"
           ><i class="far fa-plus-square fa-lg hover:text-gray-500 text-gray-300 mt-3 cursor-pointer"></i>
         </router-link>
-        <router-link v-if="isLogged" tag="button" to="/addnew"
+        <router-link v-if="isLogged" tag="button" to="/grades"
           ><div
-            class="hover:text-gray-500 text-gray-300 mt-3 cursor-pointer border-2 border-gray-300 px-1 rounded text-xs"
+            class="hover:text-gray-500 text-gray-300 mt-1 cursor-pointer border-2 border-gray-300 px-1 rounded text-xs"
           >
             Grades
           </div></router-link
         >
-        <router-link v-if="isLogged" tag="button" to="/addnew"
+        <router-link v-if="isLogged" tag="button" to="/recruiters"
           ><div
-            class="hover:text-gray-500 text-gray-300 mt-3 cursor-pointer border-2 border-gray-300 px-1 rounded text-xs"
+            class="hover:text-gray-500 text-gray-300 mt-1 cursor-pointer border-2 border-gray-300 px-1 rounded text-xs"
           >
             For Recruiters
           </div></router-link
         >
-        <router-link v-if="isLogged" tag="button" to="/addnew"
+        <router-link v-if="isLogged" tag="button" to="/faq"
           ><div
-            class="hover:text-gray-500 text-gray-300 mt-3 cursor-pointer border-2 border-gray-300 px-1 rounded text-xs"
+            class="hover:text-gray-500 text-gray-300 mt-1 cursor-pointer border-2 border-gray-300 px-1 rounded text-xs"
           >
             FAQ
           </div></router-link
@@ -60,9 +60,13 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import router from "../router";
+import Grades from "./Grades";
+import Recruiters from "./Recruiters";
+import FAQ from "./FAQ";
 
 export default {
   name: "Header",
+  components: { Grades, Recruiters, FAQ },
 
   computed: { ...mapGetters(["isLogged"]) },
 
