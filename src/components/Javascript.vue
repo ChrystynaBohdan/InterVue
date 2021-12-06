@@ -1,10 +1,10 @@
 <template>
-  <div>categories!</div>
+  <div>javascript</div>
 </template>
 
 <script>
 export default {
-  name: "Categories",
+  name: "Javascript",
 };
 </script>
 

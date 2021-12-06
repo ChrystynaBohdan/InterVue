@@ -8,10 +8,10 @@ import Login from "../views/Login";
 import Grades from "../components/Grades";
 import Recruiters from "../components/Recruiters";
 import FAQ from "../components/FAQ";
-import Level from "../components/Level";
-import Categories from "../components/Categories";
-import Features from "../components/Features";
+import Grades2 from "../components/Grades2";
+import Technologies from "../components/Technologies";
 import LevelDetails from "../components/LevelDetails";
+import Javascript from "../components/Javascript";
 
 Vue.use(VueRouter);
 
@@ -61,12 +61,18 @@ const routes = [
     component: Grades,
     children: [
       {
-        path: "/level/:level?",
-        name: "Level",
-        component: Level,
+        path: "grades",
+        name: "Grade2",
+        component: Grades2,
+        children: [
+          {
+            path: "javascript",
+            name: "Javascript",
+            component: Javascript,
+          },
+        ],
       },
-      { path: "/categories/:category?", name: "Categories", component: Categories },
-      { path: "/features/:feature?", name: "Features", component: Features },
+      { path: "technologies", name: "Technologies", component: Technologies },
     ],
   },
   {

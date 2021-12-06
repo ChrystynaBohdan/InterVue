@@ -1,8 +1,7 @@
 <template>
   <div class="router-size">
-    <router-link to="level/1" class="ml-6">Level</router-link>
-    <router-link to="categories" class="ml-6">Categories</router-link>
-    <router-link to="features" class="ml-6">Features</router-link>
+    <router-link :to="{ name: 'Grade2' }" class="ml-6">Grades</router-link>
+    <router-link :to="{ name: 'Technologies' }" class="ml-6">Technologies</router-link>
     <router-view></router-view>
   </div>
 </template>
