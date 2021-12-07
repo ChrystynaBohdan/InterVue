@@ -57,8 +57,9 @@ const routes = [
     name: "Docs",
     component: Docs,
     children: [
+      { path: "/", redirect: "grades/javascript" },
       {
-        path: "grades/:technology",
+        path: "grades/:technology?",
         name: "Grade2",
         component: Grades2,
       },

@@ -80,7 +80,6 @@
         </ul>
       </div>
       <Pagination />
-      <Test />
     </div>
   </div>
 </template>
@@ -90,11 +89,10 @@ import { mapActions, mapGetters } from "vuex";
 import router from "../router";
 import Multiselect from "../components/Multiselect";
 import Pagination from "../components/Pagination";
-import Test from "../components/Test";
 
 export default {
   name: "QuestionsList",
-  components: { Pagination, Multiselect, Test },
+  components: { Pagination, Multiselect },
   computed: {
     ...mapGetters(["allQuestions"]),
     ...mapActions(["fetchQuestions"]),
