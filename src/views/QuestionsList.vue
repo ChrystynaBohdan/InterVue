@@ -29,6 +29,8 @@
               >{{ question.title }}
               <div class="flex gap-x-1">
                 <div
+                  v-for="category in question.category"
+                  :key="category"
                   class="
                     text-black
                     w-5
@@ -43,9 +45,11 @@
                     bg-gray-50
                   "
                 >
-                  {{ question.category }}
+                  {{ category }}
                 </div>
                 <div
+                  v-for="level in question.level"
+                  :key="level"
                   class="
                     text-black
                     w-7
@@ -60,7 +64,7 @@
                     bg-gray-50
                   "
                 >
-                  {{ question.level }}
+                  {{ level }}
                 </div>
               </div>
             </span>
@@ -76,21 +80,25 @@
         </ul>
       </div>
       <Pagination />
+      <Test />
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import router from "../router";
 import Multiselect from "../components/Multiselect";
 import Pagination from "../components/Pagination";
+import Test from "../components/Test";
 
 export default {
   name: "QuestionsList",
-  components: { Pagination, Multiselect },
+  components: { Pagination, Multiselect, Test },
   computed: {
     ...mapGetters(["allQuestions"]),
+    ...mapActions(["fetchQuestions"]),
+
     filteredQuestions() {
       const selectedCategories = this.selectedCategory.map((category) => category.code);
       const selectedLevels = this.selectedGrade.map((level) => level.code);
@@ -120,7 +128,10 @@ export default {
     },
   },
   updated() {
-    console.log(this.selectedCategory);
+    this.fetchQuestions();
+  },
+  created() {
+    this.fetchQuestions();
   },
   data() {
     return {
