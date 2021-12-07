@@ -1,5 +1,5 @@
 <template>
-  <div class="relative max-w-screen-md w-9/12 pt-20">
+  <div class="relative max-w-screen-md w-9/12">
     <div class="flex flex-col max-w-screen-md mx-auto min-h-screen">
       <div class="flex gap-x-4">
         <Multiselect

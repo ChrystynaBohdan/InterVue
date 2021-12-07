@@ -1,31 +1,25 @@
 <template>
-  <div class="flex py-3 px-32 w-full justify-between items-center fixed z-10 top-0 left-0 bg-white h-16 border-b-2">
+  <div class="flex py-3 px-32 w-full justify-between items-center bg-white h-16 border-b-2">
     <div class="flex gap-x-4 items-center">
       <router-link to="/">
-        <img src="../assets/soft-blues-logo-white.png" alt="logo" class="h-6 ml-8" />
+        <img src="../assets/soft-blues-logo-white.png" alt="logo" class="h-6" />
       </router-link>
       <div class="flex gap-x-4">
         <router-link v-if="isLogged" tag="button" to="/addnew"
           ><i class="far fa-plus-square fa-lg hover:text-gray-500 text-gray-300 mt-3 cursor-pointer"></i>
         </router-link>
-        <router-link v-if="isLogged" tag="button" to="/addnew"
-          ><div
-            class="hover:text-gray-500 text-gray-300 mt-3 cursor-pointer border-2 border-gray-300 px-1 rounded text-xs"
-          >
+        <router-link v-if="isLogged" tag="button" to="/grades"
+          ><div class="border-b border-transparent hover:border-current text-gray-500 mt-1 cursor-pointer px-1 text-sm">
             Grades
           </div></router-link
         >
-        <router-link v-if="isLogged" tag="button" to="/addnew"
-          ><div
-            class="hover:text-gray-500 text-gray-300 mt-3 cursor-pointer border-2 border-gray-300 px-1 rounded text-xs"
-          >
+        <router-link v-if="isLogged" tag="button" to="/recruiters"
+          ><div class="border-b border-transparent hover:border-current text-gray-500 mt-1 cursor-pointer px-1 text-sm">
             For Recruiters
           </div></router-link
         >
-        <router-link v-if="isLogged" tag="button" to="/addnew"
-          ><div
-            class="hover:text-gray-500 text-gray-300 mt-3 cursor-pointer border-2 border-gray-300 px-1 rounded text-xs"
-          >
+        <router-link v-if="isLogged" tag="button" to="/faq"
+          ><div class="border-b border-transparent hover:border-current text-gray-500 mt-1 cursor-pointer px-1 text-sm">
             FAQ
           </div></router-link
         >

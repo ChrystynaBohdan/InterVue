@@ -5,7 +5,11 @@ import QuestionsList from "../views/QuestionsList";
 import Question from "../views/Question";
 import NotFound from "../views/NotFound";
 import Login from "../views/Login";
-
+import Grades from "../views/Grades";
+import Recruiters from "../views/Recruiters";
+import FAQ from "../views/FAQ";
+import Grades2 from "../views/Grades2";
+import Technologies from "../views/Technologies";
 Vue.use(VueRouter);
 
 const routes = [
@@ -47,6 +51,29 @@ const routes = [
     path: "/question",
     name: "Question",
     component: Question,
+  },
+  {
+    path: "/grades",
+    name: "Grades",
+    component: Grades,
+    children: [
+      {
+        path: "grades/:technology",
+        name: "Grade2",
+        component: Grades2,
+      },
+      { path: "technologies", name: "Technologies", component: Technologies },
+    ],
+  },
+  {
+    path: "/recruiters",
+    name: "Recruiters",
+    component: Recruiters,
+  },
+  {
+    path: "/faq",
+    name: "FAQ",
+    component: FAQ,
   },
   {
     path: "/404",

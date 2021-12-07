@@ -50,44 +50,47 @@ export default {
   border: 1px solid #d1d5db;
   background: #fff;
   font-family: "Hind Vadorada", Arial, sans-serif;
-  font-size: .875rem;
-  padding: .5rem .75rem;
+  font-size: 0.875rem;
+  padding: 0.25rem 0.5rem;
 }
 
 .multiselect__tag {
-  background: #6B7280;  
+  background: #e2e8f0;
 }
 
 .multiselect__option--highlight {
-  background-color: #6B7280;
+  background-color: #e2e8f0;
 }
 
 .multiselect__option--highlight:after {
-  background-color: #6B7280;
+  background-color: #e2e8f0;
 }
 
 .multiselect__tag-icon:focus,
 .multiselect__tag-icon:hover {
-  background: #969696;
+  background: #e2e8f0;
 }
 
 .multiselect__tag-icon:after {
   content: "×";
   color: #fff;
-  font-size: .875rem;
+  font-size: 0.875rem;
 }
 
 .multiselect,
 .multiselect__input,
 .multiselect__single {
-  font-size: .875rem;
+  font-size: 0.875rem;
 }
 
 .multiselect__placeholder {
-  color: #969ea7; 
+  color: #969ea7;
   display: inline-block;
   margin-bottom: 8px;
   padding-top: 2px;
-  font-size: .875rem;
+  font-size: 0.875rem;
+}
+.multiselect__tags {
+  .padding: 0.25rem 0.5rem;
 }
 </style>
