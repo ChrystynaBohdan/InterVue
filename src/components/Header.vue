@@ -8,9 +8,9 @@
         <router-link v-if="isLogged" tag="button" to="/addnew"
           ><i class="far fa-plus-square fa-lg hover:text-gray-500 text-gray-300 mt-3 cursor-pointer"></i>
         </router-link>
-        <router-link v-if="isLogged" tag="button" to="/grades"
+        <router-link v-if="isLogged" tag="button" to="/docs"
           ><div class="border-b border-transparent hover:border-current text-gray-500 mt-1 cursor-pointer px-1 text-sm">
-            Grades
+            Docs
           </div></router-link
         >
         <router-link v-if="isLogged" tag="button" to="/recruiters"

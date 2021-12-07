@@ -5,7 +5,7 @@ import QuestionsList from "../views/QuestionsList";
 import Question from "../views/Question";
 import NotFound from "../views/NotFound";
 import Login from "../views/Login";
-import Grades from "../views/Grades";
+import Docs from "../views/Docs";
 import Recruiters from "../views/Recruiters";
 import FAQ from "../views/FAQ";
 import Grades2 from "../views/Grades2";
@@ -53,9 +53,9 @@ const routes = [
     component: Question,
   },
   {
-    path: "/grades",
-    name: "Grades",
-    component: Grades,
+    path: "/docs",
+    name: "Docs",
+    component: Docs,
     children: [
       {
         path: "grades/:technology",

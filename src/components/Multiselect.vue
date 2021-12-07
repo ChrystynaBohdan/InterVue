@@ -46,12 +46,20 @@ export default {
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 
 <style>
+.multiselect {
+  min-height: 32px;
+}
+.multiselect__select {
+  height: 32px;
+  top: 0;
+}
 .multiselect__tags {
   border: 1px solid #d1d5db;
   background: #fff;
   font-family: "Hind Vadorada", Arial, sans-serif;
   font-size: 0.875rem;
-  padding: 0.25rem 0.5rem;
+  min-height: 32px;
+  padding: 0 40px 0 8px;
 }
 
 .multiselect__tag {
@@ -89,8 +97,5 @@ export default {
   margin-bottom: 8px;
   padding-top: 2px;
   font-size: 0.875rem;
-}
-.multiselect__tags {
-  .padding: 0.25rem 0.5rem;
 }
 </style>
