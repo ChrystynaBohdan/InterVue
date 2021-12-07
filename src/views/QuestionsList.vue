@@ -29,6 +29,8 @@
               >{{ question.title }}
               <div class="flex gap-x-1">
                 <div
+                  v-for="category in question.category"
+                  :key="category"
                   class="
                     text-black
                     w-5
@@ -43,9 +45,11 @@
                     bg-gray-50
                   "
                 >
-                  {{ question.category }}
+                  {{ category }}
                 </div>
                 <div
+                  v-for="level in question.level"
+                  :key="level"
                   class="
                     text-black
                     w-7
@@ -60,7 +64,7 @@
                     bg-gray-50
                   "
                 >
-                  {{ question.level }}
+                  {{ level }}
                 </div>
               </div>
             </span>
@@ -124,7 +128,7 @@ export default {
     },
   },
   updated() {
-    console.log(this.selectedCategory);
+    this.fetchQuestions();
   },
   created() {
     this.fetchQuestions();
