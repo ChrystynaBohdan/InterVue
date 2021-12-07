@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import Categories from "./Categories";
+import Categories from "../components/Categories";
 export default {
   name: "Grades2",
   components: { Categories },

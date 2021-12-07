@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col mt-32 max-w-xl min-h-screen">
+  <div class="flex flex-col max-w-xl min-h-screen">
     <form v-on:submit.prevent class="flex flex-col gap-4 text-sm">
       <div>
         <h2 class="font-bold text-3xl">Add New Question Here</h2>

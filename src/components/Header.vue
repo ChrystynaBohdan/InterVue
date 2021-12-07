@@ -1,8 +1,8 @@
 <template>
-  <div class="flex py-3 px-32 w-full justify-between items-center fixed z-10 top-0 left-0 bg-white h-16 border-b-2">
+  <div class="flex py-3 px-32 w-full justify-between items-center bg-white h-16 border-b-2">
     <div class="flex gap-x-4 items-center">
       <router-link to="/">
-        <img src="../assets/soft-blues-logo-white.png" alt="logo" class="h-6 ml-8" />
+        <img src="../assets/soft-blues-logo-white.png" alt="logo" class="h-6" />
       </router-link>
       <div class="flex gap-x-4">
         <router-link v-if="isLogged" tag="button" to="/addnew"

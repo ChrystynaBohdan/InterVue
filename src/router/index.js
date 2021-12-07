@@ -5,11 +5,11 @@ import QuestionsList from "../views/QuestionsList";
 import Question from "../views/Question";
 import NotFound from "../views/NotFound";
 import Login from "../views/Login";
-import Grades from "../components/Grades";
-import Recruiters from "../components/Recruiters";
-import FAQ from "../components/FAQ";
-import Grades2 from "../components/Grades2";
-import Technologies from "../components/Technologies";
+import Grades from "../views/Grades";
+import Recruiters from "../views/Recruiters";
+import FAQ from "../views/FAQ";
+import Grades2 from "../views/Grades2";
+import Technologies from "../views/Technologies";
 Vue.use(VueRouter);
 
 const routes = [
