@@ -27,9 +27,10 @@ export default {
   computed: { ...mapGetters(["isLogged"]) },
 
   beforeMount() {
-    if (!this.isLoged) {
+    if (!localStorage.getItem("accessToken")) {
       router.replace("/login");
     } else {
+      console.log(localStorage.getItem("accessToken"));
       router.replace("/");
     }
   },

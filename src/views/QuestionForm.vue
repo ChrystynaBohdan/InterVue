@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col max-w-xl min-h-screen">
-    <form v-on:submit.prevent class="flex flex-col gap-4 text-sm">
+    <form v-on:submit.prevent="submit" class="flex flex-col gap-4 text-sm">
       <div>
         <h2 class="font-bold text-3xl">Add New Question Here</h2>
         <h1 class="text-xs font-extralight text-gray-400">by Volodymyr Sen</h1>
@@ -11,19 +11,20 @@
           type="text"
           placeholder="Question's title"
           class="rounded-md py-1 px-2 outline-none border border-solid border-gray-300"
+          v-model="title"
         />
       </label>
 
       <div class="h-18 w-3/5">
         <label class="flex flex-col gap-2"
-          >Grade:
-          <Multiselect :options="gradeOptions" v-model="selectedGrade" :placeholder="'Select a technology'" />
+          >Level:
+          <Multiselect :options="gradeOptions" v-model="selectedLevel" :placeholder="'Select a technology'" />
         </label>
       </div>
 
       <div class="h-18 w-3/5">
         <label class="flex flex-col gap-2">
-          Technology:
+          Category:
           <Multiselect
             :options="categories"
             v-model="selectedCategory"
@@ -39,6 +40,7 @@
           rows="3"
           class="rounded-md py-3 px-2 outline-none border border-solid border-gray-300"
           placeholder="Question's body goes here"
+          v-model="body"
         ></textarea>
       </label>
 
@@ -48,6 +50,7 @@
           rows="4"
           class="rounded-md py-3 px-2 outline-none border border-solid border-gray-300"
           placeholder="Right a code example here"
+          v-model="codeSnippet"
         ></textarea>
       </label>
 
@@ -72,11 +75,25 @@
 
 <script>
 import Multiselect from "../components/Multiselect.vue";
+import { mapActions } from "vuex";
 
 export default {
   name: "QuestionForm",
   components: { Multiselect },
+  methods: {
+    ...mapActions(["addQuestion"]),
+    submit() {
+      const data = {
+        title: this.title,
+        body: this.body,
+        codeSnippet: this.codeSnippet,
+        level: this.selectedLevel.map((a) => a.code),
+        category: this.selectedCategory.map((a) => a.code),
+      };
 
+      this.addQuestion(data);
+    },
+  },
   data() {
     return {
       categories: [
@@ -96,7 +113,10 @@ export default {
       ],
 
       selectedCategory: [],
-      selectedGrage: [],
+      selectedLevel: [],
+      title: "",
+      codeSnippet: "",
+      body: "",
     };
   },
 };
