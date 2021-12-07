@@ -10,7 +10,7 @@
         <input
           type="text"
           placeholder="Question's title"
-          class="rounded-md py-2 px-2 outline-none border border-solid border-gray-300"
+          class="rounded-md py-1 px-2 outline-none border border-solid border-gray-300"
         />
       </label>
 
