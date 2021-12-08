@@ -10,10 +10,11 @@
         <Multiselect :options="gradeOptions" v-model="selectedGrade" :placeholder="'Filter based on grade'" />
       </div>
       <div>
-        <ul>
-          <li class="grid gap-4 py-4 items-center question" v-for="question in filteredQuestions" :key="question.id">
+        <ul v-if="allQuestions.length > 0">
+          <li class="grid gap-4 py-4 items-center question" v-for="question in filteredQuestions" :key="question._id">
+            <router-link :to="{ name: 'Question', params: { id: question._id } }">go to question</router-link>
+            <pre>{{ question }}</pre>
             <span
-              @click="goToQuestion(question.id)"
               class="
                 font-bold
                 inline-block
@@ -79,23 +80,27 @@
           </li>
         </ul>
       </div>
-      <Pagination />
+      <!--      <Pagination />-->
     </div>
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters } from "vuex";
-import router from "../router";
+// import router from "../router";
 import Multiselect from "../components/Multiselect";
-import Pagination from "../components/Pagination";
+// import Pagination from "../components/Pagination";
+// import axios from "axios";
 
 export default {
   name: "QuestionsList",
-  components: { Pagination, Multiselect },
+  components: {
+    // Pagination,
+    Multiselect,
+  },
   computed: {
     ...mapGetters(["allQuestions"]),
-    ...mapActions(["fetchQuestions"]),
+    ...mapActions(["fetchQuestions", "fetchQuestion"]),
 
     filteredQuestions() {
       const selectedCategories = this.selectedCategory.map((category) => category.code);
@@ -115,9 +120,6 @@ export default {
     },
   },
   methods: {
-    goToQuestion(id) {
-      router.push({ path: "/question/" + id });
-    },
     increment(question) {
       question.likes++;
     },
@@ -125,11 +127,15 @@ export default {
       question.dislikes++;
     },
   },
-  updated() {
-    this.fetchQuestions();
-  },
-  created() {
-    this.fetchQuestions();
+  // updated() {
+  //   this.fetchQuestions();
+  // },
+  mounted() {
+    // console.log(this.fetchQuestions);
+    // this.fetchQuestions();
+    if (this.fetchQuestions) {
+      this.fetchQuestions();
+    }
   },
   data() {
     return {
