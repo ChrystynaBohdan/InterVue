@@ -63,7 +63,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import Comments from "../components/Comments";
 
 export default {
@@ -74,10 +74,11 @@ export default {
   },
   computed: {
     ...mapGetters(["allQuestions"]),
+    ...mapActions(["fetchQuestion"]),
 
-    question() {
-      return this.allQuestions.find((q) => q.id == this.$route.params.id);
-    },
+    // question() {
+    //   return this.allQuestions.find((q) => q.id == this.$route.params.id);
+    // },
   },
   methods: {
     back() {
@@ -92,6 +93,11 @@ export default {
     decrement(question) {
       question.dislikes++;
     },
+  },
+
+  mounted() {
+    // console.log("here");
+    this.fetchQuestion();
   },
 };
 </script>
