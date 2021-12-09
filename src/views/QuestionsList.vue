@@ -12,9 +12,9 @@
       <div>
         <ul v-if="allQuestions.length > 0">
           <li class="grid gap-4 py-4 items-center question" v-for="question in filteredQuestions" :key="question._id">
-            <router-link :to="{ name: 'Question', params: { id: question._id } }">go to question</router-link>
-            <pre>{{ question }}</pre>
-            <span
+            <router-link
+              tag="span"
+              :to="{ name: 'Question', params: { id: question._id } }"
               class="
                 font-bold
                 inline-block
@@ -68,7 +68,7 @@
                   {{ level }}
                 </div>
               </div>
-            </span>
+            </router-link>
             <button class="px-2 cursor-pointer" @click="increment(question)">
               <i class="far fa-thumbs-up"></i>
               {{ question.likes }}
@@ -133,25 +133,23 @@ export default {
   mounted() {
     // console.log(this.fetchQuestions);
     // this.fetchQuestions();
-    if (this.fetchQuestions) {
-      this.fetchQuestions();
-    }
+    this.fetchQuestions();
   },
   data() {
     return {
       languageOptions: [
-        { name: "HTML", code: "HTML" },
-        { name: "CSS", code: "CSS" },
-        { name: "SCSS", code: "SCSS" },
-        { name: "React", code: "React" },
-        { name: "Redux", code: "Redux" },
-        { name: "Vue", code: "VueJs" },
-        { name: "JS", code: "JS Core" },
+        { name: "HTML", code: "html" },
+        { name: "CSS", code: "css" },
+        { name: "SCSS", code: "scss" },
+        { name: "React", code: "react" },
+        { name: "Redux", code: "redux" },
+        { name: "Vue", code: "vuejs" },
+        { name: "JS", code: "jscore" },
       ],
       gradeOptions: [
-        { name: "Junior", code: "Junior" },
-        { name: "Middle", code: "Middle" },
-        { name: "Senior", code: "Senior" },
+        { name: "Junior", code: "junior" },
+        { name: "Middle", code: "middle" },
+        { name: "Senior", code: "senior" },
       ],
       selectedCategory: [],
       selectedGrade: [],
