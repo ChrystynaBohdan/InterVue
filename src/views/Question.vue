@@ -21,26 +21,30 @@
           <h1 class="text-xs font-extralight text-gray-400">by Volodymyr Sen</h1>
           <div class="flex gap-x-1">
             <div
+              v-for="category in question.category"
+              :key="category"
               v-bind:class="{
-                'bg-green-400': question.category === 'CSS',
-                'bg-red-400': question.category === 'JS Core',
-                'bg-blue-400': question.category === 'React',
-                'bg-indigo-400': question.category === 'SCSS',
-                'bg-yellow-400': question.category === 'VueJs',
+                'bg-green-400': category === 'javascript',
+                'bg-red-400': category === 'vue',
+                'bg-blue-400': category === 'angular',
+                'bg-indigo-400': category === 'php',
+                'bg-yellow-400': category === 'wordpress',
               }"
               class="text-white w-5 rounded-full h-7 w-20 flex items-center justify-center text-xs"
             >
-              {{ question.category }}
+              {{ category }}
             </div>
             <div
+              v-for="level in question.level"
+              :key="level"
               v-bind:class="{
-                'bg-blue-400': question.level === 'Junior',
-                'bg-indigo-400': question.level === 'Middle',
-                'bg-yellow-400': question.level === 'Senior',
+                'bg-blue-400': level === 'junior',
+                'bg-indigo-400': level === 'middle',
+                'bg-yellow-400': level === 'senior',
               }"
               class="text-white w-7 rounded-full h-7 w-20 flex items-center justify-center text-xs"
             >
-              {{ question.level }}
+              {{ level }}
             </div>
           </div>
         </h1>
@@ -76,9 +80,9 @@ export default {
     ...mapGetters(["allQuestions"]),
     ...mapActions(["fetchQuestion"]),
 
-    // question() {
-    //   return this.allQuestions.find((q) => q.id == this.$route.params.id);
-    // },
+    question() {
+      return this.allQuestions.find((q) => q._id == this.$route.params.id);
+    },
   },
   methods: {
     back() {
@@ -95,10 +99,10 @@ export default {
     },
   },
 
-  mounted() {
-    // console.log("here");
-    this.fetchQuestion();
-  },
+  // mounted() {
+  //   // console.log("here");
+  //   this.fetchQuestion();
+  // },
 };
 </script>
 

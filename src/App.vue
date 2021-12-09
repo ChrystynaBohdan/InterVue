@@ -31,7 +31,6 @@ export default {
       router.replace("/login");
     } else {
       console.log(localStorage.getItem("accessToken"));
-      router.replace("/");
     }
   },
 };
