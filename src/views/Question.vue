@@ -8,12 +8,30 @@
         >
           Previous
         </button>
-        <button
-          @click="next"
-          class="p-2 text-xs cursor-pointer bg-white hover:text-gray-400 rounded-md text-black border border-grey-100"
-        >
-          Next
-        </button>
+        <div>
+          <button
+            @click="edit"
+            class="p-2 text-xs cursor-pointer bg-white hover:text-gray-400 rounded-md text-black border border-grey-100"
+          >
+            Edit
+          </button>
+          <button
+            @click="next"
+            class="
+              ml-2
+              p-2
+              text-xs
+              cursor-pointer
+              bg-white
+              hover:text-gray-400
+              rounded-md
+              text-black
+              border border-grey-100
+            "
+          >
+            Next
+          </button>
+        </div>
       </div>
       <div class="flex w-full grid gap-4 onequestion">
         <h1 class="py-1.5 font-bold inline-block bg-white flex flex-col gap-x-3 gap-y-2 text-4xl">
@@ -24,11 +42,13 @@
               v-for="category in question.category"
               :key="category"
               v-bind:class="{
-                'bg-green-400': category === 'javascript',
-                'bg-red-400': category === 'vue',
-                'bg-blue-400': category === 'angular',
-                'bg-indigo-400': category === 'php',
-                'bg-yellow-400': category === 'wordpress',
+                'bg-green-400': category === 'JS',
+                'bg-red-400': category === 'Vue',
+                'bg-blue-400': category === 'Redux',
+                'bg-indigo-400': category === 'React',
+                'bg-yellow-400': category === 'SCSS',
+                'bg-orange-400': category === 'HTML',
+                'bg-red-400': category === 'CSS',
               }"
               class="text-white w-5 rounded-full h-7 w-20 flex items-center justify-center text-xs"
             >
@@ -38,9 +58,9 @@
               v-for="level in question.level"
               :key="level"
               v-bind:class="{
-                'bg-blue-400': level === 'junior',
-                'bg-indigo-400': level === 'middle',
-                'bg-yellow-400': level === 'senior',
+                'bg-blue-400': level === 'Junior',
+                'bg-indigo-400': level === 'Middle',
+                'bg-yellow-400': level === 'Senior',
               }"
               class="text-white w-7 rounded-full h-7 w-20 flex items-center justify-center text-xs"
             >
@@ -54,10 +74,13 @@
         </button>
         <button class="px-2 cursor-pointer flex flex-col pt-4" @click="decrement(question)">
           <i class="far fa-thumbs-down"></i>
-          {{ question.dislikes }}
+          {{ question.likes }}
         </button>
       </div>
       <div>{{ question.body }}</div>
+      <span @click="remove(question)" class="p-2 text-xs cursor-pointer bg-white text-gray-400 hover:text-black">
+        ( Delete Question )
+      </span>
       <div class="pt-5 text-xl">Discuss the question</div>
       <div class="border-b-2 font-semibold">10 comments</div>
       <Comments :comments="question.comments" :guestionId="question.id" />
@@ -78,19 +101,29 @@ export default {
   },
   computed: {
     ...mapGetters(["allQuestions"]),
-    ...mapActions(["fetchQuestion"]),
 
     question() {
       return this.allQuestions.find((q) => q._id == this.$route.params.id);
     },
   },
   methods: {
+    ...mapActions(["fetchQuestion", "deleteQuestion"]),
     back() {
       this.$router.go(-1);
     },
     next() {
       this.$router.push({ path: `/question/${+this.$route.params.id + 1}` });
     },
+    edit() {
+      this.$router.push({ path: `/edit/${this.$route.params.id}` });
+    },
+    remove(question) {
+      let response = confirm(`Are you sure you want to delete this question?`);
+      if (response) {
+        this.deleteQuestion(question);
+      }
+    },
+
     increment(question) {
       question.likes++;
     },
