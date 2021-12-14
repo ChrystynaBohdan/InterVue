@@ -31,18 +31,24 @@ const actions = {
   },
   async editQuestion({ commit }, question) {
     try {
-      console.log(this.$route.params.id);
       const access = localStorage.getItem("accessToken");
       const resp = await axios.put(
-        `http://localhost:5001/api/questions/${this.$route.params.id}`,
-        { ...question },
+        `http://localhost:5001/api/questions/${question._id}`,
+        {
+          title: question.title,
+          body: question.body,
+          codeSnippet: question.codeSnippet,
+          level: question.level,
+          category: question.category,
+        },
         {
           headers: { Authorization: `Bearer ${access}` },
         }
       );
-      console.log(resp), "****";
+      let newQuestion = resp.data;
 
       commit("changeQuestion", question);
+      return newQuestion;
     } catch (e) {
       console.log(e.message);
     }

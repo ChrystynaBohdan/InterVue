@@ -47,8 +47,8 @@
                 'bg-blue-400': category === 'Redux',
                 'bg-indigo-400': category === 'React',
                 'bg-yellow-400': category === 'SCSS',
-                'bg-orange-400': category === 'HTML',
-                'bg-red-400': category === 'CSS',
+                'bg-red-700': category === 'HTML',
+                'bg-red-600': category === 'CSS',
               }"
               class="text-white w-5 rounded-full h-7 w-20 flex items-center justify-center text-xs"
             >
@@ -117,10 +117,11 @@ export default {
     edit() {
       this.$router.push({ path: `/edit/${this.$route.params.id}` });
     },
-    remove(question) {
+    async remove(question) {
       let response = confirm(`Are you sure you want to delete this question?`);
       if (response) {
-        this.deleteQuestion(question);
+        await this.deleteQuestion(question);
+        this.$router.push("/");
       }
     },
 
@@ -131,11 +132,6 @@ export default {
       question.dislikes++;
     },
   },
-
-  // mounted() {
-  //   // console.log("here");
-  //   this.fetchQuestion();
-  // },
 };
 </script>
 

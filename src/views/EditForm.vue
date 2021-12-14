@@ -11,23 +11,25 @@
           type="text"
           placeholder="Question's title"
           class="rounded-md py-1 px-2 outline-none border border-solid border-gray-300"
-          v-model="formModel.title"
+          v-model="formValue.title"
         />
       </label>
 
       <div class="h-18 w-3/5">
         <label class="flex flex-col gap-2"
           >Level:
-          <Multiselect :options="gradeOptions" v-model="formModel.selectedLevel" :placeholder="'Select a technology'" />
+          <Multiselect :options="gradeOptions" v-model="formValue.selectedLevel" :placeholder="'Select a technology'" />
         </label>
       </div>
+
+      {{ question }}
 
       <div class="h-18 w-3/5">
         <label class="flex flex-col gap-2">
           Category:
           <Multiselect
             :options="categories"
-            v-model="formModel.selectedCategory"
+            v-model="formValue.selectedCategory"
             :placeholder="'Select a grade for a question'"
           />
         </label>
@@ -40,7 +42,7 @@
           rows="3"
           class="rounded-md py-3 px-2 outline-none border border-solid border-gray-300"
           placeholder="Question's body goes here"
-          v-model="formModel.body"
+          v-model="formValue.body"
         ></textarea>
       </label>
 
@@ -50,7 +52,7 @@
           rows="4"
           class="rounded-md py-3 px-2 outline-none border border-solid border-gray-300"
           placeholder="Right a code example here"
-          v-model="formModel.codeSnippet"
+          v-model="formValue.codeSnippet"
         ></textarea>
       </label>
 
@@ -81,77 +83,25 @@ export default {
   name: "EditForm",
   components: { Multiselect },
   computed: {
-    ...mapGetters({ questionbyID: "questionbyID" }),
+    ...mapGetters(["questionbyID"]),
     question() {
-      console.log("question");
       return this.questionbyID(this.$route.params.id);
-    },
-    // selectedCategory() {
-    //   return this.question ? this.question.category : [];
-    // },
-    selectedLevel: {
-      get() {
-        return this.question ? this.question.level : [];
-      },
-      set() {
-        return this.question.level;
-      },
-    },
-    title: {
-      get() {
-        return this.question ? this.question.title : "";
-      },
-      set() {
-        return this.question.title;
-      },
-    },
-    codeSnippet: {
-      get() {
-        return this.question ? this.question.codeSnippet : "";
-      },
-      set() {
-        return this.question.codeSnippet;
-      },
-    },
-    body: {
-      get() {
-        return this.question ? this.question.body : "";
-      },
-      set() {
-        return this.question.body;
-      },
     },
   },
 
   methods: {
     ...mapActions(["editQuestion"]),
     submit() {
-      const data = {
-        id: this.id,
-        title: this.title,
-        body: this.body,
-        codeSnippet: this.codeSnippet,
-        level: this.selectedLevel.map((a) => a.code),
-        category: this.selectedCategory.map((a) => a.code),
-      };
-      console.log(data);
-      this.$store.dispatch("editQuestion", data);
+      this.$store.dispatch("editQuestion", this.formValue);
       this.title = "";
       this.body = "";
       this.codeSnippet = "";
       this.level = "";
       this.category = "";
+      this.$router.push({ path: "/" });
     },
   },
-  watch: {
-    questionbyID(value) {
-      console.log("jkjhgh", value);
-      this.formModel.id = value.id;
-      this.formModel.title = value.title;
-      this.formModel.body = value.body;
-      this.formModel.codeSnippet = value.codeSnippet;
-    },
-  },
+
   data() {
     return {
       categories: [
@@ -171,17 +121,18 @@ export default {
         { name: "Lead", code: "Lead" },
         { name: "Architect", code: "Architect" },
       ],
-      formModel: {
-        id: NaN,
+
+      formValue: {
         title: "",
         body: "",
+        selectedLevel: null,
+        selectedCategory: null,
         codeSnippet: "",
-        level: [],
-        category: [],
-        selectedLevel: [],
-        selectedCategory: [],
       },
     };
+  },
+  mounted() {
+    this.formValue = { ...this.question };
   },
 };
 </script>
