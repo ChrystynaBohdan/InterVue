@@ -100,7 +100,6 @@ export default {
   },
   computed: {
     ...mapGetters(["allQuestions"]),
-    ...mapActions(["fetchQuestions", "fetchQuestion"]),
 
     filteredQuestions() {
       const selectedCategories = this.selectedCategory.map((category) => category.code);
@@ -109,17 +108,20 @@ export default {
       if (selectedCategories.length === 0 && selectedLevels.length === 0) {
         return this.allQuestions;
       } else if (selectedCategories.length > 0 && selectedLevels.length === 0) {
-        return this.allQuestions.filter((question) => selectedCategories.includes(question.category));
+        return this.allQuestions.filter((question) => selectedCategories.some((r) => question.category.includes(r)));
       } else if (selectedCategories.length === 0 && selectedLevels.length > 0) {
-        return this.allQuestions.filter((question) => selectedLevels.includes(question.level));
+        return this.allQuestions.filter((question) => selectedLevels.some((r) => question.level.includes(r)));
       } else {
-        return this.allQuestions.filter(
-          (question) => selectedLevels.includes(question.level) && selectedCategories.includes(question.category)
+        return this.allQuestions.filter((question) =>
+          selectedLevels.some(
+            (r) => question.level.includes(r) && selectedCategories.some((r) => question.category.includes(r))
+          )
         );
       }
     },
   },
   methods: {
+    ...mapActions(["fetchQuestions", "fetchQuestion"]),
     increment(question) {
       question.likes++;
     },
@@ -138,18 +140,18 @@ export default {
   data() {
     return {
       languageOptions: [
-        { name: "HTML", code: "html" },
-        { name: "CSS", code: "css" },
-        { name: "SCSS", code: "scss" },
-        { name: "React", code: "react" },
-        { name: "Redux", code: "redux" },
-        { name: "Vue", code: "vuejs" },
-        { name: "JS", code: "jscore" },
+        { name: "HTML", code: "HTML" },
+        { name: "CSS", code: "CSS" },
+        { name: "SCSS", code: "SCSS" },
+        { name: "React", code: "React" },
+        { name: "Redux", code: "Redux" },
+        { name: "Vue", code: "Vue" },
+        { name: "JS", code: "JS" },
       ],
       gradeOptions: [
-        { name: "Junior", code: "junior" },
-        { name: "Middle", code: "middle" },
-        { name: "Senior", code: "senior" },
+        { name: "Junior", code: "Junior" },
+        { name: "Middle", code: "Middle" },
+        { name: "Senior", code: "Senior" },
       ],
       selectedCategory: [],
       selectedGrade: [],

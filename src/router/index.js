@@ -10,6 +10,7 @@ import Recruiters from "../views/Recruiters";
 import FAQ from "../views/FAQ";
 import Grades2 from "../views/Grades2";
 import Technologies from "../views/Technologies";
+import EditForm from "../views/EditForm";
 Vue.use(VueRouter);
 
 const routes = [
@@ -43,9 +44,9 @@ const routes = [
     component: QuestionForm,
   },
   {
-    path: "/edit",
-    name: "QuestionForm",
-    component: QuestionForm,
+    path: "/edit/:id",
+    name: "EditForm",
+    component: EditForm,
   },
   {
     path: "/question",

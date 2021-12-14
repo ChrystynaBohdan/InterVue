@@ -2,7 +2,7 @@
   <div class="flex flex-col max-w-xl min-h-screen">
     <form v-on:submit.prevent="submit" class="flex flex-col gap-4 text-sm">
       <div>
-        <h2 class="font-bold text-3xl">Add New Question</h2>
+        <h2 class="font-bold text-3xl">Edit Question</h2>
         <h1 class="text-xs font-extralight text-gray-400">by Volodymyr Sen</h1>
       </div>
       <label class="flex flex-col gap-2">
@@ -11,14 +11,14 @@
           type="text"
           placeholder="Question's title"
           class="rounded-md py-1 px-2 outline-none border border-solid border-gray-300"
-          v-model="title"
+          v-model="formModel.title"
         />
       </label>
 
       <div class="h-18 w-3/5">
         <label class="flex flex-col gap-2"
           >Level:
-          <Multiselect :options="gradeOptions" v-model="selectedLevel" :placeholder="'Select a technology'" />
+          <Multiselect :options="gradeOptions" v-model="formModel.selectedLevel" :placeholder="'Select a technology'" />
         </label>
       </div>
 
@@ -27,7 +27,7 @@
           Category:
           <Multiselect
             :options="categories"
-            v-model="selectedCategory"
+            v-model="formModel.selectedCategory"
             :placeholder="'Select a grade for a question'"
           />
         </label>
@@ -40,7 +40,7 @@
           rows="3"
           class="rounded-md py-3 px-2 outline-none border border-solid border-gray-300"
           placeholder="Question's body goes here"
-          v-model="body"
+          v-model="formModel.body"
         ></textarea>
       </label>
 
@@ -50,7 +50,7 @@
           rows="4"
           class="rounded-md py-3 px-2 outline-none border border-solid border-gray-300"
           placeholder="Right a code example here"
-          v-model="codeSnippet"
+          v-model="formModel.codeSnippet"
         ></textarea>
       </label>
 
@@ -75,27 +75,81 @@
 
 <script>
 import Multiselect from "../components/Multiselect.vue";
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
-  name: "QuestionForm",
+  name: "EditForm",
   components: { Multiselect },
+  computed: {
+    ...mapGetters({ questionbyID: "questionbyID" }),
+    question() {
+      console.log("question");
+      return this.questionbyID(this.$route.params.id);
+    },
+    // selectedCategory() {
+    //   return this.question ? this.question.category : [];
+    // },
+    selectedLevel: {
+      get() {
+        return this.question ? this.question.level : [];
+      },
+      set() {
+        return this.question.level;
+      },
+    },
+    title: {
+      get() {
+        return this.question ? this.question.title : "";
+      },
+      set() {
+        return this.question.title;
+      },
+    },
+    codeSnippet: {
+      get() {
+        return this.question ? this.question.codeSnippet : "";
+      },
+      set() {
+        return this.question.codeSnippet;
+      },
+    },
+    body: {
+      get() {
+        return this.question ? this.question.body : "";
+      },
+      set() {
+        return this.question.body;
+      },
+    },
+  },
+
   methods: {
-    ...mapActions(["addQuestion"]),
+    ...mapActions(["editQuestion"]),
     submit() {
       const data = {
+        id: this.id,
         title: this.title,
         body: this.body,
         codeSnippet: this.codeSnippet,
         level: this.selectedLevel.map((a) => a.code),
         category: this.selectedCategory.map((a) => a.code),
       };
-      this.$store.dispatch("addQuestion", data);
+      console.log(data);
+      this.$store.dispatch("editQuestion", data);
       this.title = "";
       this.body = "";
       this.codeSnippet = "";
       this.level = "";
       this.category = "";
+    },
+  },
+  watch: {
+    questionbyID(value) {
+      console.log("jkjhgh", value);
+      this.formModel.id = value.id;
+      this.formModel.title = value.title;
+      this.formModel.body = value.body;
+      this.formModel.codeSnippet = value.codeSnippet;
     },
   },
   data() {
@@ -117,12 +171,16 @@ export default {
         { name: "Lead", code: "Lead" },
         { name: "Architect", code: "Architect" },
       ],
-
-      selectedCategory: [],
-      selectedLevel: [],
-      title: "",
-      codeSnippet: "",
-      body: "",
+      formModel: {
+        id: NaN,
+        title: "",
+        body: "",
+        codeSnippet: "",
+        level: [],
+        category: [],
+        selectedLevel: [],
+        selectedCategory: [],
+      },
     };
   },
 };

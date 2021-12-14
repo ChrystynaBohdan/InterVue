@@ -6,27 +6,58 @@ const state = {
 };
 const getters = {
   allQuestions: (state) => state.questions,
-  questionbyID: (state) => state.question,
+  questionbyID: (state) => (id) => {
+    console.log(state, id, "llkhksjdjlsbh");
+    return state.questions.find((question) => question._id === id);
+  },
 };
 const actions = {
   async addQuestion({ commit }, question) {
-    // await axios.post("/questions", question);
-    const access = localStorage.getItem("accessToken");
-    // await axios({
-    //   method: "post",
-    //   url: "http://localhost:5001/api/questions",
-    //   headers: { Authorization: `Bearer ${access}` },
-    // });
-    const resp = await axios.post(
-      "http://localhost:5001/api/questions",
-      { ...question },
-      {
-        headers: { Authorization: `Bearer ${access}` },
-      }
-    );
-    console.log(resp), "****";
+    try {
+      const access = localStorage.getItem("accessToken");
+      const resp = await axios.post(
+        "http://localhost:5001/api/questions",
+        { ...question },
+        {
+          headers: { Authorization: `Bearer ${access}` },
+        }
+      );
+      console.log(resp), "****";
 
-    commit("addQuestion", question);
+      commit("addQuestion", question);
+    } catch (e) {
+      console.log(e.message);
+    }
+  },
+  async editQuestion({ commit }, question) {
+    try {
+      console.log(this.$route.params.id);
+      const access = localStorage.getItem("accessToken");
+      const resp = await axios.put(
+        `http://localhost:5001/api/questions/${this.$route.params.id}`,
+        { ...question },
+        {
+          headers: { Authorization: `Bearer ${access}` },
+        }
+      );
+      console.log(resp), "****";
+
+      commit("changeQuestion", question);
+    } catch (e) {
+      console.log(e.message);
+    }
+  },
+  async deleteQuestion({ commit }, question) {
+    try {
+      const access = localStorage.getItem("accessToken");
+      await axios.delete(`http://localhost:5001/api/questions/${question._id}`, {
+        headers: { Authorization: `Bearer ${access}` },
+      });
+
+      commit("deleteQuestion", question);
+    } catch (e) {
+      console.log(e.message);
+    }
   },
   async fetchQuestions({ commit }) {
     const access = localStorage.getItem("accessToken");
@@ -52,6 +83,11 @@ const actions = {
 };
 const mutations = {
   addQuestion: (state, question) => (state.questions = [...state.questions, question]),
+  deleteQuestion: (state, question) => (state.questions = state.questions.filter((q) => q._id !== question._id)),
+  changeQuestion: (state, question) => {
+    const idx = state.questions.findIndex((q) => q.id === question.id);
+    return (state.questions = [...state.questions.splice(idx, 1, question)]);
+  },
   setQuestions: (state, questions) => (state.questions = questions),
   setQuestionsbyID: (state, question) => (state.questions = question),
   addComment: (state, data) => {
