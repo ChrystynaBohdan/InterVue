@@ -21,7 +21,7 @@ import Multiselect from "vue-multiselect";
 
 export default {
   components: {
-    Multiselect,
+    multiselect: Multiselect,
   },
 
   props: ["label", "options", "value", "placeholder"],
@@ -36,8 +36,8 @@ export default {
       this.value.push(tag);
     },
 
-    onInput(value) {
-      this.$emit("input", value);
+    onInput(val) {
+      this.$emit("input", val);
     },
   },
 };

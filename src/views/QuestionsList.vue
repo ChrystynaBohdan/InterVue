@@ -10,6 +10,7 @@
         <Multiselect :options="gradeOptions" v-model="selectedGrade" :placeholder="'Filter based on grade'" />
       </div>
       <div>
+        {{ filteredQuestions.length }}
         <ul v-if="allQuestions.length > 0">
           <li class="grid gap-4 py-4 items-center question" v-for="question in filteredQuestions" :key="question._id">
             <router-link
@@ -89,6 +90,7 @@
 import { mapActions, mapGetters } from "vuex";
 // import router from "../router";
 import Multiselect from "../components/Multiselect";
+
 // import Pagination from "../components/Pagination";
 // import axios from "axios";
 
@@ -149,9 +151,9 @@ export default {
         { name: "JS", code: "JS" },
       ],
       gradeOptions: [
-        { name: "Junior", code: "Junior" },
-        { name: "Middle", code: "Middle" },
-        { name: "Senior", code: "Senior" },
+        { name: "Junior", id: "Junior" },
+        { name: "Middle", id: "Middle" },
+        { name: "Senior", id: "Senior" },
       ],
       selectedCategory: [],
       selectedGrade: [],
