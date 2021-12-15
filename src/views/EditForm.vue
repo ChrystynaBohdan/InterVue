@@ -21,9 +21,6 @@
           <Multiselect :options="gradeOptions" v-model="formValue.selectedLevel" :placeholder="'Select a technology'" />
         </label>
       </div>
-
-      {{ question }}
-
       <div class="h-18 w-3/5">
         <label class="flex flex-col gap-2">
           Category:

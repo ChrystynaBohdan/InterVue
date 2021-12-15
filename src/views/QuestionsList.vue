@@ -10,7 +10,6 @@
         <Multiselect :options="gradeOptions" v-model="selectedGrade" :placeholder="'Filter based on grade'" />
       </div>
       <div>
-        {{ filteredQuestions.length }}
         <ul v-if="allQuestions.length > 0">
           <li class="grid gap-4 py-4 items-center question" v-for="question in filteredQuestions" :key="question._id">
             <router-link
@@ -90,7 +89,6 @@
 import { mapActions, mapGetters } from "vuex";
 // import router from "../router";
 import Multiselect from "../components/Multiselect";
-
 // import Pagination from "../components/Pagination";
 // import axios from "axios";
 
@@ -104,19 +102,23 @@ export default {
     ...mapGetters(["allQuestions"]),
 
     filteredQuestions() {
-      const selectedCategories = this.selectedCategory.map((category) => category.code);
-      const selectedLevels = this.selectedGrade.map((level) => level.code);
+      const selectedCategories = this.selectedCategory.map((category) => category.code); // ["HTML","React"]
+      const selectedLevels = this.selectedGrade.map((level) => level.code); // ["Junior"]
 
       if (selectedCategories.length === 0 && selectedLevels.length === 0) {
         return this.allQuestions;
       } else if (selectedCategories.length > 0 && selectedLevels.length === 0) {
-        return this.allQuestions.filter((question) => selectedCategories.some((r) => question.category.includes(r)));
+        return this.allQuestions.filter((question) =>
+          selectedCategories.some((category) => question.category.includes(category))
+        );
       } else if (selectedCategories.length === 0 && selectedLevels.length > 0) {
-        return this.allQuestions.filter((question) => selectedLevels.some((r) => question.level.includes(r)));
+        return this.allQuestions.filter((question) => selectedLevels.some((level) => question.level.includes(level)));
       } else {
         return this.allQuestions.filter((question) =>
           selectedLevels.some(
-            (r) => question.level.includes(r) && selectedCategories.some((r) => question.category.includes(r))
+            (level) =>
+              question.level.includes(level) &&
+              selectedCategories.some((category) => question.category.includes(category))
           )
         );
       }
@@ -131,12 +133,7 @@ export default {
       question.dislikes++;
     },
   },
-  // updated() {
-  //   this.fetchQuestions();
-  // },
   mounted() {
-    // console.log(this.fetchQuestions);
-    // this.fetchQuestions();
     this.fetchQuestions();
   },
   data() {
