@@ -7,7 +7,6 @@ const state = {
 const getters = {
   allQuestions: (state) => state.questions,
   questionbyID: (state) => (id) => {
-    console.log(state, id, "llkhksjdjlsbh");
     return state.questions.find((question) => question._id === id);
   },
 };
