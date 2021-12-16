@@ -122,8 +122,8 @@ export default {
       formValue: {
         title: "",
         body: "",
-        selectedLevel: null,
-        selectedCategory: null,
+        selectedLevel: [],
+        selectedCategory: [],
         codeSnippet: "",
       },
     };

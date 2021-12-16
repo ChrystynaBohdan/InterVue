@@ -3,7 +3,7 @@
     <div class="flex flex-col gap-y-6 w-9/12">
       <div class="flex justify-between">
         <button
-          @click="back"
+          @click="back(question)"
           class="p-2 text-xs cursor-pointer bg-white hover:text-gray-400 rounded-md text-black border border-grey-100"
         >
           Previous
@@ -16,7 +16,7 @@
             Edit
           </button>
           <button
-            @click="next"
+            @click="next(question)"
             class="
               ml-2
               p-2
@@ -70,15 +70,15 @@
         </h1>
         <button class="px-2 cursor-pointer flex flex-col pt-4" @click="increment(question)">
           <i class="far fa-thumbs-up"></i>
-          {{ question.likes }}
+          {{ question.likes.length }}
         </button>
         <button class="px-2 cursor-pointer flex flex-col pt-4" @click="decrement(question)">
           <i class="far fa-thumbs-down"></i>
-          {{ question.likes }}
+          {{ question.unLikes.length }}
         </button>
       </div>
       <div>{{ question.body }}</div>
-      <span @click="remove(question)" class="p-2 text-xs cursor-pointer bg-white text-gray-400 hover:text-black">
+      <span @click="remove(question)" class="text-xs cursor-pointer bg-white text-gray-400 hover:text-black">
         ( Delete Question )
       </span>
       <div class="pt-5 text-xl">Discuss the question</div>
@@ -108,11 +108,15 @@ export default {
   },
   methods: {
     ...mapActions(["fetchQuestion", "deleteQuestion"]),
-    back() {
-      this.$router.go(-1);
+    back(question) {
+      const idx = this.allQuestions.findIndex((q) => q._id === question._id);
+      const nextQuestion = this.allQuestions[idx - 1]._id;
+      this.$router.push({ path: `/question/${nextQuestion}` });
     },
-    next() {
-      this.$router.push({ path: `/question/${+this.$route.params.id + 1}` });
+    next(question) {
+      const idx = this.allQuestions.findIndex((q) => q._id === question._id);
+      const nextQuestion = this.allQuestions[idx + 1]._id;
+      this.$router.push({ path: `/question/${nextQuestion}` });
     },
     edit() {
       this.$router.push({ path: `/edit/${this.$route.params.id}` });
@@ -126,10 +130,10 @@ export default {
     },
 
     increment(question) {
-      question.likes++;
+      question.likes.push(null);
     },
     decrement(question) {
-      question.dislikes++;
+      question.unLikes.push(null);
     },
   },
 };
