@@ -83,7 +83,7 @@
       </span>
       <div class="pt-5 text-xl">Discuss the question</div>
       <div class="border-b-2 font-semibold">10 comments</div>
-      <Comments :comments="question.comments" :guestionId="question.id" />
+      <Comments :comments="question.comments" :guestionId="question._id" />
     </div>
     <div class="w-3/12 flex"></div>
   </div>

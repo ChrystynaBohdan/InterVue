@@ -15,7 +15,7 @@ const actions = {
     console.log(commentData);
     const access = localStorage.getItem("accessToken");
     const resp = await axios.post(
-      `http://localhost:5001/api/questions/${commentData._id}`,
+      `http://localhost:5001/api/questions/${commentData.id}`,
       {
         text: commentData.commentText,
       },
