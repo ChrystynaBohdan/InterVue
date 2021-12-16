@@ -17,19 +17,22 @@
 
       <div class="h-18 w-3/5">
         <label class="flex flex-col gap-2"
-          >Level:
-          <Multiselect :options="gradeOptions" v-model="selectedLevel" :placeholder="'Select a technology'" />
+          >Technology:
+          <Dropdown placeholder="Select a technology" :options="categories" @updateSelected="updateTechnologies" />
+          <!-- <Multiselect :options="gradeOptions" v-model="selectedLevel" :placeholder="'Select a technology'" /> -->
         </label>
       </div>
 
       <div class="h-18 w-3/5">
         <label class="flex flex-col gap-2">
-          Category:
-          <Multiselect
+          Grade:
+          <Dropdown placeholder="Grade a grade" :options="gradeOptions" @updateSelected="updateGrades" />
+
+          <!-- <Multiselect
             :options="categories"
             v-model="selectedCategory"
             :placeholder="'Select a grade for a question'"
-          />
+          /> -->
         </label>
       </div>
 
@@ -74,12 +77,16 @@
 </template>
 
 <script>
-import Multiselect from "../components/Multiselect.vue";
+// import Multiselect from "../components/Multiselect.vue";
+import Dropdown from "../components/Dropdown.vue";
 import { mapActions } from "vuex";
 
 export default {
   name: "QuestionForm",
-  components: { Multiselect },
+  components: { 
+    // Multiselect, 
+    Dropdown 
+  },
   methods: {
     ...mapActions(["addQuestion"]),
     submit() {
@@ -96,6 +103,14 @@ export default {
       this.codeSnippet = "";
       this.level = "";
       this.category = "";
+    },
+
+    updateTechnologies(values) {
+      this.selectedCategory = values;
+    },
+
+    updateGrades(values) {
+      this.selectedLevel = values;
     },
   },
   data() {

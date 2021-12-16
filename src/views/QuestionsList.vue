@@ -2,12 +2,18 @@
   <div class="relative max-w-screen-md w-9/12">
     <div class="flex flex-col max-w-screen-md mx-auto min-h-screen">
       <div class="flex gap-x-4">
-        <Multiselect
+        <!-- <Multiselect
           :options="languageOptions"
           v-model="selectedCategory"
           :placeholder="'Filter based on technology'"
         />
-        <Multiselect :options="gradeOptions" v-model="selectedGrade" :placeholder="'Filter based on grade'" />
+        <Multiselect :options="gradeOptions" v-model="selectedGrade" :placeholder="'Filter based on grade'" /> -->
+        <Dropdown
+          :options="languageOptions"
+          placeholder="Filter based on technology"
+          @updateSelected="updateTechnologies" />
+
+        <Dropdown :options="gradeOptions" placeholder="Filter based on grade" @updateSelected="updateGrades" />
       </div>
       <div>
         <ul v-if="allQuestions.length > 0">
@@ -88,15 +94,17 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 // import router from "../router";
-import Multiselect from "../components/Multiselect";
+// import Multiselect from "../components/Multiselect";
 // import Pagination from "../components/Pagination";
 // import axios from "axios";
+import Dropdown from "../components/Dropdown.vue";
 
 export default {
   name: "QuestionsList",
   components: {
     // Pagination,
-    Multiselect,
+    // Multiselect,
+    Dropdown,
   },
   computed: {
     ...mapGetters(["allQuestions"]),
@@ -131,6 +139,14 @@ export default {
     },
     decrement(question) {
       question.dislikes++;
+    },
+
+    updateTechnologies(values) {
+      this.selectedCategory = values;
+    },
+
+    updateGrades(values) {
+      this.selectedGrade = values;
     },
   },
   mounted() {
