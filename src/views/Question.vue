@@ -107,7 +107,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions(["fetchQuestion", "deleteQuestion"]),
+    ...mapActions(["deleteQuestion"]),
     back(question) {
       const idx = this.allQuestions.findIndex((q) => q._id === question._id);
       const nextQuestion = this.allQuestions[idx - 1]._id;

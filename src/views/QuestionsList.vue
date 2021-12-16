@@ -125,7 +125,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions(["fetchQuestions", "fetchQuestion"]),
+    ...mapActions(["fetchQuestions"]),
     increment(question) {
       question.likes.push(null);
     },
@@ -136,9 +136,6 @@ export default {
   mounted() {
     this.fetchQuestions();
   },
-  // updated() {
-  //   this.fetchQuestion();
-  // },
   data() {
     return {
       languageOptions: [

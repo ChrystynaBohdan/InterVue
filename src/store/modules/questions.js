@@ -2,7 +2,6 @@ import axios from "axios";
 
 const state = {
   questions: [],
-  question: [],
 };
 const getters = {
   allQuestions: (state) => state.questions,
@@ -89,17 +88,6 @@ const actions = {
 
     commit("setQuestions", response.data);
   },
-  async fetchQuestion({ commit }) {
-    const access = localStorage.getItem("accessToken");
-    const id = history;
-    console.log(id);
-    const response = await axios.get("http://localhost:5001/api/questions", {
-      headers: { Authorization: `Bearer ${access}` },
-    });
-
-    console.log(response.data);
-    commit("setQuestionsbyID", response.data);
-  },
 };
 const mutations = {
   addQuestion: (state, question) => (state.questions = [...state.questions, question]),
@@ -110,13 +98,12 @@ const mutations = {
     return (state.questions = [...state.questions, state.questions.splice(idx, 1, question)]);
   },
   setQuestions: (state, questions) => (state.questions = questions),
-  setQuestionsbyID: (state, question) => (state.questions = question),
   addComment: (state, data) => {
     return state.questions
-      .find((question) => question._id === data._id)
+      .find((question) => question._id === data.id)
       .comments.push({
         text: data.commentText,
-        user: state.currentUser.name,
+        // user: state.currentUser.name,
         date: new Date(),
       });
   },
