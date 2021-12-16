@@ -11,6 +11,9 @@ const getters = {
   },
 };
 const actions = {
+  commentNew({ commit }, commentData) {
+    commit("addComment", commentData);
+  },
   async addQuestion({ commit }, question) {
     try {
       const access = localStorage.getItem("accessToken");
@@ -73,7 +76,6 @@ const actions = {
     console.log(response.data);
     commit("setQuestions", response.data);
   },
-
   async fetchQuestion({ commit }) {
     const access = localStorage.getItem("accessToken");
     const id = history;
@@ -91,7 +93,8 @@ const mutations = {
   deleteQuestion: (state, question) => (state.questions = state.questions.filter((q) => q._id !== question._id)),
   changeQuestion: (state, question) => {
     const idx = state.questions.findIndex((q) => q.id === question.id);
-    return (state.questions = [...state.questions.splice(idx, 1, question)]);
+    console.log(state.questions.splice(idx, 1, question));
+    return (state.questions = [state.questions.splice(idx, 1, question)]);
   },
   setQuestions: (state, questions) => (state.questions = questions),
   setQuestionsbyID: (state, question) => (state.questions = question),
@@ -104,6 +107,7 @@ const mutations = {
         date: new Date(),
       });
   },
+  increment: (state, likes) => (state.questions = likes),
 };
 
 export default {

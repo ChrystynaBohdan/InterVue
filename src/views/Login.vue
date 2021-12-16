@@ -1,7 +1,7 @@
 <template>
   <div class="flex h-full">
     <form
-      v-on:submit.prevent="handleLogin"
+      v-on:submit.prevent
       class="
         flex flex-col
         max-w-xl
@@ -79,34 +79,32 @@ export default {
   computed: { ...mapGetters(["isLogged", "isEmail", "isPassword"]) },
 
   methods: {
-    ...mapActions(["refreshAccessToken"]),
+    ...mapActions(["refreshAccessToken", "checkLogin", "fetchTodos", "isLogin"]),
     async axiosLogin() {
-      // const response = await axios.post("http://localhost:8000/auth/login", {
-      const response = await axios.post("http://localhost:5001/api/login", {
-        email: this.login,
-        password: this.password,
-      });
-      console.log(response);
-      // const token = response.data.access_token;
-      // localStorage.setItem("accessToken", token);
+      try {
+        const response = await axios.post("http://localhost:5001/api/login", {
+          email: this.login,
+          password: this.password,
+        });
 
-      localStorage.setItem("accessToken", response.data.accessToken);
-      localStorage.setItem("refreshToken", response.data.refreshToken);
+        if (!response.message) {
+          this.isLogin();
+        }
+        console.log(response);
+        console.log(response.data);
 
-      this.refreshAccessToken();
-    },
-    ...mapActions(["checkLogin", "fetchTodos"]),
+        localStorage.setItem("accessToken", response.data.accessToken);
+        localStorage.setItem("refreshToken", response.data.refreshToken);
 
-    handleLogin() {
-      this.checkLogin();
+        this.refreshAccessToken();
 
-      this.login = "";
-      this.password = "";
-
-      if (!this.isLogged) {
-        router.replace("/login");
-      } else {
-        router.replace("/");
+        if (this.isLogged) {
+          await router.replace("/");
+        } else {
+          await router.replace("/login");
+        }
+      } catch (e) {
+        console.log(e, "Error login");
       }
     },
   },
