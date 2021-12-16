@@ -11,7 +11,19 @@ const getters = {
   },
 };
 const actions = {
-  commentNew({ commit }, commentData) {
+  async commentNew({ commit }, commentData) {
+    console.log(commentData);
+    const access = localStorage.getItem("accessToken");
+    const resp = await axios.post(
+      `http://localhost:5001/api/questions/${commentData.id}`,
+      {
+        text: commentData.commentText,
+      },
+      {
+        headers: { Authorization: `Bearer ${access}` },
+      }
+    );
+    console.log(resp);
     commit("addComment", commentData);
   },
   async addQuestion({ commit }, question) {
@@ -48,8 +60,8 @@ const actions = {
         }
       );
       let newQuestion = resp.data;
-
       commit("changeQuestion", question);
+      await this.$store.dispatch("fetchQuestions");
       return newQuestion;
     } catch (e) {
       console.log(e.message);
@@ -74,6 +86,7 @@ const actions = {
     });
 
     console.log(response.data);
+
     commit("setQuestions", response.data);
   },
   async fetchQuestion({ commit }) {
@@ -94,13 +107,13 @@ const mutations = {
   changeQuestion: (state, question) => {
     const idx = state.questions.findIndex((q) => q.id === question.id);
     console.log(state.questions.splice(idx, 1, question));
-    return (state.questions = [state.questions.splice(idx, 1, question)]);
+    return (state.questions = [...state.questions, state.questions.splice(idx, 1, question)]);
   },
   setQuestions: (state, questions) => (state.questions = questions),
   setQuestionsbyID: (state, question) => (state.questions = question),
   addComment: (state, data) => {
     return state.questions
-      .find((question) => question.id === data.id)
+      .find((question) => question._id === data._id)
       .comments.push({
         text: data.commentText,
         user: state.currentUser.name,
