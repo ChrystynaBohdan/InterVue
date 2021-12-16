@@ -136,9 +136,9 @@ export default {
   mounted() {
     this.fetchQuestions();
   },
-  updated() {
-    this.fetchQuestion();
-  },
+  // updated() {
+  //   this.fetchQuestion();
+  // },
   data() {
     return {
       languageOptions: [
