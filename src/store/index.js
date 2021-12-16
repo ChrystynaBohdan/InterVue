@@ -8,8 +8,8 @@ export default new Vuex.Store({
   modules: { questions },
   state: {
     user: [],
-    email: "TestUser@gmail.com",
-    password: "TestUser#3000",
+    email: "",
+    password: "",
     isLogged: !!localStorage.getItem("accessToken"),
     currentUser: { name: "User" },
   },
@@ -22,8 +22,7 @@ export default new Vuex.Store({
   },
 
   actions: {
-    checkLogin({ commit }) {
-      console.log("bravo, you are logged in");
+    isLogin({ commit }) {
       commit("handleLogin", true);
     },
 
@@ -36,9 +35,6 @@ export default new Vuex.Store({
       localStorage.removeItem("accessToken");
 
       commit("loggingOut", false);
-    },
-    commentNew({ commit }, commentData) {
-      commit("addComment", commentData);
     },
 
     refreshAccessToken() {

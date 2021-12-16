@@ -37,7 +37,7 @@
           <img src="../assets/square-user.png" alt="user" class="w-11" />
           <div class="flex flex-col w-11/12">
             <div class="flex gap-x-1 items-center">
-              <div class="font-semibold pr-1">{{ curUser }}</div>
+              <div class="font-semibold pr-1">{{ comment.user.name }}</div>
               <div class="text-xs font-semibold text-gray-400">|</div>
               <div class="text-xs font-semibold text-gray-400 pl-1">
                 {{ fromNow(comment.date) }}
@@ -64,6 +64,7 @@ export default {
       if (this.comment === "") {
         return;
       }
+      console.log(this.guestionId);
       this.commentNew({ id: this.guestionId, commentText: this.comment });
       this.comment = "";
     },

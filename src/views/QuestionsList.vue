@@ -77,11 +77,11 @@
             </router-link>
             <button class="px-2 cursor-pointer" @click="increment(question)">
               <i class="far fa-thumbs-up"></i>
-              {{ question.likes }}
+              {{ question.likes.length }}
             </button>
             <button class="px-2 cursor-pointer" @click="decrement(question)">
               <i class="far fa-thumbs-down"></i>
-              {{ question.dislikes }}
+              {{ question.unLikes.length }}
             </button>
           </li>
         </ul>
@@ -133,12 +133,12 @@ export default {
     },
   },
   methods: {
-    ...mapActions(["fetchQuestions", "fetchQuestion"]),
+    ...mapActions(["fetchQuestions"]),
     increment(question) {
-      question.likes++;
+      question.likes.push(null);
     },
     decrement(question) {
-      question.dislikes++;
+      question.unLikes.push(null);
     },
 
     updateTechnologies(values) {
