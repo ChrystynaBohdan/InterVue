@@ -58,7 +58,7 @@
 <script>
 
 export default ({
-  name: 'customDropdown',
+  name: 'Dropdown',
   props: ['label', 'options', 'value', 'placeholder'],
 
   data() {
@@ -75,7 +75,7 @@ export default ({
     }
   },
 
-   methods: {
+  methods: {
     toggleDropdown() {
       this.isOpened = !this.isOpened;
     },

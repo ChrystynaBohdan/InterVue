@@ -16,20 +16,16 @@
       </label>
 
       <div class="h-18 w-3/5">
-        <label class="flex flex-col gap-2"
-          >Level:
-          <Multiselect :options="gradeOptions" v-model="formValue.selectedLevel" :placeholder="'Select a technology'" />
-        </label>
+        <div class="flex flex-col gap-2">
+          Level:
+          <Dropdown placeholder="Select a grade" :options="gradeOptions" @updateSelected="updateGrades" />
+        </div>
       </div>
       <div class="h-18 w-3/5">
-        <label class="flex flex-col gap-2">
+        <div class="flex flex-col gap-2">
           Category:
-          <Multiselect
-            :options="categories"
-            v-model="formValue.selectedCategory"
-            :placeholder="'Select a grade for a question'"
-          />
-        </label>
+          <Dropdown placeholder="Select a category" :options="categories" @updateSelected="updateTechnologies" />
+        </div>
       </div>
 
       <label class="flex flex-col gap-2">
@@ -73,12 +69,13 @@
 </template>
 
 <script>
-import Multiselect from "../components/Multiselect.vue";
+// import Multiselect from "../components/Multiselect.vue";
 import { mapActions, mapGetters } from "vuex";
+import Dropdown from "../components/Dropdown.vue";
 
 export default {
   name: "EditForm",
-  components: { Multiselect },
+  components: { Dropdown },
   computed: {
     ...mapGetters(["questionbyID"]),
     question() {
@@ -96,6 +93,14 @@ export default {
       this.level = "";
       this.category = "";
       this.$router.push({ path: "/" });
+    },
+
+    updateTechnologies(values) {
+      this.formValue.selectedCategory = values;
+    },
+
+    updateGrades(values) {
+      this.formValue.selectedLevel = values;
     },
   },
 

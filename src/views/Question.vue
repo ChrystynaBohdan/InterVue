@@ -70,11 +70,11 @@
         </h1>
         <button class="px-2 cursor-pointer flex flex-col pt-4" @click="increment(question)">
           <i class="far fa-thumbs-up"></i>
-          {{ question.likes.length }}
+          <!-- {{ question.likes.length }} -->
         </button>
         <button class="px-2 cursor-pointer flex flex-col pt-4" @click="decrement(question)">
           <i class="far fa-thumbs-down"></i>
-          {{ question.unLikes.length }}
+          <!-- {{ question.unLikes.length }} -->
         </button>
       </div>
       <div>{{ question.body }}</div>
