@@ -2,18 +2,16 @@
   <div class="relative max-w-screen-md w-9/12">
     <div class="flex flex-col max-w-screen-md mx-auto min-h-screen">
       <div class="flex gap-x-4">
-        <!-- <Multiselect
-          :options="languageOptions"
-          v-model="selectedCategory"
-          :placeholder="'Filter based on technology'"
-        />
-        <Multiselect :options="gradeOptions" v-model="selectedGrade" :placeholder="'Filter based on grade'" /> -->
-        <Dropdown
-          :options="languageOptions"
-          placeholder="Filter based on technology"
-          @updateSelected="updateTechnologies" />
-
-        <Dropdown :options="gradeOptions" placeholder="Filter based on grade" @updateSelected="updateGrades" />
+        <div class="w-1/2">
+          <Dropdown
+            :options="languageOptions"
+            placeholder="Filter based on technology"
+            @updateSelected="updateTechnologies"
+          />
+        </div>
+        <div class="w-1/2">
+          <Dropdown :options="gradeOptions" placeholder="Filter based on grade" @updateSelected="updateGrades" />
+        </div>
       </div>
       <div>
         <ul v-if="allQuestions.length > 0">
@@ -86,24 +84,18 @@
           </li>
         </ul>
       </div>
-      <!--      <Pagination />-->
     </div>
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters } from "vuex";
-// import router from "../router";
-// import Multiselect from "../components/Multiselect";
-// import Pagination from "../components/Pagination";
-// import axios from "axios";
 import Dropdown from "../components/Dropdown.vue";
 
 export default {
   name: "QuestionsList",
   components: {
-    // Pagination,
-    // Multiselect,
+
     Dropdown,
   },
   computed: {
@@ -164,9 +156,9 @@ export default {
         { name: "JS", code: "JS" },
       ],
       gradeOptions: [
-        { name: "Junior", id: "Junior" },
-        { name: "Middle", id: "Middle" },
-        { name: "Senior", id: "Senior" },
+        { name: "Junior", code: "Junior" },
+        { name: "Middle", code: "Middle" },
+        { name: "Senior", code: "Senior" },
       ],
       selectedCategory: [],
       selectedGrade: [],

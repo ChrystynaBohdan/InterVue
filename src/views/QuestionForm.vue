@@ -16,24 +16,17 @@
       </label>
 
       <div class="h-18 w-3/5">
-        <label class="flex flex-col gap-2"
-          >Technology:
+        <div class="flex flex-col gap-2">
+          Technology:
           <Dropdown placeholder="Select a technology" :options="categories" @updateSelected="updateTechnologies" />
-          <!-- <Multiselect :options="gradeOptions" v-model="selectedLevel" :placeholder="'Select a technology'" /> -->
-        </label>
+        </div>
       </div>
 
       <div class="h-18 w-3/5">
-        <label class="flex flex-col gap-2">
+        <div class="flex flex-col gap-2">
           Grade:
           <Dropdown placeholder="Grade a grade" :options="gradeOptions" @updateSelected="updateGrades" />
-
-          <!-- <Multiselect
-            :options="categories"
-            v-model="selectedCategory"
-            :placeholder="'Select a grade for a question'"
-          /> -->
-        </label>
+        </div>
       </div>
 
       <label class="flex flex-col gap-2">
