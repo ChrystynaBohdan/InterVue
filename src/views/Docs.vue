@@ -10,7 +10,7 @@
         >Technologies</router-link
       >
     </div>
-    <router-view></router-view>
+    <router-view :key="$route.path" />
   </div>
 </template>
 

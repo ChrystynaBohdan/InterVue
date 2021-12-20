@@ -75,11 +75,11 @@
             </router-link>
             <button class="px-2 cursor-pointer" @click="increment(question)">
               <i class="far fa-thumbs-up"></i>
-              <!-- {{ question.likes.length }} -->
+              <!--              {{ question.likes.length }}-->
             </button>
             <button class="px-2 cursor-pointer" @click="decrement(question)">
               <i class="far fa-thumbs-down"></i>
-              <!-- {{ question.unLikes.length }} -->
+              <!--              {{ question.unLikes.length }}-->
             </button>
           </li>
         </ul>
@@ -95,7 +95,6 @@ import Dropdown from "../components/Dropdown.vue";
 export default {
   name: "QuestionsList",
   components: {
-
     Dropdown,
   },
   computed: {

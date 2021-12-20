@@ -70,11 +70,11 @@
         </h1>
         <button class="px-2 cursor-pointer flex flex-col pt-4" @click="increment(question)">
           <i class="far fa-thumbs-up"></i>
-          <!-- {{ question.likes.length }} -->
+          <!--          {{ question.likes.length }}-->
         </button>
         <button class="px-2 cursor-pointer flex flex-col pt-4" @click="decrement(question)">
           <i class="far fa-thumbs-down"></i>
-          <!-- {{ question.unLikes.length }} -->
+          <!--          {{ question.unLikes.length }}-->
         </button>
       </div>
       <div>{{ question.body }}</div>
@@ -100,14 +100,14 @@ export default {
     return {};
   },
   computed: {
-    ...mapGetters(["allQuestions"]),
+    ...mapGetters(["allQuestions", "questionbyID"]),
 
     question() {
       return this.allQuestions.find((q) => q._id == this.$route.params.id);
     },
   },
   methods: {
-    ...mapActions(["deleteQuestion"]),
+    ...mapActions(["deleteQuestion", "fetchQuestions"]),
     back(question) {
       const idx = this.allQuestions.findIndex((q) => q._id === question._id);
       const nextQuestion = this.allQuestions[idx - 1]._id;

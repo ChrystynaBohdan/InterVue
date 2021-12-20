@@ -93,6 +93,8 @@ export default {
       this.codeSnippet = "";
       this.level = "";
       this.category = "";
+      this.$store.dispatch("fetchQuestions");
+      this.$router.push({ path: "/" });
     },
 
     updateTechnologies(values) {
