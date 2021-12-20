@@ -59,14 +59,15 @@ export default {
   props: ["comments", "guestionId"],
   computed: { ...mapGetters(["curUser"]) },
   methods: {
-    ...mapActions(["commentNew"]),
+    ...mapActions(["commentNew", "fetchQuestions"]),
     submitComment() {
       if (this.comment === "") {
         return;
       }
-      console.log(this.guestionId);
+      console.log(this.comment, "here");
       this.commentNew({ id: this.guestionId, commentText: this.comment });
       this.comment = "";
+      this.$store.dispatch("fetchQuestions", this.guestionId);
     },
     fromNow(date) {
       return moment(date).fromNow();

@@ -76,9 +76,9 @@ import { mapActions } from "vuex";
 
 export default {
   name: "QuestionForm",
-  components: { 
-    // Multiselect, 
-    Dropdown 
+  components: {
+    // Multiselect,
+    Dropdown,
   },
   methods: {
     ...mapActions(["addQuestion"]),
@@ -96,6 +96,8 @@ export default {
       this.codeSnippet = "";
       this.level = "";
       this.category = "";
+      this.$store.dispatch("fetchQuestions");
+      this.$router.push({ path: "/" });
     },
 
     updateTechnologies(values) {

@@ -2,6 +2,7 @@ import axios from "axios";
 
 const state = {
   questions: [],
+  question: [],
 };
 const getters = {
   allQuestions: (state) => state.questions,
@@ -10,7 +11,7 @@ const getters = {
   },
 };
 const actions = {
-  async commentNew({ commit }, commentData) {
+  async commentNew(commentData) {
     console.log(commentData);
     const access = localStorage.getItem("accessToken");
     const resp = await axios.post(
@@ -23,7 +24,7 @@ const actions = {
       }
     );
     console.log(resp);
-    commit("addComment", commentData);
+    // commit("addComment", commentData);
   },
   async addQuestion({ commit }, question) {
     try {
@@ -35,7 +36,7 @@ const actions = {
           headers: { Authorization: `Bearer ${access}` },
         }
       );
-      console.log(resp), "****";
+      console.log(resp);
 
       commit("addQuestion", question);
     } catch (e) {
@@ -94,8 +95,7 @@ const mutations = {
   deleteQuestion: (state, question) => (state.questions = state.questions.filter((q) => q._id !== question._id)),
   changeQuestion: (state, question) => {
     const idx = state.questions.findIndex((q) => q.id === question.id);
-    console.log(state.questions.splice(idx, 1, question));
-    return (state.questions = [...state.questions, state.questions.splice(idx, 1, question)]);
+    return (state.questions = [...state.questions.splice(idx, 1, question)]);
   },
   setQuestions: (state, questions) => (state.questions = questions),
   addComment: (state, data) => {
@@ -103,7 +103,6 @@ const mutations = {
       .find((question) => question._id === data.id)
       .comments.push({
         text: data.commentText,
-        // user: state.currentUser.name,
         date: new Date(),
       });
   },
