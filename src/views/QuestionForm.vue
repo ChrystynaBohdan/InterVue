@@ -76,10 +76,7 @@ import { mapActions } from "vuex";
 
 export default {
   name: "QuestionForm",
-  components: {
-    // Multiselect,
-    Dropdown,
-  },
+  components: { Dropdown },
   methods: {
     ...mapActions(["addQuestion"]),
     submit() {
