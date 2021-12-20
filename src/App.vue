@@ -29,8 +29,6 @@ export default {
   beforeMount() {
     if (!localStorage.getItem("accessToken")) {
       router.replace("/login");
-    } else {
-      console.log(localStorage.getItem("accessToken"));
     }
   },
 };

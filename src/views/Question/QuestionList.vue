@@ -14,8 +14,8 @@
         </div>
       </div>
       <div>
-        <ul v-if="allQuestions.length > 0">
-          <li class="grid gap-4 py-4 items-center question" v-for="question in filteredQuestions" :key="question._id">
+        <ul>
+          <li class="grid gap-4 py-4 items-center question" v-for="question in myFilteredQuestions" :key="question._id">
             <router-link
               tag="span"
               :to="{ name: 'Question', params: { id: question._id } }"
@@ -73,26 +73,7 @@
                 </div>
               </div>
             </router-link>
-            <button class="px-2 cursor-pointer" @click="increment(question)">
-              <i class="far fa-thumbs-up"></i>
-              {{
-                question.likes.length
-                  ? question.likes.reduce((accum, currentQuestionLike, index) => {
-                      return currentQuestionLike.like === true ? (accum += 1) : 0;
-                    }, 0)
-                  : 0
-              }}
-            </button>
-            <button class="px-2 cursor-pointer" @click="decrement(question)">
-              <i class="far fa-thumbs-down"></i>
-              {{
-                question.likes.length
-                  ? question.likes.reduce((accum, currentQuestionLike, index) => {
-                      return currentQuestionLike.like === false ? (accum += 1) : 0;
-                    }, 0)
-                  : 0
-              }}
-            </button>
+            <QuestionLikes :question="question"></QuestionLikes>
           </li>
         </ul>
       </div>
@@ -102,47 +83,31 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
-import Dropdown from "../components/Dropdown.vue";
+import Dropdown from "../../components/Dropdown.vue";
+import QuestionLikes from "./QuestionLikes";
 
 export default {
   name: "QuestionsList",
   components: {
+    QuestionLikes,
     Dropdown,
   },
   computed: {
-    ...mapGetters(["allQuestions"]),
-
-    filteredQuestions() {
+    ...mapGetters(["filteredQuestions"]),
+    myFilteredQuestions() {
       const selectedCategories = this.selectedCategory.map((category) => category.code);
       const selectedLevels = this.selectedGrade.map((level) => level.code);
 
-      if (selectedCategories.length === 0 && selectedLevels.length === 0) {
-        return this.allQuestions;
-      } else if (selectedCategories.length > 0 && selectedLevels.length === 0) {
-        return this.allQuestions.filter((question) =>
-          selectedCategories.some((category) => question.category.includes(category))
-        );
-      } else if (selectedCategories.length === 0 && selectedLevels.length > 0) {
-        return this.allQuestions.filter((question) => selectedLevels.some((level) => question.level.includes(level)));
-      } else {
-        return this.allQuestions.filter((question) =>
-          selectedLevels.some(
-            (level) =>
-              question.level.includes(level) &&
-              selectedCategories.some((category) => question.category.includes(category))
-          )
-        );
-      }
+      return this.filteredQuestions(selectedCategories, selectedLevels);
     },
   },
   methods: {
     ...mapActions(["fetchQuestions", "addLikes"]),
     increment(question) {
-      const Data = true;
-      this.addLikes(question._id, Data);
+      this.addLikes(question._id, true);
     },
-    decrement() {
-      this.addLikes();
+    decrement(question) {
+      this.addLikes(question._id, false);
     },
 
     updateTechnologies(values) {
@@ -151,6 +116,19 @@ export default {
 
     updateGrades(values) {
       this.selectedGrade = values;
+    },
+
+    getLikes(question, like) {
+      if (question.likes.length === 0) {
+        return 0;
+      }
+
+      return question.likes.reduce((accum, currentQuestionLike) => {
+        if (currentQuestionLike.like === like) {
+          accum++;
+        }
+        return accum;
+      }, 0);
     },
   },
   mounted() {

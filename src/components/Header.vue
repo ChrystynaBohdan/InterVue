@@ -5,7 +5,7 @@
         <img src="../assets/soft-blues-logo-white.png" alt="logo" class="h-6" />
       </router-link>
       <div class="flex gap-x-4">
-        <router-link v-if="isLogged" tag="button" to="/addnew"
+        <router-link v-if="isLogged" tag="button" to="/questions/addnew"
           ><i class="far fa-plus-square fa-lg hover:text-gray-500 text-gray-300 mt-3 cursor-pointer"></i>
         </router-link>
         <router-link v-if="isLogged" tag="button" to="/docs"
