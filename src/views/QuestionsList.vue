@@ -75,11 +75,23 @@
             </router-link>
             <button class="px-2 cursor-pointer" @click="increment(question)">
               <i class="far fa-thumbs-up"></i>
-              <!--              {{ question.likes.length }}-->
+              {{
+                question.likes.length
+                  ? question.likes.reduce((accum, currentQuestionLike, index) => {
+                      return currentQuestionLike.like === true ? (accum += 1) : 0;
+                    }, 0)
+                  : 0
+              }}
             </button>
             <button class="px-2 cursor-pointer" @click="decrement(question)">
               <i class="far fa-thumbs-down"></i>
-              <!--              {{ question.unLikes.length }}-->
+              {{
+                question.likes.length
+                  ? question.likes.reduce((accum, currentQuestionLike, index) => {
+                      return currentQuestionLike.like === false ? (accum += 1) : 0;
+                    }, 0)
+                  : 0
+              }}
             </button>
           </li>
         </ul>
@@ -101,8 +113,8 @@ export default {
     ...mapGetters(["allQuestions"]),
 
     filteredQuestions() {
-      const selectedCategories = this.selectedCategory.map((category) => category.code); // ["HTML","React"]
-      const selectedLevels = this.selectedGrade.map((level) => level.code); // ["Junior"]
+      const selectedCategories = this.selectedCategory.map((category) => category.code);
+      const selectedLevels = this.selectedGrade.map((level) => level.code);
 
       if (selectedCategories.length === 0 && selectedLevels.length === 0) {
         return this.allQuestions;
@@ -124,12 +136,13 @@ export default {
     },
   },
   methods: {
-    ...mapActions(["fetchQuestions"]),
+    ...mapActions(["fetchQuestions", "addLikes"]),
     increment(question) {
-      question.likes.push(null);
+      const Data = true;
+      this.addLikes(question._id, Data);
     },
-    decrement(question) {
-      question.unLikes.push(null);
+    decrement() {
+      this.addLikes();
     },
 
     updateTechnologies(values) {

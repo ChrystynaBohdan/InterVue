@@ -11,7 +11,7 @@ const getters = {
   },
 };
 const actions = {
-  async commentNew(commentData) {
+  async commentNew({ commit }, commentData) {
     console.log(commentData);
     const access = localStorage.getItem("accessToken");
     const resp = await axios.post(
@@ -24,8 +24,28 @@ const actions = {
       }
     );
     console.log(resp);
-    // commit("addComment", commentData);
+    commit("addComment", commentData);
   },
+
+  async addLikes({ commit, dispatch }, question, data) {
+    console.log(data, "1");
+    console.log(question, "2");
+
+    const access = localStorage.getItem("accessToken");
+    const resp = await axios.post(
+      `http://localhost:5001/api/questions/${question}/like`,
+      {
+        like: true,
+      },
+      {
+        headers: { Authorization: `Bearer ${access}` },
+      }
+    );
+    console.log(resp.data);
+    commit("addLike", question, data);
+    dispatch("fetchQuestions");
+  },
+
   async addQuestion({ commit }, question) {
     try {
       const access = localStorage.getItem("accessToken");
@@ -98,7 +118,16 @@ const mutations = {
     return (state.questions = [...state.questions.splice(idx, 1, question)]);
   },
   setQuestions: (state, questions) => (state.questions = questions),
+  addLike: (state, Data, question) => {
+    return state.questions
+      .find((currentQuestion) => currentQuestion._id === question)
+      .likes.push({
+        like: Data,
+        user_id: question,
+      });
+  },
   addComment: (state, data) => {
+    console.log(data);
     return state.questions
       .find((question) => question._id === data.id)
       .comments.push({
