@@ -2,7 +2,7 @@
   <div class="flex flex-col max-w-xl min-h-screen">
     <form v-on:submit.prevent="submit" class="flex flex-col gap-4 text-sm">
       <div>
-        <h2 class="font-bold text-3xl">Edit Question</h2>
+        <h2 class="font-bold text-3xl">{{ formValue.title }}</h2>
         <h1 class="text-xs font-extralight text-gray-400">by Volodymyr Sen</h1>
       </div>
       <label class="flex flex-col gap-2">
@@ -91,7 +91,7 @@ export default {
       this.codeSnippet = "";
       this.level = "";
       this.category = "";
-      await this.$router.push({ path: "/" });
+      await this.$router.push({ path: `/questions/${this.$route.params.id}` });
     },
 
     updateTechnologies(values) {
