@@ -20,10 +20,10 @@ export default {
   methods: {
     ...mapActions(["addLikes"]),
     increment(question) {
-      this.addLikes(question._id, true);
+      this.addLikes({ question: question._id, like: true });
     },
     decrement(question) {
-      this.addLikes(question._id, false);
+      this.addLikes({ question: question._id, like: false });
     },
     getLikes(question, like) {
       if (question.likes.length === 0) {

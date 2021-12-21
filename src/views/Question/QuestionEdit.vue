@@ -122,7 +122,6 @@ export default {
         { name: "Lead", code: "Lead" },
         { name: "Architect", code: "Architect" },
       ],
-
       formValue: {
         title: "",
         body: "",
@@ -133,7 +132,14 @@ export default {
     };
   },
   mounted() {
-    this.formValue = { ...this.question };
+    this.formValue = {
+      _id: this.question._id,
+      title: this.question.title,
+      body: this.question.body,
+      selectedLevel: this.question.level,
+      selectedCategory: this.question.category,
+      codeSnippet: this.question.codeSnippet,
+    };
   },
 };
 </script>

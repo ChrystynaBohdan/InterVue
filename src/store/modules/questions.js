@@ -31,11 +31,12 @@ const actions = {
     commit("setQuestions", response.data);
   },
 
-  async addQuestion({ commit }, question) {
+  async addQuestion({ dispatch }, question) {
     try {
       await axios.post("http://localhost:5001/api/questions", { ...question });
 
-      commit("addQuestion", question);
+      dispatch("fetchQuestions");
+      console.log(question);
     } catch (e) {
       console.log(e.message);
     }
@@ -74,7 +75,7 @@ const actions = {
     dispatch("fetchQuestions");
   },
 
-  async addLikes({ dispatch }, question, like) {
+  async addLikes({ dispatch }, { question, like }) {
     await axios.post(`http://localhost:5001/api/questions/${question}/like`, {
       like,
     });

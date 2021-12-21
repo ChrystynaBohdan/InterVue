@@ -103,32 +103,12 @@ export default {
   },
   methods: {
     ...mapActions(["fetchQuestions", "addLikes"]),
-    increment(question) {
-      this.addLikes(question._id, true);
-    },
-    decrement(question) {
-      this.addLikes(question._id, false);
-    },
-
     updateTechnologies(values) {
       this.selectedCategory = values;
     },
 
     updateGrades(values) {
       this.selectedGrade = values;
-    },
-
-    getLikes(question, like) {
-      if (question.likes.length === 0) {
-        return 0;
-      }
-
-      return question.likes.reduce((accum, currentQuestionLike) => {
-        if (currentQuestionLike.like === like) {
-          accum++;
-        }
-        return accum;
-      }, 0);
     },
   },
   mounted() {
