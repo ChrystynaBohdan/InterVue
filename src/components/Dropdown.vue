@@ -1,9 +1,5 @@
 <template>
-  <div
-    class="dropdown"
-    :class="{ 'dropdown__active': isOpened }"
-    @click="toggleDropdown"
-  >
+  <div class="dropdown" :class="{ 'dropdown__active': isOpened }" @click="toggleDropdown">
     <div class="dropdown__content">
       <div class="dropdown__content-selected">
         <span v-if="!selectedValues.length">{{ placeholder }}</span>
@@ -59,7 +55,7 @@
 
 export default ({
   name: 'Dropdown',
-  props: ['label', 'options', 'value', 'placeholder'],
+  props: ['label', 'options', 'value', 'placeholder', 'selected'],
 
   data() {
     return {
@@ -81,8 +77,17 @@ export default ({
     },
 
     initializeList() {
-      this.notSelectedValues = [...this.options];
+      if (this.selected) {
+        this.selectedValues = this.selected.map(value => {return {name: value, code: value}});
+        this.notSelectedValues = this.options.filter(item => (!this.selected.some(selectedItem => selectedItem === item.code)));
+      } else {
+        this.selectedValues = [];
+        this.notSelectedValues = this.options.map(value => ({code: value.code, name: value.name}));
+      }
+
+      this.selectedValues.forEach(value => this.draftList.selected.push(value.code));
       this.notSelectedValues.forEach(value => this.draftList.notSelected.push(value.code));
+
     },
 
     selectOption(code) {
@@ -131,7 +136,7 @@ export default ({
     }
   },
 
-  mounted() {
+  created() {
     this.initializeList();
   }
 })

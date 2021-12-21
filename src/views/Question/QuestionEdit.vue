@@ -18,13 +18,21 @@
       <div class="h-18 w-3/5">
         <div class="flex flex-col gap-2">
           Level:
-          <Dropdown placeholder="option: " :options="gradeOptions" @updateSelected="updateGrades" :key="value" />
+          <Dropdown
+            :selected="formValue.selectedLevel"
+            :options="gradeOptions"
+            @updateSelected="updateGrades"
+          />
         </div>
       </div>
       <div class="h-18 w-3/5">
         <div class="flex flex-col gap-2">
           Category:
-          <Dropdown placeholder="category: " :options="categories" @updateSelected="updateTechnologies" :key="value" />
+          <Dropdown
+            :selected="formValue.selectedCategory"
+            :options="categories"
+            @updateSelected="updateTechnologies"
+          />
         </div>
       </div>
 
@@ -131,7 +139,7 @@ export default {
       },
     };
   },
-  mounted() {
+  created() {
     this.formValue = {
       _id: this.question._id,
       title: this.question.title,

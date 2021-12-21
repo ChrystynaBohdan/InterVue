@@ -44,12 +44,13 @@ const actions = {
 
   async editQuestion({ dispatch }, question) {
     try {
+      console.log(question);
       await axios.put(`http://localhost:5001/api/questions/${question._id}`, {
         title: question.title,
         body: question.body,
         codeSnippet: question.codeSnippet,
-        level: question.selectedLevel.code,
-        category: question.selectedCategory.code,
+        level: question.selectedLevel.map(value => value.code),
+        category: question.selectedCategory.map(value => value.code),
       });
       dispatch("fetchQuestions");
     } catch (e) {
