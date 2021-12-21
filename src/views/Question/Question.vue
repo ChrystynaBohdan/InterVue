@@ -61,6 +61,7 @@
                 'bg-blue-400': level === 'Junior',
                 'bg-indigo-400': level === 'Middle',
                 'bg-yellow-400': level === 'Senior',
+                'bg-yellow-400': level === 'Architect',
               }"
               class="text-white w-7 rounded-full h-7 w-20 flex items-center justify-center text-xs"
             >

@@ -93,6 +93,14 @@ export default {
   methods: {
     ...mapActions(["editQuestion"]),
     async submit() {
+      if (typeof this.formValue.selectedCategory[0] === 'string') {
+         this.formValue.selectedCategory = this.formValue.selectedCategory.map(value => ({code: value, name: value}));
+      }
+
+      if (typeof this.formValue.selectedLevel[0] === 'string') {
+         this.formValue.selectedLevel = this.formValue.selectedLevel.map(value => ({code: value, name: value}));
+      }
+
       await this.$store.dispatch("editQuestion", this.formValue);
       this.title = "";
       this.body = "";

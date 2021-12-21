@@ -44,7 +44,7 @@ const actions = {
 
   async editQuestion({ dispatch }, question) {
     try {
-      console.log(question);
+      console.log(question.selectedLevel);
       await axios.put(`http://localhost:5001/api/questions/${question._id}`, {
         title: question.title,
         body: question.body,
