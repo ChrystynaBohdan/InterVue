@@ -68,14 +68,7 @@
             </div>
           </div>
         </h1>
-        <button class="px-2 cursor-pointer flex flex-col pt-4" @click="increment(question)">
-          <i class="far fa-thumbs-up"></i>
-          <!--          {{ question.likes.length }}-->
-        </button>
-        <button class="px-2 cursor-pointer flex flex-col pt-4" @click="decrement(question)">
-          <i class="far fa-thumbs-down"></i>
-          <!--          {{ question.unLikes.length }}-->
-        </button>
+        <QuestionLikes :question="question"></QuestionLikes>
       </div>
       <div>{{ question.body }}</div>
       <span @click="remove(question)" class="text-xs cursor-pointer bg-white text-gray-400 hover:text-black">
@@ -91,49 +84,53 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
-import Comments from "../components/Comments";
+import Comments from "../../components/Comments";
+import QuestionLikes from "./QuestionLikes";
 
 export default {
   name: "Question",
-  components: { Comments },
+  components: { Comments, QuestionLikes },
   data() {
     return {};
   },
   computed: {
-    ...mapGetters(["allQuestions", "questionbyID"]),
+    ...mapGetters(["allQuestions", "questionByID"]),
 
     question() {
-      return this.allQuestions.find((q) => q._id == this.$route.params.id);
+      return this.questionByID(this.$route.params.id);
     },
   },
   methods: {
     ...mapActions(["deleteQuestion", "fetchQuestions"]),
     back(question) {
       const idx = this.allQuestions.findIndex((q) => q._id === question._id);
+
+      if (idx === 0) {
+        return;
+      }
+
       const nextQuestion = this.allQuestions[idx - 1]._id;
-      this.$router.push({ path: `/question/${nextQuestion}` });
+      this.$router.push({ path: `/questions/${nextQuestion}` });
     },
     next(question) {
       const idx = this.allQuestions.findIndex((q) => q._id === question._id);
+
+      if (idx === this.allQuestions.length - 1) {
+        return;
+      }
+
       const nextQuestion = this.allQuestions[idx + 1]._id;
-      this.$router.push({ path: `/question/${nextQuestion}` });
+      this.$router.push({ path: `/questions/${nextQuestion}` });
     },
     edit() {
-      this.$router.push({ path: `/edit/${this.$route.params.id}` });
+      this.$router.push({ path: `/questions/${this.$route.params.id}/edit` });
     },
     async remove(question) {
-      let response = confirm(`Are you sure you want to delete this question?`);
+      let response = confirm("Are you sure you want to delete this question?");
       if (response) {
-        await this.deleteQuestion(question);
+        await this.deleteQuestion(question._id);
         this.$router.push("/");
       }
-    },
-
-    increment(question) {
-      question.likes.push(null);
-    },
-    decrement(question) {
-      question.unLikes.push(null);
     },
   },
 };

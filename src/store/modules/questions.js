@@ -2,111 +2,100 @@ import axios from "axios";
 
 const state = {
   questions: [],
-  question: [],
 };
 const getters = {
   allQuestions: (state) => state.questions,
-  questionbyID: (state) => (id) => {
+  questionByID: (state) => (id) => {
     return state.questions.find((question) => question._id === id);
+  },
+  filteredQuestions: (state) => (selectedCategories, selectedLevels) => {
+    let questions = state.questions;
+
+    if (selectedCategories.length > 0) {
+      questions = questions.filter((question) =>
+        selectedCategories.some((category) => question.category.includes(category))
+      );
+    }
+
+    if (selectedLevels.length > 0) {
+      questions = questions.filter((question) => selectedLevels.some((level) => question.level.includes(level)));
+    }
+
+    return questions;
   },
 };
 const actions = {
-  async commentNew(commentData) {
-    console.log(commentData);
-    const access = localStorage.getItem("accessToken");
-    const resp = await axios.post(
-      `http://localhost:5001/api/questions/${commentData.id}`,
-      {
-        text: commentData.commentText,
-      },
-      {
-        headers: { Authorization: `Bearer ${access}` },
-      }
-    );
-    console.log(resp);
-    // commit("addComment", commentData);
-  },
-  async addQuestion({ commit }, question) {
-    try {
-      const access = localStorage.getItem("accessToken");
-      const resp = await axios.post(
-        "http://localhost:5001/api/questions",
-        { ...question },
-        {
-          headers: { Authorization: `Bearer ${access}` },
-        }
-      );
-      console.log(resp);
-
-      commit("addQuestion", question);
-    } catch (e) {
-      console.log(e.message);
-    }
-  },
-  async editQuestion({ commit }, question) {
-    try {
-      const access = localStorage.getItem("accessToken");
-      const resp = await axios.put(
-        `http://localhost:5001/api/questions/${question._id}`,
-        {
-          title: question.title,
-          body: question.body,
-          codeSnippet: question.codeSnippet,
-          level: question.level,
-          category: question.category,
-        },
-        {
-          headers: { Authorization: `Bearer ${access}` },
-        }
-      );
-      let newQuestion = resp.data;
-      commit("changeQuestion", question);
-      await this.$store.dispatch("fetchQuestions");
-      return newQuestion;
-    } catch (e) {
-      console.log(e.message);
-    }
-  },
-  async deleteQuestion({ commit }, question) {
-    try {
-      const access = localStorage.getItem("accessToken");
-      await axios.delete(`http://localhost:5001/api/questions/${question._id}`, {
-        headers: { Authorization: `Bearer ${access}` },
-      });
-
-      commit("deleteQuestion", question);
-    } catch (e) {
-      console.log(e.message);
-    }
-  },
   async fetchQuestions({ commit }) {
-    const access = localStorage.getItem("accessToken");
-    const response = await axios.get("http://localhost:5001/api/questions", {
-      headers: { Authorization: `Bearer ${access}` },
-    });
-
-    console.log(response.data);
+    const response = await axios.get("http://localhost:5001/api/questions");
 
     commit("setQuestions", response.data);
   },
+
+  async addQuestion({ dispatch }, question) {
+    try {
+      await axios.post("http://localhost:5001/api/questions", { ...question });
+
+      dispatch("fetchQuestions");
+      console.log(question);
+    } catch (e) {
+      console.log(e.message);
+    }
+  },
+
+  async editQuestion({ commit }, question) {
+    try {
+      await axios.put(`http://localhost:5001/api/questions/${question._id}`, {
+        title: question.title,
+        body: question.body,
+        codeSnippet: question.codeSnippet,
+        level: question.level,
+        category: question.category,
+      });
+      commit("changeQuestion", question);
+    } catch (e) {
+      console.log(e.message);
+    }
+  },
+
+  async deleteQuestion({ commit }, questionId) {
+    try {
+      await axios.delete(`http://localhost:5001/api/questions/${questionId}`);
+
+      commit("deleteQuestion", questionId);
+    } catch (e) {
+      console.log(e.message);
+    }
+  },
+
+  async commentNew({ dispatch }, commentData) {
+    await axios.post(`http://localhost:5001/api/questions/${commentData.id}`, {
+      text: commentData.commentText,
+    });
+
+    dispatch("fetchQuestions");
+  },
+
+  async addLikes({ dispatch }, { question, like }) {
+    await axios.post(`http://localhost:5001/api/questions/${question}/like`, {
+      like,
+    });
+
+    dispatch("fetchQuestions");
+  },
 };
 const mutations = {
-  addQuestion: (state, question) => (state.questions = [...state.questions, question]),
-  deleteQuestion: (state, question) => (state.questions = state.questions.filter((q) => q._id !== question._id)),
-  changeQuestion: (state, question) => {
-    const idx = state.questions.findIndex((q) => q.id === question.id);
-    return (state.questions = [...state.questions.splice(idx, 1, question)]);
-  },
   setQuestions: (state, questions) => (state.questions = questions),
-  addComment: (state, data) => {
-    return state.questions
-      .find((question) => question._id === data.id)
-      .comments.push({
-        text: data.commentText,
-        date: new Date(),
-      });
+  addQuestion: (state, question) => (state.questions = [...state.questions, question]),
+  deleteQuestion: (state, questionId) => (state.questions = state.questions.filter((q) => q._id !== questionId)),
+  changeQuestion: (state, question) => {
+    state.questions = state.questions.map((q) => {
+      if (q._id === question._id) {
+        return question;
+      }
+
+      return q;
+    });
   },
-  increment: (state, likes) => (state.questions = likes),
 };
 
 export default {

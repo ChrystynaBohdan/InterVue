@@ -90,8 +90,6 @@ export default {
         if (!response.message) {
           this.isLogin();
         }
-        console.log(response);
-        console.log(response.data);
 
         localStorage.setItem("accessToken", response.data.accessToken);
         localStorage.setItem("refreshToken", response.data.refreshToken);

@@ -1,57 +1,54 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import QuestionForm from "../views/QuestionForm";
-import QuestionsList from "../views/QuestionsList";
-import Question from "../views/Question";
+import QuestionForm from "../views/Question/QuestionAdd";
+import QuestionsList from "../views/Question/QuestionList";
+import Question from "../views/Question/Question";
 import NotFound from "../views/NotFound";
 import Login from "../views/Login";
-import Docs from "../views/Docs";
+import Docs from "../views/Docs/Docs";
 import Recruiters from "../views/Recruiters";
 import FAQ from "../views/FAQ";
-import Grades2 from "../views/Grades2";
-import Technologies from "../views/Technologies";
-import EditForm from "../views/EditForm";
+import Grades2 from "../views/Docs/Grades2";
+import Technologies from "../views/Docs/Technologies";
+import EditForm from "../views/Question/QuestionEdit";
+import QuestionContainer from "../views/Question/QuestionContainer";
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "QuestionsList",
-    component: QuestionsList,
+    redirect: "/questions",
   },
-  // {
-  //     path: "/edit",
-  //     name: "Edit",
-  //     // route level code-splitting
-  //     // this generates a separate chunk (about.[hash].js) for this route
-  //     // which is lazy-loaded when the route is visited.
-  //     component: () =>
-  //         import(/* webpackChunkName: "about" */ "../views/QuestionForm.vue"),
-  // },
   {
     path: "/login",
     name: "Login",
     component: Login,
   },
   {
-    path: "/question/:id",
-    name: "Question",
-    component: Question,
-  },
-  {
-    path: "/addnew",
-    name: "QuestionForm",
-    component: QuestionForm,
-  },
-  {
-    path: "/edit/:id",
-    name: "EditForm",
-    component: EditForm,
-  },
-  {
-    path: "/question",
-    name: "Question",
-    component: Question,
+    path: "/questions",
+    component: QuestionContainer,
+    children: [
+      {
+        path: "/",
+        name: "QuestionsList",
+        component: QuestionsList,
+      },
+      {
+        path: "addnew",
+        name: "QuestionForm",
+        component: QuestionForm,
+      },
+      {
+        path: ":id",
+        name: "Question",
+        component: Question,
+      },
+      {
+        path: ":id/edit",
+        name: "EditForm",
+        component: EditForm,
+      },
+    ],
   },
   {
     path: "/docs",
