@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col max-w-xl min-h-screen">
-    <form v-on:submit.prevent="submit" class="flex flex-col gap-4 text-sm">
+    <form v-on:submit.prevent class="flex flex-col gap-4 text-sm">
       <div>
         <h2 class="font-bold text-3xl">{{ formValue.title }}</h2>
         <h1 class="text-xs font-extralight text-gray-400">by Volodymyr Sen</h1>
@@ -18,13 +18,13 @@
       <div class="h-18 w-3/5">
         <div class="flex flex-col gap-2">
           Level:
-          <Dropdown placeholder="Select a grade" :options="gradeOptions" @updateSelected="updateGrades" />
+          <Dropdown placeholder="option: " :options="gradeOptions" @updateSelected="updateGrades" :key="value" />
         </div>
       </div>
       <div class="h-18 w-3/5">
         <div class="flex flex-col gap-2">
           Category:
-          <Dropdown placeholder="Select a category" :options="categories" @updateSelected="updateTechnologies" />
+          <Dropdown placeholder="category: " :options="categories" @updateSelected="updateTechnologies" :key="value" />
         </div>
       </div>
 
@@ -58,7 +58,7 @@
         </button>
 
         <button
-          type="submit"
+          @click="submit"
           class="p-2 text-xs cursor-pointer bg-white hover:text-gray-400 rounded-md text-black border border-grey-100"
         >
           Submit

@@ -42,16 +42,16 @@ const actions = {
     }
   },
 
-  async editQuestion({ commit }, question) {
+  async editQuestion({ dispatch }, question) {
     try {
       await axios.put(`http://localhost:5001/api/questions/${question._id}`, {
         title: question.title,
         body: question.body,
         codeSnippet: question.codeSnippet,
-        level: question.level,
-        category: question.category,
+        level: question.selectedLevel.code,
+        category: question.selectedCategory.code,
       });
-      commit("changeQuestion", question);
+      dispatch("fetchQuestions");
     } catch (e) {
       console.log(e.message);
     }
