@@ -1,4 +1,5 @@
 import axios from "axios";
+import toastr from "toastr";
 
 export function setInterceptors() {
   // Add a request interceptor
@@ -17,7 +18,7 @@ export function setInterceptors() {
     async function (error) {
       // Any status codes that falls outside the range of 2xx cause this function to trigger
       // Do something with response error
-      alert("there is an error. please try again");
+      toastr.warning(error.response.data);
 
       if (error.response.status === 401) {
         const token = localStorage.getItem("refreshToken");
