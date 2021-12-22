@@ -83,8 +83,8 @@ export default {
         title: this.title,
         body: this.body,
         codeSnippet: this.codeSnippet,
-        level: this.selectedLevel.map((a) => a.code),
-        category: this.selectedCategory.map((a) => a.code),
+        level: this.selectedLevel,
+        category: this.selectedCategory,
       };
       this.$store.dispatch("addQuestion", data);
       this.title = "";
@@ -105,23 +105,8 @@ export default {
   },
   data() {
     return {
-      categories: [
-        { name: "HTML", code: "HTML" },
-        { name: "CSS", code: "CSS" },
-        { name: "SCSS", code: "SCSS" },
-        { name: "React", code: "React" },
-        { name: "Redux", code: "Redux" },
-        { name: "Vue", code: "Vue" },
-        { name: "JS", code: "JS" },
-      ],
-
-      gradeOptions: [
-        { name: "Junior", code: "Junior" },
-        { name: "Middle", code: "Middle" },
-        { name: "Senior", code: "Senior" },
-        { name: "Lead", code: "Lead" },
-        { name: "Architect", code: "Architect" },
-      ],
+      categories: ["HTML", "CSS", "SCSS", "React", "Redux", "Vue", "JS"],
+      gradeOptions: ["Junior", "Middle", "Senior", "Lead", "Architect"],
 
       selectedCategory: [],
       selectedLevel: [],

@@ -49,8 +49,8 @@ const actions = {
         title: question.title,
         body: question.body,
         codeSnippet: question.codeSnippet,
-        level: question.selectedLevel.map(value => value.code),
-        category: question.selectedCategory.map(value => value.code),
+        level: question.selectedLevel,
+        category: question.selectedCategory,
       });
       dispatch("fetchQuestions");
     } catch (e) {
