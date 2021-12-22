@@ -3,7 +3,15 @@
     <div class="dropdown__content">
       <div class="dropdown__content-selected">
         <span v-if="!selectedValues.length">{{ placeholder }}</span>
-        <span v-for="item in selectedValues" :key="item.code">{{item.name}}</span>
+        <span 
+          v-for="(item, index) in selectedValues"
+          :key="index"
+          class="dropdown__tag"
+          @click.stop
+        >
+          {{item}}
+          <i class="fas fa-times" @click="deleteTag(item)"></i>
+        </span>
       </div>
       <svg
         class="arrow"
@@ -19,26 +27,26 @@
         <div class="list__options" v-if="isOpened">
           <div class="list__selected" v-if="selectedValues.length">
             <label
-              v-for="item in selectedValues"
-              :key="item.code"
+              v-for="(item, index) in selectedValues"
+              :key="index"
               class="list__item"
               @click.stop
-              @change="selectOption(item.code)"
+              @change="selectOption(item)"
             >
               <input type="checkbox" checked class="list__checkbox">
-              {{item.name}}
+              {{item}}
             </label>
           </div>
           <div class="list__notSelected">
             <label
-              v-for="item in notSelectedValues"
-              :key="item.code"
+              v-for="(item, index) in notSelectedValues"
+              :key="index"
               class="list__item"
               @click.stop
-              @change="selectOption(item.code)"
+              @change="selectOption(item)"
             >
               <input type="checkbox" class="list__checkbox">
-              {{item.name}}
+              {{item}}
             </label>
           </div>
       </div>
@@ -55,7 +63,7 @@
 
 export default ({
   name: 'Dropdown',
-  props: ['label', 'options', 'value', 'placeholder', 'selected'],
+  props: ['options', 'placeholder', 'selected'],
 
   data() {
     return {
@@ -78,42 +86,61 @@ export default ({
 
     initializeList() {
       if (this.selected) {
-        this.selectedValues = this.selected.map(value => {return {name: value, code: value}});
-        this.notSelectedValues = this.options.filter(item => (!this.selected.some(selectedItem => selectedItem === item.code)));
+        this.selectedValues = [...this.selected];
+        this.notSelectedValues = this.options.filter(item => !this.selected.includes(item));
       } else {
         this.selectedValues = [];
-        this.notSelectedValues = this.options.map(value => ({code: value.code, name: value.name}));
+        this.notSelectedValues = [...this.options];
       }
 
-      this.selectedValues.forEach(value => this.draftList.selected.push(value.code));
-      this.notSelectedValues.forEach(value => this.draftList.notSelected.push(value.code));
+      this.selectedValues.forEach(value => this.draftList.selected.push(value));
+      this.notSelectedValues.forEach(value => this.draftList.notSelected.push(value));
 
     },
 
-    selectOption(code) {
+    selectOption(value) {
       const notSelected = this.draftList.notSelected;
       const selected = this.draftList.selected;
 
-      if (selected.includes(code)) {
-        const index = selected.findIndex(value => value === code);
+      if (selected.includes(value)) {
+        const index = selected.findIndex(item => value === item);
         selected.splice(index, 1);
-        notSelected.push(code);
+        notSelected.push(value);
 
       } else {
-        const index = notSelected.findIndex(value => value === code);
+        const index = notSelected.findIndex(item=> value === item);
         notSelected.splice(index, 1);
-        selected.push(code);
+        selected.push(value);
       }
 
       this.isListBtnDisabled = !selected.length;
+    },
+
+    deleteTag(value) {
+      event.stopPropagation();
+      const notSelected = this.draftList.notSelected;
+      const selected = this.draftList.selected;
+
+      const index = selected.findIndex(item => value === item);
+
+      selected.splice(index, 1);
+      notSelected.push(value);
+
+      // this.isListBtnDisabled = !selected.length;
+      // updating list
+      this.notSelectedValues = this.options.filter(value => this.draftList.notSelected.includes(value));
+      this.selectedValues = this.options.filter(value => this.draftList.selected.includes(value));
+
+      this.$emit('updateSelected', this.selectedValues);
+      
     },
 
     updateList() {
       event.stopPropagation();
       this.toggleDropdown();
 
-      this.notSelectedValues = this.options.filter(value => this.draftList.notSelected.some(code => value.code === code));
-      this.selectedValues = this.options.filter(value => this.draftList.selected.some(code => value.code === code));
+      this.notSelectedValues = this.options.filter(value => this.draftList.notSelected.includes(value));
+      this.selectedValues = this.options.filter(value => this.draftList.selected.includes(value));
 
       this.$emit('updateSelected', this.selectedValues);
     },
@@ -122,14 +149,9 @@ export default ({
       event.stopPropagation();
       this.updateList();
       this.draftList.selected = [];
-      this.draftList.notSelected = [];
-      this.notSelectedValues = [];
+      this.draftList.notSelected = [...this.options];
+      this.notSelectedValues = [...this.options];
       this.selectedValues = [];
-
-      this.options.forEach(value => this.draftList.notSelected.push(value.code));
-      this.options.forEach(value => {
-        this.notSelectedValues.push(value);
-      });
 
       this.isListBtnDisabled = true;
       this.$emit('updateSelected', this.selectedValues);
@@ -178,6 +200,18 @@ export default ({
 .dropdown__content-selected {
   display: flex;
   gap: 10px;
+}
+
+.fas:hover {
+  color: #990000;
+}
+
+.dropdown__tag {
+  display: inline-block;
+  padding: 0 8px 0 4px;
+  color: #fff;
+  background-color: grey;
+  border-radius: 3px;
 }
 
 .arrow {
@@ -258,6 +292,7 @@ export default ({
   font-size: 14px;
   line-height: 22px;
 }
+
 .list__checkbox {
   position: relative;
   margin-right: 15px;

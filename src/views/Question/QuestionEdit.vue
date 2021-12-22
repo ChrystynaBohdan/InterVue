@@ -109,23 +109,8 @@ export default {
 
   data() {
     return {
-      categories: [
-        { name: "HTML", code: "HTML" },
-        { name: "CSS", code: "CSS" },
-        { name: "SCSS", code: "SCSS" },
-        { name: "React", code: "React" },
-        { name: "Redux", code: "Redux" },
-        { name: "Vue", code: "Vue" },
-        { name: "JS", code: "JS" },
-      ],
-
-      gradeOptions: [
-        { name: "Junior", code: "Junior" },
-        { name: "Middle", code: "Middle" },
-        { name: "Senior", code: "Senior" },
-        { name: "Lead", code: "Lead" },
-        { name: "Architect", code: "Architect" },
-      ],
+      categories: ["HTML", "CSS", "SCSS", "React", "Redux", "Vue", "JS"],
+      gradeOptions: ["Junior", "Middle", "Senior", "Lead", "Architect"],
       formValue: {
         title: "",
         body: "",
