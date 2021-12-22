@@ -59,9 +59,10 @@
               :key="level"
               v-bind:class="{
                 'bg-blue-400': level === 'Junior',
-                'bg-indigo-400': level === 'Middle',
+                'bg-green-400': level === 'Middle',
+                'bg-indigo-400': level === 'Lead',
                 'bg-yellow-400': level === 'Senior',
-                'bg-yellow-400': level === 'Architect',
+                'bg-red-400': level === 'Architect',
               }"
               class="text-white w-7 rounded-full h-7 w-20 flex items-center justify-center text-xs"
             >
@@ -72,6 +73,7 @@
         <QuestionLikes :question="question"></QuestionLikes>
       </div>
       <div>{{ question.body }}</div>
+      <div v-html="markdownToHtml"></div>
       <span @click="remove(question)" class="text-xs cursor-pointer bg-white text-gray-400 hover:text-black">
         ( Delete Question )
       </span>
@@ -87,6 +89,7 @@
 import { mapActions, mapGetters } from "vuex";
 import Comments from "../../components/Comments";
 import QuestionLikes from "./QuestionLikes";
+import { marked } from "marked";
 
 export default {
   name: "Question",
@@ -99,6 +102,9 @@ export default {
 
     question() {
       return this.questionByID(this.$route.params.id);
+    },
+    markdownToHtml() {
+      return marked(this.question.codeSnippet);
     },
   },
   methods: {

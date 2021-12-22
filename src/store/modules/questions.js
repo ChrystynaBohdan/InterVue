@@ -55,6 +55,7 @@ const actions = {
       dispatch("fetchQuestions");
     } catch (e) {
       console.log(e.message);
+      throw new Error("ERROR");
     }
   },
 
