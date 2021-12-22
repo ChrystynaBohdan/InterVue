@@ -95,10 +95,7 @@ export default {
   computed: {
     ...mapGetters(["filteredQuestions"]),
     myFilteredQuestions() {
-      const selectedCategories = this.selectedCategory.map((category) => category.code);
-      const selectedLevels = this.selectedGrade.map((level) => level.code);
-
-      return this.filteredQuestions(selectedCategories, selectedLevels);
+      return this.filteredQuestions(this.selectedCategory, this.selectedGrade);
     },
   },
   methods: {
@@ -116,20 +113,9 @@ export default {
   },
   data() {
     return {
-      languageOptions: [
-        { name: "HTML", code: "HTML" },
-        { name: "CSS", code: "CSS" },
-        { name: "SCSS", code: "SCSS" },
-        { name: "React", code: "React" },
-        { name: "Redux", code: "Redux" },
-        { name: "Vue", code: "Vue" },
-        { name: "JS", code: "JS" },
-      ],
-      gradeOptions: [
-        { name: "Junior", code: "Junior" },
-        { name: "Middle", code: "Middle" },
-        { name: "Senior", code: "Senior" },
-      ],
+      languageOptions: ["HTML", "CSS", "SCSS", "React", "Redux", "Vue", "JS"],
+      gradeOptions: ["Junior", "Middle", "Senior", "Lead", "Architect"],
+
       selectedCategory: [],
       selectedGrade: [],
     };

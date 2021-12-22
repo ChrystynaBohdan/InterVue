@@ -93,14 +93,6 @@ export default {
   methods: {
     ...mapActions(["editQuestion"]),
     async submit() {
-      if (typeof this.formValue.selectedCategory[0] === 'string') {
-         this.formValue.selectedCategory = this.formValue.selectedCategory.map(value => ({code: value, name: value}));
-      }
-
-      if (typeof this.formValue.selectedLevel[0] === 'string') {
-         this.formValue.selectedLevel = this.formValue.selectedLevel.map(value => ({code: value, name: value}));
-      }
-
       await this.$store.dispatch("editQuestion", this.formValue);
       this.title = "";
       this.body = "";
@@ -121,23 +113,8 @@ export default {
 
   data() {
     return {
-      categories: [
-        { name: "HTML", code: "HTML" },
-        { name: "CSS", code: "CSS" },
-        { name: "SCSS", code: "SCSS" },
-        { name: "React", code: "React" },
-        { name: "Redux", code: "Redux" },
-        { name: "Vue", code: "Vue" },
-        { name: "JS", code: "JS" },
-      ],
-
-      gradeOptions: [
-        { name: "Junior", code: "Junior" },
-        { name: "Middle", code: "Middle" },
-        { name: "Senior", code: "Senior" },
-        { name: "Lead", code: "Lead" },
-        { name: "Architect", code: "Architect" },
-      ],
+      categories: ["HTML", "CSS", "SCSS", "React", "Redux", "Vue", "JS"],
+      gradeOptions: ["Junior", "Middle", "Senior", "Lead", "Architect"],
       formValue: {
         title: "",
         body: "",
