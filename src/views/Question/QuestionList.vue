@@ -15,7 +15,15 @@
       </div>
       <div>
         <ul>
-          <li class="grid gap-4 py-4 items-center question" v-for="question in myFilteredQuestions" :key="question._id">
+          <li
+            class="grid gap-4 py-4 items-center question"
+            v-for="question in myFilteredQuestions"
+            :key="question._id"
+            v-bind:class="{
+              'bg-green-400': question.openB === 'true',
+              'bg-red-400': question.openB === 'false',
+            }"
+          >
             <router-link
               tag="span"
               :to="{ name: 'Question', params: { id: question._id } }"
@@ -32,6 +40,12 @@
                 gap-x-3 gap-y-1
               "
               >{{ question.title }}
+              <div
+                v-if="question.isOpened"
+                class="opacity-30 text-xs overflow-y-hidden transition duration-150 ease-out"
+              >
+                {{ question.body }}
+              </div>
               <div class="flex gap-x-1">
                 <div
                   v-for="category in question.category"
@@ -73,6 +87,9 @@
                 </div>
               </div>
             </router-link>
+            <button @click="toggleOpen(question)">
+              <i class="far fa-arrow-alt-circle-down fa-lg hover:text-gray-500 text-gray-300 cursor-pointer"></i>
+            </button>
             <QuestionLikes :question="question"></QuestionLikes>
           </li>
         </ul>
@@ -100,6 +117,10 @@ export default {
   },
   methods: {
     ...mapActions(["fetchQuestions", "addLikes"]),
+    toggleOpen(question) {
+      question.isOpened = !question.isOpened;
+    },
+
     updateTechnologies(values) {
       this.selectedCategory = values;
     },

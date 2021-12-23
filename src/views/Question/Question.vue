@@ -132,10 +132,10 @@ export default {
     edit() {
       this.$router.push({ path: `/questions/${this.$route.params.id}/edit` });
     },
-    async remove(question) {
+    async remove(q) {
       let response = confirm("Are you sure you want to delete this question?");
       if (response) {
-        await this.deleteQuestion(question._id);
+        await this.deleteQuestion(q._id);
         this.$router.push("/");
       }
     },

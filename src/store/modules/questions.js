@@ -28,7 +28,10 @@ const actions = {
   async fetchQuestions({ commit }) {
     const response = await axios.get("http://localhost:5001/api/questions");
 
-    commit("setQuestions", response.data);
+    commit(
+      "setQuestions",
+      response.data.map((question) => ({ ...question, isOpened: false }))
+    );
   },
 
   async addQuestion({ dispatch }, question) {

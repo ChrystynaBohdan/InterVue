@@ -18,13 +18,19 @@
       <div class="h-18 w-3/5">
         <div class="flex flex-col gap-2">
           Level:
-          <Dropdown2 :selected="formValue.selectedLevel" :options="gradeOptions" @updateSelected="updateGrades" />
+          <Dropdown
+            placeholder="Choose level:"
+            :selected="formValue.selectedLevel"
+            :options="gradeOptions"
+            @updateSelected="updateGrades"
+          />
         </div>
       </div>
       <div class="h-18 w-3/5">
         <div class="flex flex-col gap-2">
           Category:
-          <Dropdown2
+          <Dropdown
+            placeholder="Choose category: "
             :selected="formValue.selectedCategory"
             :options="categories"
             @updateSelected="updateTechnologies"
@@ -74,11 +80,11 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
-import Dropdown2 from "../../components/Dropdown2.vue";
+import Dropdown from "../../components/Dropdown.vue";
 
 export default {
   name: "EditForm",
-  components: { Dropdown2 },
+  components: { Dropdown },
   computed: {
     ...mapGetters(["questionByID"]),
     question() {
@@ -90,11 +96,6 @@ export default {
     ...mapActions(["editQuestion"]),
     async submit() {
       await this.$store.dispatch("editQuestion", this.formValue);
-      this.formValue.title = "";
-      this.formValue.body = "";
-      this.formValue.selectedLevel = [];
-      this.formValue.selectedCategory = [];
-      this.formValue.codeSnippet = "";
       await this.$router.push({ path: `/questions/${this.$route.params.id}` });
     },
 
