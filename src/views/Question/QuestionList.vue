@@ -17,7 +17,7 @@
         <ul>
           <li
             class="grid gap-4 py-4 items-center question"
-            v-for="question in myFilteredQuestions"
+            v-for="question in currentPage"
             :key="question._id"
             v-bind:class="{
               'bg-green-400': question.openB === 'true',
@@ -88,11 +88,18 @@
               </div>
             </router-link>
             <button @click="toggleOpen(question)">
-              <i class="far fa-arrow-alt-circle-down fa-lg hover:text-gray-500 text-gray-300 cursor-pointer"></i>
+              <i
+                v-if="question.isOpened"
+                class="far fa-arrow-alt-circle-up fa-lg hover:text-gray-500 text-gray-300 cursor-pointer"
+              ></i>
+              <i v-else class="far fa-arrow-alt-circle-down fa-lg hover:text-gray-500 text-gray-300 cursor-pointer"></i>
             </button>
             <QuestionLikes :question="question"></QuestionLikes>
           </li>
         </ul>
+      </div>
+      <div class="flex space-between">
+        <button v-for="page in pages" :key="page" @click="setPage(page)">{{ page }}</button>
       </div>
     </div>
   </div>
@@ -114,6 +121,17 @@ export default {
     myFilteredQuestions() {
       return this.filteredQuestions(this.selectedCategory, this.selectedGrade);
     },
+    currentPage() {
+      const from = (this.page - 1) * this.pageSize;
+      const to = this.page * this.pageSize;
+      return this.myFilteredQuestions.slice(from, to);
+    },
+    totalPages() {
+      return Math.ceil(this.myFilteredQuestions.length / this.pageSize);
+    },
+    pages() {
+      return Array.from({ length: this.totalPages }, (_, i) => i + 1);
+    },
   },
   methods: {
     ...mapActions(["fetchQuestions", "addLikes"]),
@@ -128,6 +146,10 @@ export default {
     updateGrades(values) {
       this.selectedGrade = values;
     },
+
+    setPage(page) {
+      this.page = page;
+    },
   },
   mounted() {
     this.fetchQuestions();
@@ -139,6 +161,8 @@ export default {
 
       selectedCategory: [],
       selectedGrade: [],
+      page: 1,
+      pageSize: 5,
     };
   },
 };
