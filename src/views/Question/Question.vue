@@ -117,6 +117,7 @@ export default {
       }
 
       const nextQuestion = this.allQuestions[idx - 1]._id;
+
       this.$router.push({ path: `/questions/${nextQuestion}` });
     },
     next(question) {
@@ -126,7 +127,7 @@ export default {
         return;
       }
 
-      const nextQuestion = this.allQuestions[idx + 1]._id;
+      const nextQuestion = this.allQuestions.slice(idx).find((item) => item.category[0] === question.category[0]);
       this.$router.push({ path: `/questions/${nextQuestion}` });
     },
     edit() {
